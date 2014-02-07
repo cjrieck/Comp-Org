@@ -4,5 +4,5 @@ prompt:    .asciiz    "Please enter three integers: "
     .globl main
 main:
     li    $v0,    4
-    la    $a0,$a1,$a2,    prompt
+    la    $a0, $a1, $a2,    prompt
     syscall
