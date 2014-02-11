@@ -1,0 +1,40 @@
+Branches:
+	example4.a, example5.a, example6.a, example7.a on his website corresponds to these notes
+
+	if-else = conditional branch
+	beq r1, r2, label ---> checks if r1 and r2 are equal. If they are then go to "label"
+	bne r1, r2, label ---> checks if r1 and r2 are NOT equal. If NOT then go to "label"
+
+Ex for example4.a:
+	val = 5;
+	num = 5;
+	if (val == num) {
+		val = val + 1;
+		num = num + val;
+	}
+	cout << val << num << endl;
+
+Ex for example5.a:
+	val = 6;
+	num = 5;
+	if (val == num) {
+		val = val + 1;
+		num = num + val;
+	}
+	else {
+		val = val - 1;
+	}
+	cout << val << num << endl;
+
+Ex for example6.a:
+	val = 1;
+	num = 5;
+	while (val < num){
+		val = val + 1;
+		cout << val;
+	}
+
+slt = set less than
+t3 = t0 < t1;
+t3 = 1 when t0 < t1
+t3 = 0 when t0 >= t
