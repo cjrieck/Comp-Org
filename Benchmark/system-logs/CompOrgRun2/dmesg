@@ -1,0 +1,1374 @@
+Initializing cgroup subsys cpuset
+Initializing cgroup subsys cpu
+Linux version 3.5.0-23-generic (buildd@komainu) (gcc version 4.7.2 (Ubuntu/Linaro 4.7.2-2ubuntu1) ) #35-Ubuntu SMP Thu Jan 24 13:15:40 UTC 2013 (Ubuntu 3.5.0-23.35-generic 3.5.7.2)
+Command line: BOOT_IMAGE=/boot/vmlinuz-3.5.0-23-generic root=UUID=6c190965-8079-4614-a058-cf8f3101b548 ro quiet splash vt.handoff=7
+KERNEL supported cpus:
+  Intel GenuineIntel
+  AMD AuthenticAMD
+  Centaur CentaurHauls
+e820: BIOS-provided physical RAM map:
+BIOS-e820: [mem 0x0000000000000000-0x00000000000997ff] usable
+BIOS-e820: [mem 0x0000000000099800-0x000000000009ffff] reserved
+BIOS-e820: [mem 0x00000000000e4000-0x00000000000fffff] reserved
+BIOS-e820: [mem 0x0000000000100000-0x00000000cf77ffff] usable
+BIOS-e820: [mem 0x00000000cf780000-0x00000000cf78dfff] ACPI data
+BIOS-e820: [mem 0x00000000cf78e000-0x00000000cf7cffff] ACPI NVS
+BIOS-e820: [mem 0x00000000cf7d0000-0x00000000cf7dffff] reserved
+BIOS-e820: [mem 0x00000000cf7ec000-0x00000000cfffffff] reserved
+BIOS-e820: [mem 0x00000000fee00000-0x00000000fee00fff] reserved
+BIOS-e820: [mem 0x00000000fff00000-0x00000000ffffffff] reserved
+BIOS-e820: [mem 0x0000000100000000-0x000000042fffffff] usable
+NX (Execute Disable) protection: active
+DMI present.
+DMI: HP-Pavilion BN405AV-ABA HPE-190t/TRUCKEE, BIOS 5.28    04/09/2010
+e820: update [mem 0x00000000-0x0000ffff] usable ==> reserved
+e820: remove [mem 0x000a0000-0x000fffff] usable
+No AGP bridge found
+e820: last_pfn = 0x430000 max_arch_pfn = 0x400000000
+MTRR default type: uncachable
+MTRR fixed ranges enabled:
+  00000-9FFFF write-back
+  A0000-BFFFF uncachable
+  C0000-D3FFF write-protect
+  D4000-DFFFF uncachable
+  E0000-E7FFF write-protect
+  E8000-EFFFF write-through
+  F0000-FFFFF write-protect
+MTRR variable ranges enabled:
+  0 base 000000000 mask C00000000 write-back
+  1 base 400000000 mask FE0000000 write-back
+  2 base 420000000 mask FF0000000 write-back
+  3 base 0D0000000 mask FF0000000 uncachable
+  4 base 0E0000000 mask FE0000000 uncachable
+  5 base 0CF800000 mask FFF800000 uncachable
+  6 disabled
+  7 disabled
+  8 disabled
+  9 disabled
+x86 PAT enabled: cpu 0, old 0x7040600070406, new 0x7010600070106
+original variable MTRRs
+reg 0, base: 0GB, range: 16GB, type WB
+reg 1, base: 16GB, range: 512MB, type WB
+reg 2, base: 16896MB, range: 256MB, type WB
+reg 3, base: 3328MB, range: 256MB, type UC
+reg 4, base: 3584MB, range: 512MB, type UC
+reg 5, base: 3320MB, range: 8MB, type UC
+total RAM covered: 16376M
+Found optimal setting for mtrr clean up
+ gran_size: 64K 	chunk_size: 16M 	num_reg: 8  	lose cover RAM: 0G
+New variable MTRRs
+reg 0, base: 0GB, range: 2GB, type WB
+reg 1, base: 2GB, range: 1GB, type WB
+reg 2, base: 3GB, range: 256MB, type WB
+reg 3, base: 3320MB, range: 8MB, type UC
+reg 4, base: 4GB, range: 4GB, type WB
+reg 5, base: 8GB, range: 8GB, type WB
+reg 6, base: 16GB, range: 512MB, type WB
+reg 7, base: 16896MB, range: 256MB, type WB
+e820: update [mem 0xcf800000-0xffffffff] usable ==> reserved
+e820: last_pfn = 0xcf780 max_arch_pfn = 0x400000000
+found SMP MP-table at [mem 0x000ff780-0x000ff78f] mapped at [ffff8800000ff780]
+initial memory mapped: [mem 0x00000000-0x1fffffff]
+Base memory trampoline at [ffff880000093000] 93000 size 24576
+Using GB pages for direct mapping
+init_memory_mapping: [mem 0x00000000-0xcf77ffff]
+ [mem 0x00000000-0xbfffffff] page 1G
+ [mem 0xc0000000-0xcf5fffff] page 2M
+ [mem 0xcf600000-0xcf77ffff] page 4k
+kernel direct mapping tables up to 0xcf77ffff @ [mem 0x1fffd000-0x1fffffff]
+init_memory_mapping: [mem 0x100000000-0x42fffffff]
+ [mem 0x100000000-0x3ffffffff] page 1G
+ [mem 0x400000000-0x42fffffff] page 2M
+kernel direct mapping tables up to 0x42fffffff @ [mem 0xcf77e000-0xcf77ffff]
+RAMDISK: [mem 0x362e2000-0x37168fff]
+ACPI: RSDP 00000000000f9df0 00014 (v00 HPQOEM)
+ACPI: RSDT 00000000cf780000 00040 (v01 HPQOEM SLIC-CPC 20100409 MSFT 00000097)
+ACPI: FACP 00000000cf780200 00084 (v01 HPQOEM SLIC-CPC 20100409 MSFT 00000097)
+ACPI: DSDT 00000000cf780480 05333 (v01 HPQOEM SLIC-CPC 00000000 INTL 20051117)
+ACPI: FACS 00000000cf78e000 00040
+ACPI: APIC 00000000cf780390 000AC (v01 HPQOEM SLIC-CPC 20100409 MSFT 00000097)
+ACPI: MCFG 00000000cf780440 0003C (v01 HPQOEM SLIC-CPC 20100409 MSFT 00000097)
+ACPI: OEMB 00000000cf78e040 00076 (v01 HPQOEM SLIC-CPC 20100409 MSFT 00000097)
+ACPI: HPET 00000000cf7857c0 00038 (v01 HPQOEM SLIC-CPC 20100409 MSFT 00000097)
+ACPI: SLIC 00000000cf78e0c0 00176 (v01 HPQOEM SLIC-CPC 00000001 MSFT 00000001)
+ACPI: SSDT 00000000cf792500 0249F (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+ACPI: Local APIC address 0xfee00000
+No NUMA configuration found
+Faking a node at [mem 0x0000000000000000-0x000000042fffffff]
+Initmem setup node 0 [mem 0x00000000-0x42fffffff]
+  NODE_DATA [mem 0x42fffc000-0x42fffffff]
+ [ffffea0000000000-ffffea0010bfffff] PMD -> [ffff88041f600000-ffff88042f5fffff] on node 0
+Zone ranges:
+  DMA      [mem 0x00010000-0x00ffffff]
+  DMA32    [mem 0x01000000-0xffffffff]
+  Normal   [mem 0x100000000-0x42fffffff]
+Movable zone start for each node
+Early memory node ranges
+  node   0: [mem 0x00010000-0x00098fff]
+  node   0: [mem 0x00100000-0xcf77ffff]
+  node   0: [mem 0x100000000-0x42fffffff]
+On node 0 totalpages: 4192009
+  DMA zone: 64 pages used for memmap
+  DMA zone: 6 pages reserved
+  DMA zone: 3907 pages, LIFO batch:0
+  DMA32 zone: 16320 pages used for memmap
+  DMA32 zone: 829376 pages, LIFO batch:31
+  Normal zone: 52224 pages used for memmap
+  Normal zone: 3290112 pages, LIFO batch:31
+ACPI: PM-Timer IO Port: 0x808
+ACPI: Local APIC address 0xfee00000
+ACPI: LAPIC (acpi_id[0x01] lapic_id[0x00] enabled)
+ACPI: LAPIC (acpi_id[0x02] lapic_id[0x02] enabled)
+ACPI: LAPIC (acpi_id[0x03] lapic_id[0x04] enabled)
+ACPI: LAPIC (acpi_id[0x04] lapic_id[0x10] enabled)
+ACPI: LAPIC (acpi_id[0x05] lapic_id[0x12] enabled)
+ACPI: LAPIC (acpi_id[0x06] lapic_id[0x14] enabled)
+ACPI: LAPIC (acpi_id[0x07] lapic_id[0x01] enabled)
+ACPI: LAPIC (acpi_id[0x08] lapic_id[0x03] enabled)
+ACPI: LAPIC (acpi_id[0x09] lapic_id[0x05] enabled)
+ACPI: LAPIC (acpi_id[0x0a] lapic_id[0x11] enabled)
+ACPI: LAPIC (acpi_id[0x0b] lapic_id[0x13] enabled)
+ACPI: LAPIC (acpi_id[0x0c] lapic_id[0x15] enabled)
+ACPI: IOAPIC (id[0x06] address[0xfec00000] gsi_base[0])
+IOAPIC[0]: apic_id 6, version 32, address 0xfec00000, GSI 0-23
+ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 dfl dfl)
+ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 high level)
+ACPI: IRQ0 used by override.
+ACPI: IRQ2 used by override.
+ACPI: IRQ9 used by override.
+Using ACPI (MADT) for SMP configuration information
+ACPI: HPET id: 0x8086a301 base: 0xfed00000
+SMP: Allowing 12 CPUs, 0 hotplug CPUs
+nr_irqs_gsi: 40
+PM: Registered nosave memory: 0000000000099000 - 000000000009a000
+PM: Registered nosave memory: 000000000009a000 - 00000000000a0000
+PM: Registered nosave memory: 00000000000a0000 - 00000000000e4000
+PM: Registered nosave memory: 00000000000e4000 - 0000000000100000
+PM: Registered nosave memory: 00000000cf780000 - 00000000cf78e000
+PM: Registered nosave memory: 00000000cf78e000 - 00000000cf7d0000
+PM: Registered nosave memory: 00000000cf7d0000 - 00000000cf7e0000
+PM: Registered nosave memory: 00000000cf7e0000 - 00000000cf7ec000
+PM: Registered nosave memory: 00000000cf7ec000 - 00000000d0000000
+PM: Registered nosave memory: 00000000d0000000 - 00000000fee00000
+PM: Registered nosave memory: 00000000fee00000 - 00000000fee01000
+PM: Registered nosave memory: 00000000fee01000 - 00000000fff00000
+PM: Registered nosave memory: 00000000fff00000 - 0000000100000000
+e820: [mem 0xd0000000-0xfedfffff] available for PCI devices
+Booting paravirtualized kernel on bare hardware
+setup_percpu: NR_CPUS:256 nr_cpumask_bits:256 nr_cpu_ids:12 nr_node_ids:1
+PERCPU: Embedded 28 pages/cpu @ffff88042fc00000 s83584 r8192 d22912 u131072
+pcpu-alloc: s83584 r8192 d22912 u131072 alloc=1*2097152
+pcpu-alloc: [0] 00 01 02 03 04 05 06 07 08 09 10 11 -- -- -- -- 
+Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 4123395
+Policy zone: Normal
+Kernel command line: BOOT_IMAGE=/boot/vmlinuz-3.5.0-23-generic root=UUID=6c190965-8079-4614-a058-cf8f3101b548 ro quiet splash vt.handoff=7
+PID hash table entries: 4096 (order: 3, 32768 bytes)
+__ex_table already sorted, skipping sort
+Checking aperture...
+No AGP bridge found
+Calgary: detecting Calgary via BIOS EBDA area
+Calgary: Unable to locate Rio Grande table in EBDA - bailing!
+Memory: 16407764k/17563648k available (6718k kernel code, 795612k absent, 360272k reserved, 6452k data, 932k init)
+SLUB: Genslabs=15, HWalign=64, Order=0-3, MinObjects=0, CPUs=12, Nodes=1
+Hierarchical RCU implementation.
+	RCU dyntick-idle grace-period acceleration is enabled.
+NR_IRQS:16640 nr_irqs:776 16
+vt handoff: transparent VT on vt#7
+Console: colour dummy device 80x25
+console [tty0] enabled
+allocated 67108864 bytes of page_cgroup
+please try 'cgroup_disable=memory' option if you don't want memory cgroups
+hpet clockevent registered
+Fast TSC calibration using PIT
+Detected 3325.194 MHz processor.
+Calibrating delay loop (skipped), value calculated using timer frequency.. 6650.38 BogoMIPS (lpj=13300776)
+pid_max: default: 32768 minimum: 301
+Security Framework initialized
+AppArmor: AppArmor initialized
+Yama: becoming mindful.
+Dentry cache hash table entries: 2097152 (order: 12, 16777216 bytes)
+Inode-cache hash table entries: 1048576 (order: 11, 8388608 bytes)
+Mount-cache hash table entries: 256
+Initializing cgroup subsys cpuacct
+Initializing cgroup subsys memory
+Initializing cgroup subsys devices
+Initializing cgroup subsys freezer
+Initializing cgroup subsys blkio
+Initializing cgroup subsys perf_event
+CPU: Physical Processor ID: 0
+CPU: Processor Core ID: 0
+mce: CPU supports 9 MCE banks
+CPU0: Thermal monitoring enabled (TM1)
+using mwait in idle threads.
+ACPI: Core revision 20120320
+ftrace: allocating 25140 entries in 99 pages
+Switched APIC routing to physical flat.
+..TIMER: vector=0x30 apic1=0 pin1=2 apic2=-1 pin2=-1
+CPU0: Intel(R) Core(TM) i7 CPU       X 980  @ 3.33GHz stepping 02
+Performance Events: PEBS fmt1+, 16-deep LBR, Westmere events, Intel PMU driver.
+CPUID marked event: 'bus cycles' unavailable
+... version:                3
+... bit width:              48
+... generic registers:      4
+... value mask:             0000ffffffffffff
+... max period:             000000007fffffff
+... fixed-purpose events:   3
+... event mask:             000000070000000f
+NMI watchdog: enabled on all CPUs, permanently consumes one hw-PMU counter.
+Booting Node   0, Processors  #1 #2 #3 #4 #5 #6 #7 #8 #9 #10 #11 Ok.
+Brought up 12 CPUs
+Total of 12 processors activated (79804.65 BogoMIPS).
+devtmpfs: initialized
+EVM: security.selinux
+EVM: security.SMACK64
+EVM: security.capability
+PM: Registering ACPI NVS region [mem 0xcf78e000-0xcf7cffff] (270336 bytes)
+dummy: 
+RTC time: 17:11:20, date: 01/07/14
+NET: Registered protocol family 16
+Trying to unpack rootfs image as initramfs...
+ACPI: bus type pci registered
+PCI: MMCONFIG for domain 0000 [bus 00-ff] at [mem 0xe0000000-0xefffffff] (base 0xe0000000)
+PCI: not using MMCONFIG
+PCI: Using configuration type 1 for base access
+bio: create slab <bio-0> at 0
+ACPI: Added _OSI(Module Device)
+ACPI: Added _OSI(Processor Device)
+ACPI: Added _OSI(3.0 _SCP Extensions)
+ACPI: Added _OSI(Processor Aggregator Device)
+ACPI: EC: Look up EC in DSDT
+ACPI: Executed 1 blocks of module-level executable AML code
+ACPI: SSDT 00000000cf78e240 00586 (v01 HPQOEM SLIC-CPC 00000011 INTL 20051117)
+ACPI: Dynamic OEM Table Load:
+ACPI: SSDT           (null) 00586 (v01 HPQOEM SLIC-CPC 00000011 INTL 20051117)
+ACPI: SSDT 00000000cf78e7d0 00586 (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+ACPI: Dynamic OEM Table Load:
+ACPI: SSDT           (null) 00586 (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+ACPI: SSDT 00000000cf78ed60 00586 (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+ACPI: Dynamic OEM Table Load:
+ACPI: SSDT           (null) 00586 (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+Freeing initrd memory: 14876k freed
+ACPI: SSDT 00000000cf78f2f0 00586 (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+ACPI: Dynamic OEM Table Load:
+ACPI: SSDT           (null) 00586 (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+ACPI: SSDT 00000000cf78f880 00586 (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+ACPI: Dynamic OEM Table Load:
+ACPI: SSDT           (null) 00586 (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+ACPI: SSDT 00000000cf78fe10 00586 (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+ACPI: Dynamic OEM Table Load:
+ACPI: SSDT           (null) 00586 (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+ACPI: SSDT 00000000cf7903a0 00586 (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+ACPI: Dynamic OEM Table Load:
+ACPI: SSDT           (null) 00586 (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+ACPI: SSDT 00000000cf790930 00586 (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+ACPI: Dynamic OEM Table Load:
+ACPI: SSDT           (null) 00586 (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+ACPI: SSDT 00000000cf790ec0 00586 (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+ACPI: Dynamic OEM Table Load:
+ACPI: SSDT           (null) 00586 (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+ACPI: SSDT 00000000cf791450 00586 (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+ACPI: Dynamic OEM Table Load:
+ACPI: SSDT           (null) 00586 (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+ACPI: SSDT 00000000cf7919e0 00586 (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+ACPI: Dynamic OEM Table Load:
+ACPI: SSDT           (null) 00586 (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+ACPI: SSDT 00000000cf791f70 00586 (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+ACPI: Dynamic OEM Table Load:
+ACPI: SSDT           (null) 00586 (v01 HPQOEM SLIC-CPC 00000012 INTL 20051117)
+ACPI: Interpreter enabled
+ACPI: (supports S0 S1 S3 S4 S5)
+ACPI: Using IOAPIC for interrupt routing
+PCI: MMCONFIG for domain 0000 [bus 00-ff] at [mem 0xe0000000-0xefffffff] (base 0xe0000000)
+PCI: MMCONFIG at [mem 0xe0000000-0xefffffff] reserved in ACPI motherboard resources
+ACPI: No dock devices found.
+PCI: Using host bridge windows from ACPI; if necessary, use "pci=nocrs" and report a bug
+ACPI: PCI Root Bridge [PCI0] (domain 0000 [bus 00-ff])
+pci_root PNP0A08:00: host bridge window [io  0x0000-0x0cf7]
+pci_root PNP0A08:00: host bridge window [io  0x0d00-0xffff]
+pci_root PNP0A08:00: host bridge window [mem 0x000a0000-0x000bffff]
+pci_root PNP0A08:00: host bridge window [mem 0x000d0000-0x000dffff]
+pci_root PNP0A08:00: host bridge window [mem 0xd0000000-0xdfffffff]
+pci_root PNP0A08:00: host bridge window [mem 0xf0000000-0xfed8ffff]
+pci_root PNP0A08:00: ignoring host bridge window [mem 0x000d0000-0x000dffff] (conflicts with Adapter ROM [mem 0x000ce000-0x000d27ff])
+PCI host bridge to bus 0000:00
+pci_bus 0000:00: root bus resource [io  0x0000-0x0cf7]
+pci_bus 0000:00: root bus resource [io  0x0d00-0xffff]
+pci_bus 0000:00: root bus resource [mem 0x000a0000-0x000bffff]
+pci_bus 0000:00: root bus resource [mem 0xd0000000-0xdfffffff]
+pci_bus 0000:00: root bus resource [mem 0xf0000000-0xfed8ffff]
+pci 0000:00:00.0: [8086:3400] type 00 class 0x060000
+pci 0000:00:00.0: PME# supported from D0 D3hot D3cold
+pci 0000:00:01.0: [8086:3408] type 01 class 0x060400
+pci 0000:00:01.0: PME# supported from D0 D3hot D3cold
+pci 0000:00:03.0: [8086:340a] type 01 class 0x060400
+pci 0000:00:03.0: PME# supported from D0 D3hot D3cold
+pci 0000:00:07.0: [8086:340e] type 01 class 0x060400
+pci 0000:00:07.0: PME# supported from D0 D3hot D3cold
+pci 0000:00:14.0: [8086:342e] type 00 class 0x080000
+pci 0000:00:14.1: [8086:3422] type 00 class 0x080000
+pci 0000:00:14.2: [8086:3423] type 00 class 0x080000
+pci 0000:00:14.3: [8086:3438] type 00 class 0x080000
+pci 0000:00:19.0: [8086:10ce] type 00 class 0x020000
+pci 0000:00:19.0: reg 10: [mem 0xf7cc0000-0xf7cdffff]
+pci 0000:00:19.0: reg 14: [mem 0xf7cee000-0xf7ceefff]
+pci 0000:00:19.0: reg 18: [io  0xa080-0xa09f]
+pci 0000:00:19.0: PME# supported from D0 D3hot D3cold
+pci 0000:00:1a.0: [8086:3a37] type 00 class 0x0c0300
+pci 0000:00:1a.0: reg 20: [io  0xa400-0xa41f]
+pci 0000:00:1a.1: [8086:3a38] type 00 class 0x0c0300
+pci 0000:00:1a.1: reg 20: [io  0xa480-0xa49f]
+pci 0000:00:1a.2: [8086:3a39] type 00 class 0x0c0300
+pci 0000:00:1a.2: reg 20: [io  0xa800-0xa81f]
+pci 0000:00:1a.7: [8086:3a3c] type 00 class 0x0c0320
+pci 0000:00:1a.7: reg 10: [mem 0xf7cf4000-0xf7cf43ff]
+pci 0000:00:1a.7: PME# supported from D0 D3hot D3cold
+pci 0000:00:1b.0: [8086:3a3e] type 00 class 0x040300
+pci 0000:00:1b.0: reg 10: [mem 0xf7cf0000-0xf7cf3fff 64bit]
+pci 0000:00:1b.0: PME# supported from D0 D3hot D3cold
+pci 0000:00:1c.0: [8086:3a40] type 01 class 0x060400
+pci 0000:00:1c.0: PME# supported from D0 D3hot D3cold
+pci 0000:00:1c.1: [8086:3a42] type 01 class 0x060400
+pci 0000:00:1c.1: PME# supported from D0 D3hot D3cold
+pci 0000:00:1c.2: [8086:3a44] type 01 class 0x060400
+pci 0000:00:1c.2: PME# supported from D0 D3hot D3cold
+pci 0000:00:1c.3: [8086:3a46] type 01 class 0x060400
+pci 0000:00:1c.3: PME# supported from D0 D3hot D3cold
+pci 0000:00:1d.0: [8086:3a34] type 00 class 0x0c0300
+pci 0000:00:1d.0: reg 20: [io  0xa880-0xa89f]
+pci 0000:00:1d.1: [8086:3a35] type 00 class 0x0c0300
+pci 0000:00:1d.1: reg 20: [io  0xac00-0xac1f]
+pci 0000:00:1d.2: [8086:3a36] type 00 class 0x0c0300
+pci 0000:00:1d.2: reg 20: [io  0xb000-0xb01f]
+pci 0000:00:1d.7: [8086:3a3a] type 00 class 0x0c0320
+pci 0000:00:1d.7: reg 10: [mem 0xf7cf6000-0xf7cf63ff]
+pci 0000:00:1d.7: PME# supported from D0 D3hot D3cold
+pci 0000:00:1e.0: [8086:244e] type 01 class 0x060401
+pci 0000:00:1f.0: [8086:3a16] type 00 class 0x060100
+pci 0000:00:1f.0: ICH7 LPC Generic IO decode 1 PIO at 0a00 (mask 00ff)
+pci 0000:00:1f.2: [8086:2822] type 00 class 0x010400
+pci 0000:00:1f.2: reg 10: [io  0xb880-0xb887]
+pci 0000:00:1f.2: reg 14: [io  0xb800-0xb803]
+pci 0000:00:1f.2: reg 18: [io  0xb480-0xb487]
+pci 0000:00:1f.2: reg 1c: [io  0xb400-0xb403]
+pci 0000:00:1f.2: reg 20: [io  0xb080-0xb09f]
+pci 0000:00:1f.2: reg 24: [mem 0xf7cfc000-0xf7cfc7ff]
+pci 0000:00:1f.2: PME# supported from D3hot
+pci 0000:00:1f.3: [8086:3a30] type 00 class 0x0c0500
+pci 0000:00:1f.3: reg 10: [mem 0xf7cfe000-0xf7cfe0ff 64bit]
+pci 0000:00:1f.3: reg 20: [io  0x0400-0x041f]
+pci 0000:00:01.0: PCI bridge to [bus 08-08]
+pci 0000:07:00.0: [10de:05ea] type 00 class 0x030000
+pci 0000:07:00.0: reg 10: [mem 0xfa000000-0xfaffffff]
+pci 0000:07:00.0: reg 14: [mem 0xd0000000-0xdfffffff 64bit pref]
+pci 0000:07:00.0: reg 1c: [mem 0xf8000000-0xf9ffffff 64bit]
+pci 0000:07:00.0: reg 24: [io  0xec00-0xec7f]
+pci 0000:07:00.0: reg 30: [mem 0xfbe80000-0xfbefffff pref]
+pci 0000:00:03.0: PCI bridge to [bus 07-07]
+pci 0000:00:03.0:   bridge window [io  0xe000-0xefff]
+pci 0000:00:03.0:   bridge window [mem 0xf8000000-0xfbefffff]
+pci 0000:00:03.0:   bridge window [mem 0xd0000000-0xdfffffff 64bit pref]
+pci 0000:00:07.0: PCI bridge to [bus 06-06]
+pci 0000:00:1c.0: PCI bridge to [bus 05-05]
+pci 0000:04:00.0: [168c:002a] type 00 class 0x028000
+pci 0000:04:00.0: reg 10: [mem 0xf7ff0000-0xf7ffffff 64bit]
+pci 0000:04:00.0: supports D1
+pci 0000:04:00.0: PME# supported from D0 D1 D3hot
+pci 0000:04:00.0: disabling ASPM on pre-1.1 PCIe device.  You can enable it with 'pcie_aspm=force'
+pci 0000:00:1c.1: PCI bridge to [bus 04-04]
+pci 0000:00:1c.1:   bridge window [mem 0xf7f00000-0xf7ffffff]
+pci 0000:03:00.0: [1106:3403] type 00 class 0x0c0010
+pci 0000:03:00.0: reg 10: [mem 0xf7eff800-0xf7efffff 64bit]
+pci 0000:03:00.0: reg 18: [io  0xd800-0xd8ff]
+pci 0000:03:00.0: supports D2
+pci 0000:03:00.0: PME# supported from D2 D3hot D3cold
+pci 0000:00:1c.2: PCI bridge to [bus 03-03]
+pci 0000:00:1c.2:   bridge window [io  0xd000-0xdfff]
+pci 0000:00:1c.2:   bridge window [mem 0xf7e00000-0xf7efffff]
+pci 0000:02:00.0: [197b:2363] type 00 class 0x010185
+pci 0000:02:00.0: reg 24: [mem 0xf7dfe000-0xf7dfffff]
+pci 0000:02:00.0: PME# supported from D3hot
+pci 0000:02:00.1: [197b:2363] type 00 class 0x010185
+pci 0000:02:00.1: reg 10: [io  0xcc00-0xcc07]
+pci 0000:02:00.1: reg 14: [io  0xc880-0xc883]
+pci 0000:02:00.1: reg 18: [io  0xc800-0xc807]
+pci 0000:02:00.1: reg 1c: [io  0xc480-0xc483]
+pci 0000:02:00.1: reg 20: [io  0xc400-0xc40f]
+pci 0000:02:00.0: disabling ASPM on pre-1.1 PCIe device.  You can enable it with 'pcie_aspm=force'
+pci 0000:00:1c.3: PCI bridge to [bus 02-02]
+pci 0000:00:1c.3:   bridge window [io  0xc000-0xcfff]
+pci 0000:00:1c.3:   bridge window [mem 0xf7d00000-0xf7dfffff]
+pci 0000:00:1e.0: PCI bridge to [bus 01-01] (subtractive decode)
+pci 0000:00:1e.0:   bridge window [io  0x0000-0x0cf7] (subtractive decode)
+pci 0000:00:1e.0:   bridge window [io  0x0d00-0xffff] (subtractive decode)
+pci 0000:00:1e.0:   bridge window [mem 0x000a0000-0x000bffff] (subtractive decode)
+pci 0000:00:1e.0:   bridge window [mem 0xd0000000-0xdfffffff] (subtractive decode)
+pci 0000:00:1e.0:   bridge window [mem 0xf0000000-0xfed8ffff] (subtractive decode)
+ACPI: PCI Interrupt Routing Table [\_SB_.PCI0._PRT]
+ACPI: PCI Interrupt Routing Table [\_SB_.PCI0.P0P5._PRT]
+ACPI: PCI Interrupt Routing Table [\_SB_.PCI0.P0P6._PRT]
+ACPI: PCI Interrupt Routing Table [\_SB_.PCI0.P0P7._PRT]
+ACPI: PCI Interrupt Routing Table [\_SB_.PCI0.NPE1._PRT]
+ACPI: PCI Interrupt Routing Table [\_SB_.PCI0.NPE3._PRT]
+ACPI: PCI Interrupt Routing Table [\_SB_.PCI0.NPE7._PRT]
+ACPI: PCI Interrupt Routing Table [\_SB_.PCI0.P0P4._PRT]
+ pci0000:00: Requesting ACPI _OSC control (0x1d)
+ pci0000:00: ACPI _OSC request failed (AE_NOT_FOUND), returned control mask: 0x1d
+ACPI _OSC control for PCIe not granted, disabling ASPM
+ACPI: PCI Interrupt Link [LNKA] (IRQs 3 4 6 7 10 11 12 14 *15), disabled.
+ACPI: PCI Interrupt Link [LNKB] (IRQs *5), disabled.
+ACPI: PCI Interrupt Link [LNKC] (IRQs 3 4 6 7 10 *11 12 14 15), disabled.
+ACPI: PCI Interrupt Link [LNKD] (IRQs 3 4 6 7 *10 11 12 14 15), disabled.
+ACPI: PCI Interrupt Link [LNKE] (IRQs 3 4 6 7 10 11 12 *14 15), disabled.
+ACPI: PCI Interrupt Link [LNKF] (IRQs 3 *4 6 7 10 11 12 14 15), disabled.
+ACPI: PCI Interrupt Link [LNKG] (IRQs 3 4 6 *7 10 11 12 14 15), disabled.
+ACPI: PCI Interrupt Link [LNKH] (IRQs *3 4 6 7 10 11 12 14 15), disabled.
+vgaarb: device added: PCI:0000:07:00.0,decodes=io+mem,owns=io+mem,locks=none
+vgaarb: loaded
+vgaarb: bridge control possible 0000:07:00.0
+SCSI subsystem initialized
+libata version 3.00 loaded.
+ACPI: bus type usb registered
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+PCI: Using ACPI for IRQ routing
+PCI: Discovered peer bus ff
+PCI: root bus ff: using default resources
+PCI: Probing PCI hardware (bus ff)
+PCI host bridge to bus 0000:ff
+pci_bus 0000:ff: root bus resource [io  0x0000-0xffff]
+pci_bus 0000:ff: root bus resource [mem 0x00000000-0xfffffffff]
+pci 0000:ff:00.0: [8086:2c71] type 00 class 0x060000
+pci 0000:ff:00.1: [8086:2d81] type 00 class 0x060000
+pci 0000:ff:02.0: [8086:2d90] type 00 class 0x060000
+pci 0000:ff:02.1: [8086:2d91] type 00 class 0x060000
+pci 0000:ff:02.2: [8086:2d92] type 00 class 0x060000
+pci 0000:ff:02.3: [8086:2d93] type 00 class 0x060000
+pci 0000:ff:03.0: [8086:2d98] type 00 class 0x060000
+pci 0000:ff:03.1: [8086:2d99] type 00 class 0x060000
+pci 0000:ff:03.4: [8086:2d9c] type 00 class 0x060000
+pci 0000:ff:04.0: [8086:2da0] type 00 class 0x060000
+pci 0000:ff:04.1: [8086:2da1] type 00 class 0x060000
+pci 0000:ff:04.2: [8086:2da2] type 00 class 0x060000
+pci 0000:ff:04.3: [8086:2da3] type 00 class 0x060000
+pci 0000:ff:05.0: [8086:2da8] type 00 class 0x060000
+pci 0000:ff:05.1: [8086:2da9] type 00 class 0x060000
+pci 0000:ff:05.2: [8086:2daa] type 00 class 0x060000
+pci 0000:ff:05.3: [8086:2dab] type 00 class 0x060000
+pci 0000:ff:06.0: [8086:2db0] type 00 class 0x060000
+pci 0000:ff:06.1: [8086:2db1] type 00 class 0x060000
+pci 0000:ff:06.2: [8086:2db2] type 00 class 0x060000
+pci 0000:ff:06.3: [8086:2db3] type 00 class 0x060000
+PCI: pci_cache_line_size set to 64 bytes
+e820: reserve RAM buffer [mem 0x00099800-0x0009ffff]
+e820: reserve RAM buffer [mem 0xcf780000-0xcfffffff]
+NetLabel: Initializing
+NetLabel:  domain hash size = 128
+NetLabel:  protocols = UNLABELED CIPSOv4
+NetLabel:  unlabeled traffic allowed by default
+hpet0: at MMIO 0xfed00000, IRQs 2, 8, 0, 0
+hpet0: 4 comparators, 64-bit 14.318180 MHz counter
+Switching to clocksource hpet
+AppArmor: AppArmor Filesystem Enabled
+pnp: PnP ACPI init
+ACPI: bus type pnp registered
+pnp 00:00: [bus 00-ff]
+pnp 00:00: [io  0x0cf8-0x0cff]
+pnp 00:00: [io  0x0000-0x0cf7 window]
+pnp 00:00: [io  0x0d00-0xffff window]
+pnp 00:00: [mem 0x000a0000-0x000bffff window]
+pnp 00:00: [mem 0x000d0000-0x000dffff window]
+pnp 00:00: [mem 0xd0000000-0xdfffffff window]
+pnp 00:00: [mem 0xf0000000-0xfed8ffff window]
+pnp 00:00: Plug and Play ACPI device, IDs PNP0a08 PNP0a03 (active)
+pnp 00:01: [mem 0xfbf00000-0xfbffffff]
+pnp 00:01: [mem 0xfc000000-0xfcffffff]
+pnp 00:01: [mem 0xfd000000-0xfdffffff]
+pnp 00:01: [mem 0xfe000000-0xfebfffff]
+pnp 00:01: [mem 0xfed10000-0xfed10fff]
+system 00:01: [mem 0xfbf00000-0xfbffffff] has been reserved
+system 00:01: [mem 0xfc000000-0xfcffffff] has been reserved
+system 00:01: [mem 0xfd000000-0xfdffffff] has been reserved
+system 00:01: [mem 0xfe000000-0xfebfffff] has been reserved
+system 00:01: [mem 0xfed10000-0xfed10fff] has been reserved
+system 00:01: Plug and Play ACPI device, IDs PNP0c01 (active)
+pnp 00:02: [dma 4]
+pnp 00:02: [io  0x0000-0x000f]
+pnp 00:02: [io  0x0081-0x0083]
+pnp 00:02: [io  0x0087]
+pnp 00:02: [io  0x0089-0x008b]
+pnp 00:02: [io  0x008f]
+pnp 00:02: [io  0x00c0-0x00df]
+pnp 00:02: Plug and Play ACPI device, IDs PNP0200 (active)
+pnp 00:03: [io  0x0070-0x0071]
+pnp 00:03: [irq 8]
+pnp 00:03: Plug and Play ACPI device, IDs PNP0b00 (active)
+pnp 00:04: [io  0x0061]
+pnp 00:04: Plug and Play ACPI device, IDs PNP0800 (active)
+pnp 00:05: [io  0x00f0-0x00ff]
+pnp 00:05: [irq 13]
+pnp 00:05: Plug and Play ACPI device, IDs PNP0c04 (active)
+pnp 00:06: [io  0x0000-0xffffffffffffffff disabled]
+pnp 00:06: [io  0x0a00-0x0a0f]
+system 00:06: [io  0x0a00-0x0a0f] has been reserved
+system 00:06: Plug and Play ACPI device, IDs PNP0c02 (active)
+pnp 00:07: [io  0x0010-0x001f]
+pnp 00:07: [io  0x0022-0x003f]
+pnp 00:07: [io  0x0044-0x005f]
+pnp 00:07: [io  0x0062-0x0063]
+pnp 00:07: [io  0x0065-0x006f]
+pnp 00:07: [io  0x0072-0x007f]
+pnp 00:07: [io  0x0080]
+pnp 00:07: [io  0x0084-0x0086]
+pnp 00:07: [io  0x0088]
+pnp 00:07: [io  0x008c-0x008e]
+pnp 00:07: [io  0x0090-0x009f]
+pnp 00:07: [io  0x00a2-0x00bf]
+pnp 00:07: [io  0x00e0-0x00ef]
+pnp 00:07: [io  0x04d0-0x04d1]
+pnp 00:07: [io  0x0800-0x087f]
+pnp 00:07: [io  0x0000-0xffffffffffffffff disabled]
+pnp 00:07: [io  0x0500-0x057f]
+pnp 00:07: [mem 0xfed1c000-0xfed1ffff]
+pnp 00:07: [mem 0xfed20000-0xfed3ffff]
+pnp 00:07: [mem 0xfed40000-0xfed8ffff]
+system 00:07: [io  0x04d0-0x04d1] has been reserved
+system 00:07: [io  0x0800-0x087f] has been reserved
+system 00:07: [io  0x0500-0x057f] has been reserved
+system 00:07: [mem 0xfed1c000-0xfed1ffff] has been reserved
+system 00:07: [mem 0xfed20000-0xfed3ffff] has been reserved
+system 00:07: [mem 0xfed40000-0xfed8ffff] has been reserved
+system 00:07: Plug and Play ACPI device, IDs PNP0c02 (active)
+pnp 00:08: [mem 0xfed00000-0xfed003ff]
+pnp 00:08: Plug and Play ACPI device, IDs PNP0103 (active)
+pnp 00:09: [io  0x0060]
+pnp 00:09: [io  0x0064]
+pnp 00:09: [mem 0xfec00000-0xfec00fff]
+pnp 00:09: [mem 0xfee00000-0xfee00fff]
+system 00:09: [mem 0xfec00000-0xfec00fff] could not be reserved
+system 00:09: [mem 0xfee00000-0xfee00fff] has been reserved
+system 00:09: Plug and Play ACPI device, IDs PNP0c02 (active)
+pnp 00:0a: [mem 0xe0000000-0xefffffff]
+system 00:0a: [mem 0xe0000000-0xefffffff] has been reserved
+system 00:0a: Plug and Play ACPI device, IDs PNP0c02 (active)
+pnp 00:0b: [mem 0x00000000-0x0009ffff]
+pnp 00:0b: [mem 0x000c0000-0x000cffff]
+pnp 00:0b: [mem 0x000e0000-0x000fffff]
+pnp 00:0b: [mem 0x00100000-0xcfffffff]
+pnp 00:0b: [mem 0xfed90000-0xffffffff]
+system 00:0b: [mem 0x00000000-0x0009ffff] could not be reserved
+system 00:0b: [mem 0x000c0000-0x000cffff] could not be reserved
+system 00:0b: [mem 0x000e0000-0x000fffff] could not be reserved
+system 00:0b: [mem 0x00100000-0xcfffffff] could not be reserved
+system 00:0b: [mem 0xfed90000-0xffffffff] could not be reserved
+system 00:0b: Plug and Play ACPI device, IDs PNP0c01 (active)
+pnp: PnP ACPI: found 12 devices
+ACPI: ACPI bus type pnp unregistered
+pci 0000:00:1c.0: bridge window [io  0x1000-0x0fff] to [bus 05-05] add_size 1000
+pci 0000:00:1c.0: bridge window [mem 0x00100000-0x000fffff 64bit pref] to [bus 05-05] add_size 200000
+pci 0000:00:1c.0: bridge window [mem 0x00100000-0x000fffff] to [bus 05-05] add_size 200000
+pci 0000:00:1c.1: bridge window [io  0x1000-0x0fff] to [bus 04-04] add_size 1000
+pci 0000:00:1c.1: bridge window [mem 0x00100000-0x000fffff 64bit pref] to [bus 04-04] add_size 200000
+pci 0000:00:1c.2: bridge window [mem 0x00100000-0x000fffff 64bit pref] to [bus 03-03] add_size 200000
+pci 0000:00:1c.3: bridge window [mem 0x00100000-0x000fffff 64bit pref] to [bus 02-02] add_size 200000
+pci 0000:00:1c.0: res[14]=[mem 0x00100000-0x000fffff] get_res_add_size add_size 200000
+pci 0000:00:1c.0: res[15]=[mem 0x00100000-0x000fffff 64bit pref] get_res_add_size add_size 200000
+pci 0000:00:1c.1: res[15]=[mem 0x00100000-0x000fffff 64bit pref] get_res_add_size add_size 200000
+pci 0000:00:1c.2: res[15]=[mem 0x00100000-0x000fffff 64bit pref] get_res_add_size add_size 200000
+pci 0000:00:1c.3: res[15]=[mem 0x00100000-0x000fffff 64bit pref] get_res_add_size add_size 200000
+pci 0000:00:1c.0: res[13]=[io  0x1000-0x0fff] get_res_add_size add_size 1000
+pci 0000:00:1c.1: res[13]=[io  0x1000-0x0fff] get_res_add_size add_size 1000
+pci 0000:00:1c.0: BAR 14: assigned [mem 0xf0000000-0xf01fffff]
+pci 0000:00:1c.0: BAR 15: assigned [mem 0xf0200000-0xf03fffff 64bit pref]
+pci 0000:00:1c.1: BAR 15: assigned [mem 0xf0400000-0xf05fffff 64bit pref]
+pci 0000:00:1c.2: BAR 15: assigned [mem 0xf0600000-0xf07fffff 64bit pref]
+pci 0000:00:1c.3: BAR 15: assigned [mem 0xf0800000-0xf09fffff 64bit pref]
+pci 0000:00:1c.0: BAR 13: assigned [io  0x1000-0x1fff]
+pci 0000:00:1c.1: BAR 13: assigned [io  0x2000-0x2fff]
+pci 0000:00:01.0: PCI bridge to [bus 08-08]
+pci 0000:00:03.0: PCI bridge to [bus 07-07]
+pci 0000:00:03.0:   bridge window [io  0xe000-0xefff]
+pci 0000:00:03.0:   bridge window [mem 0xf8000000-0xfbefffff]
+pci 0000:00:03.0:   bridge window [mem 0xd0000000-0xdfffffff 64bit pref]
+pci 0000:00:07.0: PCI bridge to [bus 06-06]
+pci 0000:00:1c.0: PCI bridge to [bus 05-05]
+pci 0000:00:1c.0:   bridge window [io  0x1000-0x1fff]
+pci 0000:00:1c.0:   bridge window [mem 0xf0000000-0xf01fffff]
+pci 0000:00:1c.0:   bridge window [mem 0xf0200000-0xf03fffff 64bit pref]
+pci 0000:00:1c.1: PCI bridge to [bus 04-04]
+pci 0000:00:1c.1:   bridge window [io  0x2000-0x2fff]
+pci 0000:00:1c.1:   bridge window [mem 0xf7f00000-0xf7ffffff]
+pci 0000:00:1c.1:   bridge window [mem 0xf0400000-0xf05fffff 64bit pref]
+pci 0000:00:1c.2: PCI bridge to [bus 03-03]
+pci 0000:00:1c.2:   bridge window [io  0xd000-0xdfff]
+pci 0000:00:1c.2:   bridge window [mem 0xf7e00000-0xf7efffff]
+pci 0000:00:1c.2:   bridge window [mem 0xf0600000-0xf07fffff 64bit pref]
+pci 0000:00:1c.3: PCI bridge to [bus 02-02]
+pci 0000:00:1c.3:   bridge window [io  0xc000-0xcfff]
+pci 0000:00:1c.3:   bridge window [mem 0xf7d00000-0xf7dfffff]
+pci 0000:00:1c.3:   bridge window [mem 0xf0800000-0xf09fffff 64bit pref]
+pci 0000:00:1e.0: PCI bridge to [bus 01-01]
+pci 0000:00:1c.0: enabling device (0104 -> 0107)
+pci 0000:00:1c.1: enabling device (0106 -> 0107)
+pci 0000:00:1e.0: setting latency timer to 64
+pci_bus 0000:00: resource 4 [io  0x0000-0x0cf7]
+pci_bus 0000:00: resource 5 [io  0x0d00-0xffff]
+pci_bus 0000:00: resource 6 [mem 0x000a0000-0x000bffff]
+pci_bus 0000:00: resource 7 [mem 0xd0000000-0xdfffffff]
+pci_bus 0000:00: resource 8 [mem 0xf0000000-0xfed8ffff]
+pci_bus 0000:07: resource 0 [io  0xe000-0xefff]
+pci_bus 0000:07: resource 1 [mem 0xf8000000-0xfbefffff]
+pci_bus 0000:07: resource 2 [mem 0xd0000000-0xdfffffff 64bit pref]
+pci_bus 0000:05: resource 0 [io  0x1000-0x1fff]
+pci_bus 0000:05: resource 1 [mem 0xf0000000-0xf01fffff]
+pci_bus 0000:05: resource 2 [mem 0xf0200000-0xf03fffff 64bit pref]
+pci_bus 0000:04: resource 0 [io  0x2000-0x2fff]
+pci_bus 0000:04: resource 1 [mem 0xf7f00000-0xf7ffffff]
+pci_bus 0000:04: resource 2 [mem 0xf0400000-0xf05fffff 64bit pref]
+pci_bus 0000:03: resource 0 [io  0xd000-0xdfff]
+pci_bus 0000:03: resource 1 [mem 0xf7e00000-0xf7efffff]
+pci_bus 0000:03: resource 2 [mem 0xf0600000-0xf07fffff 64bit pref]
+pci_bus 0000:02: resource 0 [io  0xc000-0xcfff]
+pci_bus 0000:02: resource 1 [mem 0xf7d00000-0xf7dfffff]
+pci_bus 0000:02: resource 2 [mem 0xf0800000-0xf09fffff 64bit pref]
+pci_bus 0000:01: resource 4 [io  0x0000-0x0cf7]
+pci_bus 0000:01: resource 5 [io  0x0d00-0xffff]
+pci_bus 0000:01: resource 6 [mem 0x000a0000-0x000bffff]
+pci_bus 0000:01: resource 7 [mem 0xd0000000-0xdfffffff]
+pci_bus 0000:01: resource 8 [mem 0xf0000000-0xfed8ffff]
+pci_bus 0000:ff: resource 4 [io  0x0000-0xffff]
+pci_bus 0000:ff: resource 5 [mem 0x00000000-0xfffffffff]
+NET: Registered protocol family 2
+IP route cache hash table entries: 524288 (order: 10, 4194304 bytes)
+TCP established hash table entries: 524288 (order: 11, 8388608 bytes)
+TCP bind hash table entries: 65536 (order: 8, 1048576 bytes)
+TCP: Hash tables configured (established 524288 bind 65536)
+TCP: reno registered
+UDP hash table entries: 8192 (order: 6, 262144 bytes)
+UDP-Lite hash table entries: 8192 (order: 6, 262144 bytes)
+NET: Registered protocol family 1
+pci 0000:07:00.0: Boot video device
+PCI: CLS 64 bytes, default 64
+PCI-DMA: Using software bounce buffering for IO (SWIOTLB)
+software IO TLB [mem 0xcb77e000-0xcf77dfff] (64MB) mapped at [ffff8800cb77e000-ffff8800cf77dfff]
+audit: initializing netlink socket (disabled)
+type=2000 audit(1389114679.460:1): initialized
+HugeTLB registered 2 MB page size, pre-allocated 0 pages
+VFS: Disk quotas dquot_6.5.2
+Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+fuse init (API version 7.19)
+msgmni has been set to 32075
+Block layer SCSI generic (bsg) driver version 0.4 loaded (major 252)
+io scheduler noop registered
+io scheduler deadline registered (default)
+io scheduler cfq registered
+pcieport 0000:00:1c.0: irq 40 for MSI/MSI-X
+pcieport 0000:00:1c.1: irq 41 for MSI/MSI-X
+pcieport 0000:00:1c.2: irq 42 for MSI/MSI-X
+pcieport 0000:00:1c.3: irq 43 for MSI/MSI-X
+pci_hotplug: PCI Hot Plug PCI Core version: 0.5
+pciehp: PCI Express Hot Plug Controller Driver version: 0.4
+intel_idle: MWAIT substates: 0x1120
+intel_idle: v0.4 model 0x2C
+intel_idle: lapic_timer_reliable_states 0xffffffff
+input: Power Button as /devices/LNXSYSTM:00/device:00/PNP0C0C:00/input/input0
+ACPI: Power Button [PWRB]
+input: Power Button as /devices/LNXSYSTM:00/LNXPWRBN:00/input/input1
+ACPI: Power Button [PWRF]
+ACPI: Requesting acpi_cpufreq
+GHES: HEST is not enabled!
+Linux agpgart interface v0.103
+brd: module loaded
+loop: module loaded
+ahci 0000:00:1f.2: version 3.0
+ahci 0000:00:1f.2: irq 44 for MSI/MSI-X
+ahci 0000:00:1f.2: controller can't do SNTF, turning off CAP_SNTF
+ahci: SSS flag set, parallel bus scan disabled
+ahci 0000:00:1f.2: AHCI 0001.0200 32 slots 6 ports 3 Gbps 0x3f impl RAID mode
+ahci 0000:00:1f.2: flags: 64bit ncq stag pm led clo pio slum part ccc ems sxs 
+ahci 0000:00:1f.2: setting latency timer to 64
+scsi0 : ahci
+scsi1 : ahci
+scsi2 : ahci
+scsi3 : ahci
+scsi4 : ahci
+scsi5 : ahci
+ata1: SATA max UDMA/133 abar m2048@0xf7cfc000 port 0xf7cfc100 irq 44
+ata2: SATA max UDMA/133 abar m2048@0xf7cfc000 port 0xf7cfc180 irq 44
+ata3: SATA max UDMA/133 abar m2048@0xf7cfc000 port 0xf7cfc200 irq 44
+ata4: SATA max UDMA/133 abar m2048@0xf7cfc000 port 0xf7cfc280 irq 44
+ata5: SATA max UDMA/133 abar m2048@0xf7cfc000 port 0xf7cfc300 irq 44
+ata6: SATA max UDMA/133 abar m2048@0xf7cfc000 port 0xf7cfc380 irq 44
+ahci 0000:02:00.0: AHCI 0001.0000 32 slots 2 ports 3 Gbps 0x3 impl SATA mode
+ahci 0000:02:00.0: flags: 64bit ncq pm led clo pmp pio slum part 
+scsi6 : ahci
+scsi7 : ahci
+ata7: SATA max UDMA/133 abar m8192@0xf7dfe000 port 0xf7dfe100 irq 19
+ata8: SATA max UDMA/133 abar m8192@0xf7dfe000 port 0xf7dfe180 irq 19
+pata_acpi 0000:02:00.1: enabling device (0000 -> 0001)
+pata_acpi 0000:02:00.1: setting latency timer to 64
+Fixed MDIO Bus: probed
+tun: Universal TUN/TAP device driver, 1.6
+tun: (C) 1999-2004 Max Krasnyansky <maxk@qualcomm.com>
+PPP generic driver version 2.4.2
+ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+ehci_hcd 0000:00:1a.7: setting latency timer to 64
+ehci_hcd 0000:00:1a.7: EHCI Host Controller
+ehci_hcd 0000:00:1a.7: new USB bus registered, assigned bus number 1
+ehci_hcd 0000:00:1a.7: debug port 1
+ehci_hcd 0000:00:1a.7: cache line size of 64 is not supported
+ehci_hcd 0000:00:1a.7: irq 18, io mem 0xf7cf4000
+ehci_hcd 0000:00:1a.7: USB 2.0 started, EHCI 1.00
+usb usb1: New USB device found, idVendor=1d6b, idProduct=0002
+usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+usb usb1: Product: EHCI Host Controller
+usb usb1: Manufacturer: Linux 3.5.0-23-generic ehci_hcd
+usb usb1: SerialNumber: 0000:00:1a.7
+hub 1-0:1.0: USB hub found
+hub 1-0:1.0: 6 ports detected
+ehci_hcd 0000:00:1d.7: setting latency timer to 64
+ehci_hcd 0000:00:1d.7: EHCI Host Controller
+ehci_hcd 0000:00:1d.7: new USB bus registered, assigned bus number 2
+ehci_hcd 0000:00:1d.7: debug port 1
+ehci_hcd 0000:00:1d.7: cache line size of 64 is not supported
+ehci_hcd 0000:00:1d.7: irq 23, io mem 0xf7cf6000
+ehci_hcd 0000:00:1d.7: USB 2.0 started, EHCI 1.00
+usb usb2: New USB device found, idVendor=1d6b, idProduct=0002
+usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+usb usb2: Product: EHCI Host Controller
+usb usb2: Manufacturer: Linux 3.5.0-23-generic ehci_hcd
+usb usb2: SerialNumber: 0000:00:1d.7
+hub 2-0:1.0: USB hub found
+hub 2-0:1.0: 6 ports detected
+ohci_hcd: USB 1.1 'Open' Host Controller (OHCI) Driver
+uhci_hcd: USB Universal Host Controller Interface driver
+uhci_hcd 0000:00:1a.0: setting latency timer to 64
+uhci_hcd 0000:00:1a.0: UHCI Host Controller
+uhci_hcd 0000:00:1a.0: new USB bus registered, assigned bus number 3
+uhci_hcd 0000:00:1a.0: irq 16, io base 0x0000a400
+usb usb3: New USB device found, idVendor=1d6b, idProduct=0001
+usb usb3: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+usb usb3: Product: UHCI Host Controller
+usb usb3: Manufacturer: Linux 3.5.0-23-generic uhci_hcd
+usb usb3: SerialNumber: 0000:00:1a.0
+hub 3-0:1.0: USB hub found
+hub 3-0:1.0: 2 ports detected
+uhci_hcd 0000:00:1a.1: setting latency timer to 64
+uhci_hcd 0000:00:1a.1: UHCI Host Controller
+uhci_hcd 0000:00:1a.1: new USB bus registered, assigned bus number 4
+uhci_hcd 0000:00:1a.1: irq 21, io base 0x0000a480
+usb usb4: New USB device found, idVendor=1d6b, idProduct=0001
+usb usb4: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+usb usb4: Product: UHCI Host Controller
+usb usb4: Manufacturer: Linux 3.5.0-23-generic uhci_hcd
+usb usb4: SerialNumber: 0000:00:1a.1
+hub 4-0:1.0: USB hub found
+hub 4-0:1.0: 2 ports detected
+uhci_hcd 0000:00:1a.2: setting latency timer to 64
+uhci_hcd 0000:00:1a.2: UHCI Host Controller
+uhci_hcd 0000:00:1a.2: new USB bus registered, assigned bus number 5
+uhci_hcd 0000:00:1a.2: irq 19, io base 0x0000a800
+usb usb5: New USB device found, idVendor=1d6b, idProduct=0001
+usb usb5: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+usb usb5: Product: UHCI Host Controller
+usb usb5: Manufacturer: Linux 3.5.0-23-generic uhci_hcd
+usb usb5: SerialNumber: 0000:00:1a.2
+hub 5-0:1.0: USB hub found
+hub 5-0:1.0: 2 ports detected
+uhci_hcd 0000:00:1d.0: setting latency timer to 64
+uhci_hcd 0000:00:1d.0: UHCI Host Controller
+uhci_hcd 0000:00:1d.0: new USB bus registered, assigned bus number 6
+uhci_hcd 0000:00:1d.0: irq 23, io base 0x0000a880
+usb usb6: New USB device found, idVendor=1d6b, idProduct=0001
+usb usb6: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+usb usb6: Product: UHCI Host Controller
+usb usb6: Manufacturer: Linux 3.5.0-23-generic uhci_hcd
+usb usb6: SerialNumber: 0000:00:1d.0
+hub 6-0:1.0: USB hub found
+hub 6-0:1.0: 2 ports detected
+uhci_hcd 0000:00:1d.1: setting latency timer to 64
+uhci_hcd 0000:00:1d.1: UHCI Host Controller
+uhci_hcd 0000:00:1d.1: new USB bus registered, assigned bus number 7
+uhci_hcd 0000:00:1d.1: irq 19, io base 0x0000ac00
+usb usb7: New USB device found, idVendor=1d6b, idProduct=0001
+usb usb7: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+usb usb7: Product: UHCI Host Controller
+usb usb7: Manufacturer: Linux 3.5.0-23-generic uhci_hcd
+usb usb7: SerialNumber: 0000:00:1d.1
+hub 7-0:1.0: USB hub found
+hub 7-0:1.0: 2 ports detected
+uhci_hcd 0000:00:1d.2: setting latency timer to 64
+uhci_hcd 0000:00:1d.2: UHCI Host Controller
+uhci_hcd 0000:00:1d.2: new USB bus registered, assigned bus number 8
+uhci_hcd 0000:00:1d.2: irq 18, io base 0x0000b000
+usb usb8: New USB device found, idVendor=1d6b, idProduct=0001
+usb usb8: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+usb usb8: Product: UHCI Host Controller
+usb usb8: Manufacturer: Linux 3.5.0-23-generic uhci_hcd
+usb usb8: SerialNumber: 0000:00:1d.2
+hub 8-0:1.0: USB hub found
+hub 8-0:1.0: 2 ports detected
+usbcore: registered new interface driver libusual
+i8042: PNP: No PS/2 controller found. Probing ports directly.
+ata1: SATA link up 3.0 Gbps (SStatus 123 SControl 300)
+ata1.00: ATA-8: ST2000DM001-1CH164, CC24, max UDMA/133
+ata1.00: 3907029168 sectors, multi 0: LBA48 NCQ (depth 31/32), AA
+ata1.00: configured for UDMA/133
+scsi 0:0:0:0: Direct-Access     ATA      ST2000DM001-1CH1 CC24 PQ: 0 ANSI: 5
+sd 0:0:0:0: Attached scsi generic sg0 type 0
+sd 0:0:0:0: [sda] 3907029168 512-byte logical blocks: (2.00 TB/1.81 TiB)
+sd 0:0:0:0: [sda] 4096-byte physical blocks
+sd 0:0:0:0: [sda] Write Protect is off
+sd 0:0:0:0: [sda] Mode Sense: 00 3a 00 00
+sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+ata8: SATA link down (SStatus 0 SControl 300)
+ata7: SATA link down (SStatus 0 SControl 300)
+ sda: sda1
+sd 0:0:0:0: [sda] Attached SCSI disk
+ata2: SATA link down (SStatus 0 SControl 300)
+Refined TSC clocksource calibration: 3324.999 MHz.
+Switching to clocksource tsc
+i8042: Failed to disable AUX port, but continuing anyway... Is this a SiS?
+i8042: If AUX port is really absent please use the 'i8042.noaux' option
+ata3: SATA link up 1.5 Gbps (SStatus 113 SControl 300)
+serio: i8042 KBD port at 0x60,0x64 irq 1
+mousedev: PS/2 mouse device common for all mice
+rtc_cmos 00:03: RTC can wake from S4
+rtc_cmos 00:03: rtc core: registered rtc_cmos as rtc0
+rtc0: alarms up to one month, y3k, 114 bytes nvram, hpet irqs
+device-mapper: uevent: version 1.0.3
+device-mapper: ioctl: 4.22.0-ioctl (2011-10-19) initialised: dm-devel@redhat.com
+cpuidle: using governor ladder
+cpuidle: using governor menu
+EFI Variables Facility v0.08 2004-May-17
+ashmem: initialized
+TCP: cubic registered
+NET: Registered protocol family 10
+NET: Registered protocol family 17
+Key type dns_resolver registered
+PM: Hibernation image not present or could not be loaded.
+registered taskstats version 1
+ata3.00: ATAPI: ATAPI   iHAS124   B, AL0S, max UDMA/100
+ata3.00: configured for UDMA/100
+Key type trusted registered
+Key type encrypted registered
+scsi 2:0:0:0: CD-ROM            ATAPI    iHAS124   B      AL0S PQ: 0 ANSI: 5
+  Magic number: 14:911:187
+rtc_cmos 00:03: setting system clock to 2014-01-07 17:11:23 UTC (1389114683)
+sr0: scsi3-mmc drive: 48x/48x writer dvd-ram cd/rw xa/form2 cdda tray
+cdrom: Uniform CD-ROM driver Revision: 3.20
+sr 2:0:0:0: Attached scsi CD-ROM sr0
+sr 2:0:0:0: Attached scsi generic sg1 type 5
+BIOS EDD facility v0.16 2004-Jun-25, 0 devices found
+EDD information not available.
+ata4: SATA link down (SStatus 0 SControl 300)
+ata5: SATA link down (SStatus 0 SControl 300)
+usb 4-1: new full-speed USB device number 2 using uhci_hcd
+ata6: SATA link down (SStatus 0 SControl 300)
+Freeing unused kernel memory: 932k freed
+Write protecting the kernel read-only data: 12288k
+Freeing unused kernel memory: 1464k freed
+Freeing unused kernel memory: 1120k freed
+usb 4-1: New USB device found, idVendor=051d, idProduct=0003
+usb 4-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+usb 4-1: Product: Smart-UPS 1500 FW:COM 02.1 / UPS.05.D
+usb 4-1: Manufacturer: American Power Conversion
+usb 4-1: SerialNumber: AS1144214481  
+udevd[155]: starting version 175
+e1000e: Intel(R) PRO/1000 Network Driver - 2.0.0-k
+e1000e: Copyright(c) 1999 - 2012 Intel Corporation.
+e1000e 0000:00:19.0: setting latency timer to 64
+e1000e 0000:00:19.0: Interrupt Throttling Rate (ints/sec) set to dynamic conservative mode
+e1000e 0000:00:19.0: irq 45 for MSI/MSI-X
+pata_jmicron 0000:02:00.1: setting latency timer to 64
+scsi8 : pata_jmicron
+scsi9 : pata_jmicron
+ata9: PATA max UDMA/100 cmd 0xcc00 ctl 0xc880 bmdma 0xc400 irq 16
+ata10: PATA max UDMA/100 cmd 0xc800 ctl 0xc480 bmdma 0xc408 irq 16
+usbcore: registered new interface driver usbhid
+usbhid: USB HID core driver
+firewire_ohci 0000:03:00.0: added OHCI v1.10 device as card 0, 4 IR + 8 IT contexts, quirks 0x11
+EXT4-fs (sda1): INFO: recovery required on readonly filesystem
+EXT4-fs (sda1): write access will be enabled during recovery
+e1000e 0000:00:19.0: eth0: (PCI Express:2.5GT/s:Width x1) 70:71:bc:17:a0:7b
+e1000e 0000:00:19.0: eth0: Intel(R) PRO/1000 Network Connection
+e1000e 0000:00:19.0: eth0: MAC: 7, PHY: 8, PBA No: FFFFFF-0FF
+usb 7-1: new full-speed USB device number 2 using uhci_hcd
+hid-generic 0003:051D:0003.0001: hiddev0,hidraw0: USB HID v1.00 Device [American Power Conversion Smart-UPS 1500 FW:COM 02.1 / UPS.05.D] on usb-0000:00:1a.1-1/input0
+usb 7-1: New USB device found, idVendor=0a5c, idProduct=21b1
+usb 7-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+usb 7-1: Product: HP Bluetooth Module
+usb 7-1: Manufacturer: Broadcom Corp
+usb 7-1: SerialNumber: 70F3952223E7
+firewire_core 0000:03:00.0: created device fw0: GUID 001e8c0000febcb7, S400
+EXT4-fs (sda1): orphan cleanup on readonly fs
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 39846166
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 39846161
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 39846065
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57154400
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57152017
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57152909
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57151902
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57151896
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 39846167
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57151980
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57151899
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 112209239
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110627609
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631499
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631498
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631492
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631463
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631502
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631503
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631495
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631665
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631519
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631663
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631686
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110630097
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631646
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110632368
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631893
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 111020703
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 111019841
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631652
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110632352
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631603
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110630574
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631888
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 111020550
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 111020546
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631929
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631912
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631922
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631783
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631857
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631827
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110630572
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631746
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631640
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631630
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631628
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631616
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631688
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631644
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 111020767
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110632188
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110632184
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631673
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631642
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110632358
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110632354
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110632163
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110624942
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631624
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110628468
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631622
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631926
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631996
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110632049
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110632000
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110632342
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631994
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631992
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110630112
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 51908039
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631773
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631671
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110632210
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 111159696
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631799
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631793
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 51908024
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 51908123
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 51908022
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110631605
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110632362
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 111020337
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 111020342
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 111020286
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 51908075
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 51908012
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 51908073
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 51908027
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 51908020
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 51908054
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 51908071
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 51908138
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 51908114
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 51907990
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 51908116
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 51908077
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 51908108
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 51908081
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57154975
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 110758285
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 39846149
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 39845899
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57155145
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57148694
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 39846163
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57149502
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57155149
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57155096
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57155144
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57155140
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57155141
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57154132
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57154111
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57154108
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57155137
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57155128
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57152025
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57148014
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57151900
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57152255
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57152024
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57155126
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57155132
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 57155121
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 39846111
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 39846042
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 39846079
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 39846121
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 32505868
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 32505864
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 32505863
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 32505862
+EXT4-fs (sda1): ext4_orphan_cleanup: deleting unreferenced inode 32505861
+EXT4-fs (sda1): 135 orphan inodes deleted
+EXT4-fs (sda1): recovery complete
+EXT4-fs (sda1): mounted filesystem with ordered data mode. Opts: (null)
+EXT4-fs (sda1): re-mounted. Opts: errors=remount-ro
+IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
+udevd[563]: starting version 175
+lp: driver loaded but no devices found
+ppdev: user-space parallel port driver
+type=1400 audit(1389114690.303:2): apparmor="STATUS" operation="profile_load" name="/usr/lib/cups/backend/cups-pdf" pid=601 comm="apparmor_parser"
+type=1400 audit(1389114690.303:3): apparmor="STATUS" operation="profile_load" name="/usr/sbin/cupsd" pid=601 comm="apparmor_parser"
+Bluetooth: Core ver 2.16
+NET: Registered protocol family 31
+Bluetooth: HCI device and connection manager initialized
+Bluetooth: HCI socket layer initialized
+Bluetooth: L2CAP socket layer initialized
+Bluetooth: SCO socket layer initialized
+microcode: CPU0 sig=0x206c2, pf=0x2, revision=0xc
+usbcore: registered new interface driver btusb
+ACPI Warning: 0x0000000000000830-0x0000000000000833 SystemIO conflicts with Region \PMRG 1 (20120320/utaddress-251)
+ACPI Warning: 0x0000000000000830-0x0000000000000833 SystemIO conflicts with Region \_SB_.PCI0.SBRG.SMIE 2 (20120320/utaddress-251)
+ACPI: If an ACPI driver is available for this device, you should use it instead of the native driver
+lpc_ich: Resource conflict(s) found affecting iTCO_wdt
+ACPI Warning: 0x0000000000000828-0x000000000000082f SystemIO conflicts with Region \PMRG 1 (20120320/utaddress-251)
+ACPI: If an ACPI driver is available for this device, you should use it instead of the native driver
+lpc_ich: Resource conflict(s) found affecting gpio_ich
+microcode: CPU1 sig=0x206c2, pf=0x2, revision=0xc
+microcode: CPU2 sig=0x206c2, pf=0x2, revision=0xc
+microcode: CPU3 sig=0x206c2, pf=0x2, revision=0xc
+microcode: CPU4 sig=0x206c2, pf=0x2, revision=0xc
+microcode: CPU5 sig=0x206c2, pf=0x2, revision=0xc
+microcode: CPU6 sig=0x206c2, pf=0x2, revision=0xc
+microcode: CPU7 sig=0x206c2, pf=0x2, revision=0xc
+microcode: CPU8 sig=0x206c2, pf=0x2, revision=0xc
+microcode: CPU9 sig=0x206c2, pf=0x2, revision=0xc
+microcode: CPU10 sig=0x206c2, pf=0x2, revision=0xc
+microcode: CPU11 sig=0x206c2, pf=0x2, revision=0xc
+microcode: Microcode Update Driver: v2.00 <tigran@aivazian.fsnet.co.uk>, Peter Oruba
+wmi: Mapper loaded
+gpio_ich: GPIO from 195 to 255 on gpio_ich
+EDAC MC: Ver: 2.1.0
+Bluetooth: RFCOMM TTY layer initialized
+Bluetooth: RFCOMM socket layer initialized
+Bluetooth: RFCOMM ver 1.11
+Bluetooth: BNEP (Ethernet Emulation) ver 1.3
+Bluetooth: BNEP filters: protocol multicast
+EDAC i7core: Device not found: dev 00.0 PCI ID 8086:2c70
+type=1400 audit(1389114691.263:4): apparmor="STATUS" operation="profile_load" name="/sbin/dhclient" pid=890 comm="apparmor_parser"
+type=1400 audit(1389114691.263:5): apparmor="STATUS" operation="profile_replace" name="/sbin/dhclient" pid=891 comm="apparmor_parser"
+type=1400 audit(1389114691.263:6): apparmor="STATUS" operation="profile_load" name="/usr/lib/NetworkManager/nm-dhcp-client.action" pid=890 comm="apparmor_parser"
+type=1400 audit(1389114691.263:7): apparmor="STATUS" operation="profile_replace" name="/usr/lib/NetworkManager/nm-dhcp-client.action" pid=891 comm="apparmor_parser"
+type=1400 audit(1389114691.263:8): apparmor="STATUS" operation="profile_load" name="/usr/lib/connman/scripts/dhclient-script" pid=890 comm="apparmor_parser"
+type=1400 audit(1389114691.263:9): apparmor="STATUS" operation="profile_replace" name="/usr/lib/connman/scripts/dhclient-script" pid=891 comm="apparmor_parser"
+cfg80211: Calling CRDA to update world regulatory domain
+[drm] Initialized drm 1.1.0 20060810
+kvm: VM_EXIT_LOAD_IA32_PERF_GLOBAL_CTRL does not work properly. Using workaround
+[drm] nouveau 0000:07:00.0: Detected an NV50 generation card (0x0a0500b1)
+[drm] nouveau 0000:07:00.0: Checking PRAMIN for VBIOS
+snd_hda_intel 0000:00:1b.0: irq 46 for MSI/MSI-X
+[drm] nouveau 0000:07:00.0: ... appears to be valid
+[drm] nouveau 0000:07:00.0: Using VBIOS from PRAMIN
+[drm] nouveau 0000:07:00.0: BIT BIOS found
+[drm] nouveau 0000:07:00.0: Bios version 62.00.78.00
+[drm] nouveau 0000:07:00.0: TMDS table version 2.0
+[drm] nouveau 0000:07:00.0: MXM: no VBIOS data, nothing to do
+[drm] nouveau 0000:07:00.0: DCB version 4.0
+[drm] nouveau 0000:07:00.0: DCB outp 00: 04000320 00000028
+[drm] nouveau 0000:07:00.0: DCB outp 01: 01000322 00020030
+[drm] nouveau 0000:07:00.0: DCB outp 02: 02011310 00000028
+[drm] nouveau 0000:07:00.0: DCB outp 03: 02011312 00020030
+[drm] nouveau 0000:07:00.0: DCB conn 00: 00001030
+[drm] nouveau 0000:07:00.0: DCB conn 01: 00002130
+[drm] nouveau 0000:07:00.0: DCB conn 02: 00000260
+[drm] nouveau 0000:07:00.0: Parsing VBIOS init table 0 at offset 0xD039
+[drm] nouveau 0000:07:00.0: Parsing VBIOS init table 1 at offset 0xD4CA
+[drm] nouveau 0000:07:00.0: Parsing VBIOS init table 2 at offset 0xE967
+[drm] nouveau 0000:07:00.0: Parsing VBIOS init table 3 at offset 0xEA44
+[drm] nouveau 0000:07:00.0: Parsing VBIOS init table 4 at offset 0xEB23
+[drm] nouveau 0000:07:00.0: Parsing VBIOS init table at offset 0xEB88
+hda_codec: ALC888: SKU not ready 0x411111f0
+input: HDA Intel Line as /devices/pci0000:00/0000:00:1b.0/sound/card0/input2
+input: HDA Intel Front Mic as /devices/pci0000:00/0000:00:1b.0/sound/card0/input3
+input: HDA Intel Rear Mic as /devices/pci0000:00/0000:00:1b.0/sound/card0/input4
+input: HDA Intel Front Headphone as /devices/pci0000:00/0000:00:1b.0/sound/card0/input5
+input: HDA Intel Line Out Side as /devices/pci0000:00/0000:00:1b.0/sound/card0/input6
+input: HDA Intel Line Out CLFE as /devices/pci0000:00/0000:00:1b.0/sound/card0/input7
+input: HDA Intel Line Out Surround as /devices/pci0000:00/0000:00:1b.0/sound/card0/input8
+input: HDA Intel Line Out Front as /devices/pci0000:00/0000:00:1b.0/sound/card0/input9
+[drm] nouveau 0000:07:00.0: 0xEB88: Condition still not met after 20ms, skipping following opcodes
+[TTM] Zone  kernel: Available graphics memory: 8213078 kiB
+[TTM] Zone   dma32: Available graphics memory: 2097152 kiB
+[TTM] Initializing pool allocator
+[TTM] Initializing DMA pool allocator
+[drm] nouveau 0000:07:00.0: Detected 1792MiB VRAM (GDDR3)
+[drm] nouveau 0000:07:00.0: 512 MiB GART (aperture)
+ath: EEPROM regdomain: 0x6a
+ath: EEPROM indicates we should expect a direct regpair map
+ath: Country alpha2 being used: 00
+ath: Regpair used: 0x6a
+cfg80211: Updating information on frequency 2412 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 2402000 KHz - 2472000 KHz @ 40000 KHz), (N/A mBi, 2000 mBm)
+cfg80211: Updating information on frequency 2417 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 2402000 KHz - 2472000 KHz @ 40000 KHz), (N/A mBi, 2000 mBm)
+cfg80211: Updating information on frequency 2422 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 2402000 KHz - 2472000 KHz @ 40000 KHz), (N/A mBi, 2000 mBm)
+cfg80211: Updating information on frequency 2427 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 2402000 KHz - 2472000 KHz @ 40000 KHz), (N/A mBi, 2000 mBm)
+cfg80211: Updating information on frequency 2432 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 2402000 KHz - 2472000 KHz @ 40000 KHz), (N/A mBi, 2000 mBm)
+cfg80211: Updating information on frequency 2437 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 2402000 KHz - 2472000 KHz @ 40000 KHz), (N/A mBi, 2000 mBm)
+cfg80211: Updating information on frequency 2442 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 2402000 KHz - 2472000 KHz @ 40000 KHz), (N/A mBi, 2000 mBm)
+cfg80211: Updating information on frequency 2447 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 2402000 KHz - 2472000 KHz @ 40000 KHz), (N/A mBi, 2000 mBm)
+cfg80211: Updating information on frequency 2452 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 2402000 KHz - 2472000 KHz @ 40000 KHz), (N/A mBi, 2000 mBm)
+cfg80211: Updating information on frequency 2457 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 2402000 KHz - 2472000 KHz @ 40000 KHz), (N/A mBi, 2000 mBm)
+cfg80211: Updating information on frequency 2462 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 2402000 KHz - 2472000 KHz @ 40000 KHz), (N/A mBi, 2000 mBm)
+cfg80211: Updating information on frequency 2467 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 2457000 KHz - 2482000 KHz @ 40000 KHz), (N/A mBi, 2000 mBm)
+cfg80211: Updating information on frequency 2472 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 2457000 KHz - 2482000 KHz @ 40000 KHz), (N/A mBi, 2000 mBm)
+cfg80211: Disabling freq 2484 MHz as custom regd has no rule that fits a 20 MHz wide channel
+cfg80211: Updating information on frequency 5180 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5140000 KHz - 5360000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5200 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5140000 KHz - 5360000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5220 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5140000 KHz - 5360000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5240 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5140000 KHz - 5360000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5260 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5140000 KHz - 5360000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5280 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5140000 KHz - 5360000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5300 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5140000 KHz - 5360000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5320 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5140000 KHz - 5360000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5500 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5460000 KHz - 5860000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5520 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5460000 KHz - 5860000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5540 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5460000 KHz - 5860000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5560 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5460000 KHz - 5860000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5580 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5460000 KHz - 5860000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5600 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5460000 KHz - 5860000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5620 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5460000 KHz - 5860000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5640 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5460000 KHz - 5860000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5660 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5460000 KHz - 5860000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5680 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5460000 KHz - 5860000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5700 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5460000 KHz - 5860000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5745 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5460000 KHz - 5860000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5765 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5460000 KHz - 5860000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5785 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5460000 KHz - 5860000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5805 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5460000 KHz - 5860000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Updating information on frequency 5825 MHz for a 20 MHz width channel with regulatory rule:
+cfg80211: 5460000 KHz - 5860000 KHz @ 40000 KHz), (N/A mBi, 3000 mBm)
+cfg80211: Ignoring regulatory request Set by core since the driver uses its own custom regulatory domain
+[drm] Supports vblank timestamp caching Rev 1 (10.10.2010).
+[drm] No driver support for vblank timestamp query.
+ieee80211 phy0: Selected rate control algorithm 'ath9k_rate_control'
+Registered led device: ath9k-phy0
+ieee80211 phy0: Atheros AR9280 Rev:2 mem=0xffffc90012640000, irq=17
+adt7475 3-002e: ADT7473 device, revision 1
+[drm] nouveau 0000:07:00.0: Detected monitoring device: adt7473
+[drm] nouveau 0000:07:00.0: 3 available performance level(s)
+[drm] nouveau 0000:07:00.0: 0: core 300MHz shader 600MHz memory 100MHz voltage 1020mV fanspeed 100%
+[drm] nouveau 0000:07:00.0: 2: core 400MHz shader 800MHz memory 300MHz voltage 1020mV fanspeed 100%
+[drm] nouveau 0000:07:00.0: 3: core 518MHz shader 1080MHz memory 1008MHz voltage 1060mV fanspeed 100%
+[drm] nouveau 0000:07:00.0: c: core 399MHz shader 810MHz memory 297MHz voltage 1020mV
+cfg80211: Ignoring regulatory request Set by core since the driver uses its own custom regulatory domain
+cfg80211: World regulatory domain updated:
+cfg80211:   (start_freq - end_freq @ bandwidth), (max_antenna_gain, max_eirp)
+cfg80211:   (2402000 KHz - 2472000 KHz @ 40000 KHz), (300 mBi, 2000 mBm)
+cfg80211:   (2457000 KHz - 2482000 KHz @ 20000 KHz), (300 mBi, 2000 mBm)
+cfg80211:   (2474000 KHz - 2494000 KHz @ 20000 KHz), (300 mBi, 2000 mBm)
+cfg80211:   (5170000 KHz - 5250000 KHz @ 40000 KHz), (300 mBi, 2000 mBm)
+cfg80211:   (5735000 KHz - 5835000 KHz @ 40000 KHz), (300 mBi, 2000 mBm)
+[drm] nouveau 0000:07:00.0: MM: using CRYPT for buffer copies
+init: failsafe main process (918) killed by TERM signal
+No connectors reported connected with modes
+[drm] Cannot find any crtc or sizes - going 1024x768
+[drm] nouveau 0000:07:00.0: allocated 1024x768 fb: 0x2d0000, bo ffff8804197f6800
+fbcon: nouveaufb (fb0) is primary device
+Console: switching to colour frame buffer device 128x48
+fb0: nouveaufb frame buffer device
+drm: registered panic notifier
+[drm] Initialized nouveau 1.0.0 20120316 for 0000:07:00.0 on minor 0
+e1000e 0000:00:19.0: irq 45 for MSI/MSI-X
+e1000e 0000:00:19.0: irq 45 for MSI/MSI-X
+IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
+IPv6: ADDRCONF(NETDEV_UP): eth0: link is not ready
+IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
+IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
+type=1400 audit(1389114696.479:10): apparmor="STATUS" operation="profile_replace" name="/sbin/dhclient" pid=1099 comm="apparmor_parser"
+type=1400 audit(1389114696.479:11): apparmor="STATUS" operation="profile_replace" name="/usr/lib/NetworkManager/nm-dhcp-client.action" pid=1099 comm="apparmor_parser"
+type=1400 audit(1389114696.479:12): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=1103 comm="apparmor_parser"
+type=1400 audit(1389114696.479:13): apparmor="STATUS" operation="profile_replace" name="/usr/lib/connman/scripts/dhclient-script" pid=1099 comm="apparmor_parser"
+type=1400 audit(1389114696.479:14): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=1103 comm="apparmor_parser"
+cfg80211: Found new beacon on frequency: 5180 MHz (Ch 36) on phy0
+cfg80211: Found new beacon on frequency: 5180 MHz (Ch 36) on phy0
+type=1400 audit(1389114696.547:15): apparmor="STATUS" operation="profile_load" name="/usr/lib/x86_64-linux-gnu/lightdm-remote-session-uccsconfigure/uccsconfigure-session-wrapper" pid=1098 comm="apparmor_parser"
+type=1400 audit(1389114696.547:16): apparmor="STATUS" operation="profile_load" name="/usr/lib/x86_64-linux-gnu/lightdm-remote-session-uccsconfigure/uccsconfigure-session-wrapper//chromium_browser" pid=1098 comm="apparmor_parser"
+type=1400 audit(1389114696.547:17): apparmor="STATUS" operation="profile_load" name="/usr/lib/x86_64-linux-gnu/lightdm-remote-session-freerdp/freerdp-session-wrapper" pid=1097 comm="apparmor_parser"
+type=1400 audit(1389114696.547:18): apparmor="STATUS" operation="profile_load" name="/usr/lib/x86_64-linux-gnu/lightdm-remote-session-freerdp/freerdp-session-wrapper//chromium_browser" pid=1097 comm="apparmor_parser"
+type=1400 audit(1389114696.547:19): apparmor="STATUS" operation="profile_load" name="/usr/lib/lightdm/lightdm/lightdm-guest-session-wrapper" pid=1096 comm="apparmor_parser"
+cfg80211: Found new beacon on frequency: 5200 MHz (Ch 40) on phy0
+cfg80211: Found new beacon on frequency: 5200 MHz (Ch 40) on phy0
+cfg80211: Found new beacon on frequency: 5745 MHz (Ch 149) on phy0
+cfg80211: Found new beacon on frequency: 5745 MHz (Ch 149) on phy0
+init: lightdm main process (1169) terminated with status 1
+cfg80211: Found new beacon on frequency: 5765 MHz (Ch 153) on phy0
+cfg80211: Found new beacon on frequency: 5240 MHz (Ch 48) on phy0
+e1000e: eth0 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: Rx/Tx
+IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+cfg80211: Found new beacon on frequency: 5785 MHz (Ch 157) on phy0
+cfg80211: Found new beacon on frequency: 5785 MHz (Ch 157) on phy0
+cfg80211: Found new beacon on frequency: 5220 MHz (Ch 44) on phy0
+cfg80211: Found new beacon on frequency: 5220 MHz (Ch 44) on phy0
+audit_printk_skb: 39 callbacks suppressed
+type=1400 audit(1389186201.013:33): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=3436 comm="apparmor_parser"
+type=1400 audit(1389186201.013:34): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=3436 comm="apparmor_parser"
+type=1400 audit(1389272224.246:35): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=4950 comm="apparmor_parser"
+type=1400 audit(1389272224.250:36): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=4950 comm="apparmor_parser"
+type=1400 audit(1389358518.543:37): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=6473 comm="apparmor_parser"
+type=1400 audit(1389358518.543:38): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=6473 comm="apparmor_parser"
+type=1400 audit(1389444901.437:39): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=7985 comm="apparmor_parser"
+type=1400 audit(1389444901.437:40): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=7985 comm="apparmor_parser"
+type=1400 audit(1389530754.143:41): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=9454 comm="apparmor_parser"
+type=1400 audit(1389530754.143:42): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=9454 comm="apparmor_parser"
+type=1400 audit(1389617931.693:43): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=10926 comm="apparmor_parser"
+type=1400 audit(1389617931.693:44): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=10926 comm="apparmor_parser"
+type=1400 audit(1389704371.783:45): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=12392 comm="apparmor_parser"
+type=1400 audit(1389704371.787:46): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=12392 comm="apparmor_parser"
+cfg80211: Found new beacon on frequency: 5805 MHz (Ch 161) on phy0
+cfg80211: Found new beacon on frequency: 5805 MHz (Ch 161) on phy0
+type=1400 audit(1389791061.186:47): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=13896 comm="apparmor_parser"
+type=1400 audit(1389791061.186:48): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=13896 comm="apparmor_parser"
+type=1400 audit(1389876375.333:49): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=15359 comm="apparmor_parser"
+type=1400 audit(1389876375.333:50): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=15359 comm="apparmor_parser"
+type=1400 audit(1389962217.511:51): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=17534 comm="apparmor_parser"
+type=1400 audit(1389962217.511:52): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=17534 comm="apparmor_parser"
+type=1400 audit(1390049196.673:53): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=19039 comm="apparmor_parser"
+type=1400 audit(1390049196.673:54): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=19039 comm="apparmor_parser"
+type=1400 audit(1390135148.481:55): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=20546 comm="apparmor_parser"
+type=1400 audit(1390135148.481:56): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=20546 comm="apparmor_parser"
+type=1400 audit(1390222336.231:57): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=22010 comm="apparmor_parser"
+type=1400 audit(1390222336.231:58): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=22010 comm="apparmor_parser"
+type=1400 audit(1390308038.931:59): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=23477 comm="apparmor_parser"
+type=1400 audit(1390308038.935:60): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=23477 comm="apparmor_parser"
+type=1400 audit(1390395021.874:61): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=24976 comm="apparmor_parser"
+type=1400 audit(1390395021.878:62): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=24976 comm="apparmor_parser"
+type=1400 audit(1390482061.549:63): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=26442 comm="apparmor_parser"
+type=1400 audit(1390482061.553:64): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=26442 comm="apparmor_parser"
+type=1400 audit(1390568363.342:65): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=27897 comm="apparmor_parser"
+type=1400 audit(1390568363.342:66): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=27897 comm="apparmor_parser"
+type=1400 audit(1390653767.138:67): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=29353 comm="apparmor_parser"
+type=1400 audit(1390653767.138:68): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=29353 comm="apparmor_parser"
+type=1400 audit(1390740250.493:69): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=30841 comm="apparmor_parser"
+type=1400 audit(1390740250.493:70): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=30841 comm="apparmor_parser"
+type=1400 audit(1390827853.765:71): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=32320 comm="apparmor_parser"
+type=1400 audit(1390827853.765:72): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=32320 comm="apparmor_parser"
+type=1400 audit(1390914309.692:73): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=1372 comm="apparmor_parser"
+type=1400 audit(1390914309.692:74): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=1372 comm="apparmor_parser"
+type=1400 audit(1390999506.929:75): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=2962 comm="apparmor_parser"
+type=1400 audit(1390999506.929:76): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=2962 comm="apparmor_parser"
+type=1400 audit(1391086828.320:77): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=4436 comm="apparmor_parser"
+type=1400 audit(1391086828.320:78): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=4436 comm="apparmor_parser"
+type=1400 audit(1391173049.816:79): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=5886 comm="apparmor_parser"
+type=1400 audit(1391173049.816:80): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=5886 comm="apparmor_parser"
+type=1400 audit(1391258444.748:81): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=7344 comm="apparmor_parser"
+type=1400 audit(1391258444.748:82): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=7344 comm="apparmor_parser"
+type=1400 audit(1391345514.476:83): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=8831 comm="apparmor_parser"
+type=1400 audit(1391345514.480:84): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=8831 comm="apparmor_parser"
+type=1400 audit(1391432031.199:85): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=10299 comm="apparmor_parser"
+type=1400 audit(1391432031.199:86): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=10299 comm="apparmor_parser"
+type=1400 audit(1391517978.067:87): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=11757 comm="apparmor_parser"
+type=1400 audit(1391517978.067:88): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=11757 comm="apparmor_parser"
+type=1400 audit(1391605509.470:89): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=13242 comm="apparmor_parser"
+type=1400 audit(1391605509.470:90): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=13242 comm="apparmor_parser"
+type=1400 audit(1391691637.724:91): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=14695 comm="apparmor_parser"
+type=1400 audit(1391691637.728:92): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=14695 comm="apparmor_parser"
+type=1400 audit(1391777832.367:93): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=16145 comm="apparmor_parser"
+type=1400 audit(1391777832.367:94): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=16145 comm="apparmor_parser"
+type=1400 audit(1391863697.334:95): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=17656 comm="apparmor_parser"
+type=1400 audit(1391863697.334:96): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=17656 comm="apparmor_parser"
+type=1400 audit(1391950510.394:97): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=19137 comm="apparmor_parser"
+type=1400 audit(1391950510.394:98): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=19137 comm="apparmor_parser"
+type=1400 audit(1392035837.161:99): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=20581 comm="apparmor_parser"
+type=1400 audit(1392035837.161:100): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=20581 comm="apparmor_parser"
+type=1400 audit(1392123019.874:101): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=22049 comm="apparmor_parser"
+type=1400 audit(1392123019.874:102): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=22049 comm="apparmor_parser"
+type=1400 audit(1392134211.958:103): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/tcpdump" pid=24629 comm="apparmor_parser"
+type=1400 audit(1392134211.974:104): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/mysqld" pid=24627 comm="apparmor_parser"
+type=1400 audit(1392134212.078:105): apparmor="STATUS" operation="profile_replace" name="/usr/lib/x86_64-linux-gnu/lightdm-remote-session-freerdp/freerdp-session-wrapper" pid=24620 comm="apparmor_parser"
+type=1400 audit(1392134212.078:106): apparmor="STATUS" operation="profile_replace" name="/usr/lib/x86_64-linux-gnu/lightdm-remote-session-freerdp/freerdp-session-wrapper//chromium_browser" pid=24620 comm="apparmor_parser"
+type=1400 audit(1392134212.094:107): apparmor="STATUS" operation="profile_replace" name="/sbin/dhclient" pid=24622 comm="apparmor_parser"
+type=1400 audit(1392134212.094:108): apparmor="STATUS" operation="profile_replace" name="/usr/lib/NetworkManager/nm-dhcp-client.action" pid=24622 comm="apparmor_parser"
+type=1400 audit(1392134212.094:109): apparmor="STATUS" operation="profile_replace" name="/usr/lib/connman/scripts/dhclient-script" pid=24622 comm="apparmor_parser"
+type=1400 audit(1392134212.118:110): apparmor="STATUS" operation="profile_replace" name="/usr/lib/x86_64-linux-gnu/lightdm-remote-session-uccsconfigure/uccsconfigure-session-wrapper" pid=24621 comm="apparmor_parser"
+type=1400 audit(1392134212.118:111): apparmor="STATUS" operation="profile_replace" name="/usr/lib/x86_64-linux-gnu/lightdm-remote-session-uccsconfigure/uccsconfigure-session-wrapper//chromium_browser" pid=24621 comm="apparmor_parser"
+type=1400 audit(1392134212.118:112): apparmor="STATUS" operation="profile_replace" name="/usr/lib/lightdm/lightdm/lightdm-guest-session-wrapper" pid=24619 comm="apparmor_parser"
+audit_printk_skb: 84 callbacks suppressed
+type=1400 audit(1392134219.642:141): apparmor="STATUS" operation="profile_replace" name="/usr/bin/evince" pid=24680 comm="apparmor_parser"
+type=1400 audit(1392134219.642:142): apparmor="STATUS" operation="profile_replace" name="/usr/bin/evince//sanitized_helper" pid=24680 comm="apparmor_parser"
+type=1400 audit(1392134219.642:143): apparmor="STATUS" operation="profile_replace" name="/usr/bin/evince-previewer" pid=24680 comm="apparmor_parser"
+type=1400 audit(1392134219.642:144): apparmor="STATUS" operation="profile_replace" name="/usr/bin/evince-previewer//sanitized_helper" pid=24680 comm="apparmor_parser"
+type=1400 audit(1392134219.642:145): apparmor="STATUS" operation="profile_replace" name="/usr/bin/evince-thumbnailer" pid=24680 comm="apparmor_parser"
+type=1400 audit(1392134219.642:146): apparmor="STATUS" operation="profile_replace" name="/usr/bin/evince-thumbnailer//sanitized_helper" pid=24680 comm="apparmor_parser"
+IPv6: ADDRCONF(NETDEV_UP): wlan0: link is not ready
+type=1400 audit(1392134239.718:147): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=25187 comm="apparmor_parser"
+type=1400 audit(1392134239.718:148): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=25187 comm="apparmor_parser"
+type=1400 audit(1392134239.762:149): apparmor="STATUS" operation="profile_replace" name="/usr/lib/cups/backend/cups-pdf" pid=25233 comm="apparmor_parser"
+type=1400 audit(1392134239.762:150): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/cupsd" pid=25233 comm="apparmor_parser"
+type=1400 audit(1392134267.443:151): apparmor="STATUS" operation="profile_replace" name="/sbin/dhclient" pid=26698 comm="apparmor_parser"
+type=1400 audit(1392134267.443:152): apparmor="STATUS" operation="profile_replace" name="/usr/lib/NetworkManager/nm-dhcp-client.action" pid=26698 comm="apparmor_parser"
+type=1400 audit(1392134267.443:153): apparmor="STATUS" operation="profile_replace" name="/usr/lib/connman/scripts/dhclient-script" pid=26698 comm="apparmor_parser"
+type=1400 audit(1392134344.236:154): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/mysqld" pid=29384 comm="apparmor_parser"
+type=1400 audit(1392134344.268:155): apparmor="STATUS" operation="profile_replace" name="/usr/sbin/mysqld" pid=29418 comm="apparmor_parser"

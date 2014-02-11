@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!--Phoronix Test Suite v4.0.0 (Suldal)-->
+<?xml-stylesheet type="text/xsl" href="pts-results-viewer.xsl"?>
+<PhoronixTestSuite>
+  <Generated>
+    <Title>ClaytonCompOrgBenchmark</Title>
+    <LastModified>2014-02-11 11:06:04</LastModified>
+    <TestClient>Phoronix Test Suite v4.0.0 (Suldal)</TestClient>
+    <Description>Intel Core i7 980X testing with a PEGATRON TRUCKEE and NVIDIA GeForce GTX 260 1792MB on Ubuntu 12.10 via the Phoronix Test Suite.</Description>
+  </Generated>
+  <System>
+    <Identifier>CompOrgRun2</Identifier>
+    <Hardware>Processor: Intel Core i7 980X @ 3.33GHz (12 Cores), Motherboard: PEGATRON TRUCKEE, Chipset: Intel 5520/5500/X58 + ICH10R, Memory: 16384MB, Disk: 2000GB Seagate ST2000DM001-1CH1, Graphics: NVIDIA GeForce GTX 260 1792MB, Audio: Realtek ALC888, Network: Intel 82567V-2 Gigabit Connection + Atheros AR928X Wireless</Hardware>
+    <Software>OS: Ubuntu 12.10, Kernel: 3.5.0-23-generic (x86_64), Display Driver: vesa 2.3.2, Compiler: GCC 4.7, File-System: ext4, Screen Resolution: 1024x768</Software>
+    <User>barbara</User>
+    <TimeStamp>2014-02-11 11:06:04</TimeStamp>
+    <TestClientVersion>4.0.0</TestClientVersion>
+    <Notes></Notes>
+    <JSON>{"compiler-configuration":"--build=x86_64-linux-gnu --disable-werror --enable-checking=release --enable-clocale=gnu --enable-gnu-unique-object --enable-languages=c,c++,go,fortran,objc,obj-c++ --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-nls --enable-objc-gc --enable-plugin --enable-shared --enable-threads=posix --host=x86_64-linux-gnu --target=x86_64-linux-gnu --with-arch-32=i686 --with-tune=generic -v","cpu-scaling-governor":"ondemand"}</JSON>
+  </System>
+  <Result>
+    <Identifier>pts/rodinia-1.2.1</Identifier>
+    <Title>Rodinia</Title>
+    <AppVersion>2.4</AppVersion>
+    <Arguments>OMP_LAVAMD</Arguments>
+    <Description>Test: OpenMP LavaMD</Description>
+    <Scale>Seconds</Scale>
+    <Proportion>LIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>CompOrgRun2</Identifier>
+        <Value>603.01</Value>
+        <RawString>602.64546704292:603.18112683296:603.20051002502</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-O3 -fopenmp"}}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>pts/rodinia-1.2.1</Identifier>
+    <Title>Rodinia</Title>
+    <AppVersion>2.4</AppVersion>
+    <Arguments>OMP_LEUKOCYTE</Arguments>
+    <Description>Test: OpenMP Leukocyte</Description>
+    <Scale>Seconds</Scale>
+    <Proportion>LIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>CompOrgRun2</Identifier>
+        <Value>31.17</Value>
+        <RawString>30.620166063309:31.601207017899:31.274433851242</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-O3 -fopenmp"}}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>pts/rodinia-1.2.1</Identifier>
+    <Title>Rodinia</Title>
+    <AppVersion>2.4</AppVersion>
+    <Arguments>OMP_CFD</Arguments>
+    <Description>Test: OpenMP CFD Solver</Description>
+    <Scale>Seconds</Scale>
+    <Proportion>LIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>CompOrgRun2</Identifier>
+        <Value>86.63</Value>
+        <RawString>86.747555971146:86.444134950638:86.694437026978</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-O3 -fopenmp"}}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+  <Result>
+    <Identifier>pts/rodinia-1.2.1</Identifier>
+    <Title>Rodinia</Title>
+    <AppVersion>2.4</AppVersion>
+    <Arguments>OMP_STREAMCLUSTER</Arguments>
+    <Description>Test: OpenMP Streamcluster</Description>
+    <Scale>Seconds</Scale>
+    <Proportion>LIB</Proportion>
+    <DisplayFormat>BAR_GRAPH</DisplayFormat>
+    <Data>
+      <Entry>
+        <Identifier>CompOrgRun2</Identifier>
+        <Value>39.46</Value>
+        <RawString>39.471699953079:39.327306985855:39.567399024963</RawString>
+        <JSON>{"compiler-options":{"compiler-type":"CXX","compiler":"g++","compiler-options":"-O3 -fopenmp"}}</JSON>
+      </Entry>
+    </Data>
+  </Result>
+</PhoronixTestSuite>

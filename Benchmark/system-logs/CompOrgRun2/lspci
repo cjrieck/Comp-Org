@@ -1,0 +1,422 @@
+Slot:	00:00.0
+Class:	Host bridge [0600]
+Vendor:	Intel Corporation [8086]
+Device:	5520/5500/X58 I/O Hub to ESI Port [3400]
+SVendor:	Intel Corporation [8086]
+SDevice:	Device [0000]
+Rev:	13
+
+Slot:	00:01.0
+Class:	PCI bridge [0604]
+Vendor:	Intel Corporation [8086]
+Device:	5520/5500/X58 I/O Hub PCI Express Root Port 1 [3408]
+Rev:	13
+Driver:	pcieport
+Module:	shpchp
+
+Slot:	00:03.0
+Class:	PCI bridge [0604]
+Vendor:	Intel Corporation [8086]
+Device:	5520/5500/X58 I/O Hub PCI Express Root Port 3 [340a]
+Rev:	13
+Driver:	pcieport
+Module:	shpchp
+
+Slot:	00:07.0
+Class:	PCI bridge [0604]
+Vendor:	Intel Corporation [8086]
+Device:	5520/5500/X58 I/O Hub PCI Express Root Port 7 [340e]
+Rev:	13
+Driver:	pcieport
+Module:	shpchp
+
+Slot:	00:14.0
+Class:	PIC [0800]
+Vendor:	Intel Corporation [8086]
+Device:	7500/5520/5500/X58 I/O Hub System Management Registers [342e]
+Rev:	13
+Module:	i7core_edac
+
+Slot:	00:14.1
+Class:	PIC [0800]
+Vendor:	Intel Corporation [8086]
+Device:	7500/5520/5500/X58 I/O Hub GPIO and Scratch Pad Registers [3422]
+Rev:	13
+Module:	mce-xeon75xx
+
+Slot:	00:14.2
+Class:	PIC [0800]
+Vendor:	Intel Corporation [8086]
+Device:	7500/5520/5500/X58 I/O Hub Control Status and RAS Registers [3423]
+Rev:	13
+
+Slot:	00:14.3
+Class:	PIC [0800]
+Vendor:	Intel Corporation [8086]
+Device:	7500/5520/5500/X58 I/O Hub Throttle Registers [3438]
+Rev:	13
+
+Slot:	00:19.0
+Class:	Ethernet controller [0200]
+Vendor:	Intel Corporation [8086]
+Device:	82567V-2 Gigabit Network Connection [10ce]
+SVendor:	Hewlett-Packard Company [103c]
+SDevice:	Device [2a86]
+Driver:	e1000e
+Module:	e1000e
+
+Slot:	00:1a.0
+Class:	USB controller [0c03]
+Vendor:	Intel Corporation [8086]
+Device:	82801JI (ICH10 Family) USB UHCI Controller #4 [3a37]
+SVendor:	Hewlett-Packard Company [103c]
+SDevice:	Device [2a86]
+Driver:	uhci_hcd
+
+Slot:	00:1a.1
+Class:	USB controller [0c03]
+Vendor:	Intel Corporation [8086]
+Device:	82801JI (ICH10 Family) USB UHCI Controller #5 [3a38]
+SVendor:	Hewlett-Packard Company [103c]
+SDevice:	Device [2a86]
+Driver:	uhci_hcd
+
+Slot:	00:1a.2
+Class:	USB controller [0c03]
+Vendor:	Intel Corporation [8086]
+Device:	82801JI (ICH10 Family) USB UHCI Controller #6 [3a39]
+SVendor:	Hewlett-Packard Company [103c]
+SDevice:	Device [2a86]
+Driver:	uhci_hcd
+
+Slot:	00:1a.7
+Class:	USB controller [0c03]
+Vendor:	Intel Corporation [8086]
+Device:	82801JI (ICH10 Family) USB2 EHCI Controller #2 [3a3c]
+SVendor:	Hewlett-Packard Company [103c]
+SDevice:	Device [2a86]
+ProgIf:	20
+Driver:	ehci_hcd
+
+Slot:	00:1b.0
+Class:	Audio device [0403]
+Vendor:	Intel Corporation [8086]
+Device:	82801JI (ICH10 Family) HD Audio Controller [3a3e]
+SVendor:	Hewlett-Packard Company [103c]
+SDevice:	Device [2a86]
+Driver:	snd_hda_intel
+Module:	snd-hda-intel
+
+Slot:	00:1c.0
+Class:	PCI bridge [0604]
+Vendor:	Intel Corporation [8086]
+Device:	82801JI (ICH10 Family) PCI Express Root Port 1 [3a40]
+Driver:	pcieport
+Module:	shpchp
+
+Slot:	00:1c.1
+Class:	PCI bridge [0604]
+Vendor:	Intel Corporation [8086]
+Device:	82801JI (ICH10 Family) PCI Express Port 2 [3a42]
+Driver:	pcieport
+Module:	shpchp
+
+Slot:	00:1c.2
+Class:	PCI bridge [0604]
+Vendor:	Intel Corporation [8086]
+Device:	82801JI (ICH10 Family) PCI Express Root Port 3 [3a44]
+Driver:	pcieport
+Module:	shpchp
+
+Slot:	00:1c.3
+Class:	PCI bridge [0604]
+Vendor:	Intel Corporation [8086]
+Device:	82801JI (ICH10 Family) PCI Express Root Port 4 [3a46]
+Driver:	pcieport
+Module:	shpchp
+
+Slot:	00:1d.0
+Class:	USB controller [0c03]
+Vendor:	Intel Corporation [8086]
+Device:	82801JI (ICH10 Family) USB UHCI Controller #1 [3a34]
+SVendor:	Hewlett-Packard Company [103c]
+SDevice:	Device [2a86]
+Driver:	uhci_hcd
+
+Slot:	00:1d.1
+Class:	USB controller [0c03]
+Vendor:	Intel Corporation [8086]
+Device:	82801JI (ICH10 Family) USB UHCI Controller #2 [3a35]
+SVendor:	Hewlett-Packard Company [103c]
+SDevice:	Device [2a86]
+Driver:	uhci_hcd
+
+Slot:	00:1d.2
+Class:	USB controller [0c03]
+Vendor:	Intel Corporation [8086]
+Device:	82801JI (ICH10 Family) USB UHCI Controller #3 [3a36]
+SVendor:	Hewlett-Packard Company [103c]
+SDevice:	Device [2a86]
+Driver:	uhci_hcd
+
+Slot:	00:1d.7
+Class:	USB controller [0c03]
+Vendor:	Intel Corporation [8086]
+Device:	82801JI (ICH10 Family) USB2 EHCI Controller #1 [3a3a]
+SVendor:	Hewlett-Packard Company [103c]
+SDevice:	Device [2a86]
+ProgIf:	20
+Driver:	ehci_hcd
+
+Slot:	00:1e.0
+Class:	PCI bridge [0604]
+Vendor:	Intel Corporation [8086]
+Device:	82801 PCI Bridge [244e]
+Rev:	90
+ProgIf:	01
+
+Slot:	00:1f.0
+Class:	ISA bridge [0601]
+Vendor:	Intel Corporation [8086]
+Device:	82801JIR (ICH10R) LPC Interface Controller [3a16]
+SVendor:	Hewlett-Packard Company [103c]
+SDevice:	Device [2a86]
+Driver:	lpc_ich
+Module:	lpc_ich
+
+Slot:	00:1f.2
+Class:	RAID bus controller [0104]
+Vendor:	Intel Corporation [8086]
+Device:	82801 SATA Controller [RAID mode] [2822]
+SVendor:	Hewlett-Packard Company [103c]
+SDevice:	Device [2a86]
+Driver:	ahci
+
+Slot:	00:1f.3
+Class:	SMBus [0c05]
+Vendor:	Intel Corporation [8086]
+Device:	82801JI (ICH10 Family) SMBus Controller [3a30]
+SVendor:	Hewlett-Packard Company [103c]
+SDevice:	Device [2a86]
+Module:	i2c-i801
+
+Slot:	02:00.0
+Class:	SATA controller [0106]
+Vendor:	JMicron Technology Corp. [197b]
+Device:	JMB363 SATA/IDE Controller [2363]
+SVendor:	Hewlett-Packard Company [103c]
+SDevice:	Device [2a86]
+Rev:	03
+ProgIf:	01
+Driver:	ahci
+
+Slot:	02:00.1
+Class:	IDE interface [0101]
+Vendor:	JMicron Technology Corp. [197b]
+Device:	JMB363 SATA/IDE Controller [2363]
+SVendor:	Hewlett-Packard Company [103c]
+SDevice:	Device [2a86]
+Rev:	03
+ProgIf:	85
+Driver:	pata_jmicron
+Module:	pata_jmicron
+
+Slot:	03:00.0
+Class:	FireWire (IEEE 1394) [0c00]
+Vendor:	VIA Technologies, Inc. [1106]
+Device:	VT6315 Series Firewire Controller [3403]
+SVendor:	Hewlett-Packard Company [103c]
+SDevice:	Device [2a86]
+ProgIf:	10
+Driver:	firewire_ohci
+Module:	firewire-ohci
+
+Slot:	04:00.0
+Class:	Network controller [0280]
+Vendor:	Atheros Communications Inc. [168c]
+Device:	AR928X Wireless Network Adapter (PCI-Express) [002a]
+SVendor:	Atheros Communications Inc. [168c]
+SDevice:	Device [1000]
+Rev:	01
+Driver:	ath9k
+Module:	ath9k
+
+Slot:	07:00.0
+Class:	VGA compatible controller [0300]
+Vendor:	NVIDIA Corporation [10de]
+Device:	GT200 [GeForce GTX 260] [05ea]
+SVendor:	NVIDIA Corporation [10de]
+SDevice:	Device [0753]
+Rev:	a1
+Driver:	nouveau
+Module:	nouveau
+Module:	nvidiafb
+
+Slot:	ff:00.0
+Class:	Host bridge [0600]
+Vendor:	Intel Corporation [8086]
+Device:	Device [2c71]
+SVendor:	Intel Corporation [8086]
+SDevice:	Device [8086]
+Rev:	02
+
+Slot:	ff:00.1
+Class:	Host bridge [0600]
+Vendor:	Intel Corporation [8086]
+Device:	Xeon 5600 Series QuickPath Architecture System Address Decoder [2d81]
+SVendor:	Intel Corporation [8086]
+SDevice:	Device [8086]
+Rev:	02
+
+Slot:	ff:02.0
+Class:	Host bridge [0600]
+Vendor:	Intel Corporation [8086]
+Device:	Xeon 5600 Series QPI Link 0 [2d90]
+SVendor:	Intel Corporation [8086]
+SDevice:	Device [8086]
+Rev:	02
+
+Slot:	ff:02.1
+Class:	Host bridge [0600]
+Vendor:	Intel Corporation [8086]
+Device:	Xeon 5600 Series QPI Physical 0 [2d91]
+SVendor:	Intel Corporation [8086]
+SDevice:	Device [8086]
+Rev:	02
+
+Slot:	ff:02.2
+Class:	Host bridge [0600]
+Vendor:	Intel Corporation [8086]
+Device:	Xeon 5600 Series Mirror Port Link 0 [2d92]
+SVendor:	Intel Corporation [8086]
+SDevice:	Device [8086]
+Rev:	02
+
+Slot:	ff:02.3
+Class:	Host bridge [0600]
+Vendor:	Intel Corporation [8086]
+Device:	Xeon 5600 Series Mirror Port Link 1 [2d93]
+SVendor:	Intel Corporation [8086]
+SDevice:	Device [8086]
+Rev:	02
+
+Slot:	ff:03.0
+Class:	Host bridge [0600]
+Vendor:	Intel Corporation [8086]
+Device:	Xeon 5600 Series Integrated Memory Controller Registers [2d98]
+SVendor:	Intel Corporation [8086]
+SDevice:	Device [8086]
+Rev:	02
+
+Slot:	ff:03.1
+Class:	Host bridge [0600]
+Vendor:	Intel Corporation [8086]
+Device:	Xeon 5600 Series Integrated Memory Controller Target Address Decoder [2d99]
+SVendor:	Intel Corporation [8086]
+SDevice:	Device [8086]
+Rev:	02
+
+Slot:	ff:03.4
+Class:	Host bridge [0600]
+Vendor:	Intel Corporation [8086]
+Device:	Xeon 5600 Series Integrated Memory Controller Test Registers [2d9c]
+SVendor:	Intel Corporation [8086]
+SDevice:	Device [8086]
+Rev:	02
+
+Slot:	ff:04.0
+Class:	Host bridge [0600]
+Vendor:	Intel Corporation [8086]
+Device:	Xeon 5600 Series Integrated Memory Controller Channel 0 Control [2da0]
+SVendor:	Intel Corporation [8086]
+SDevice:	Device [8086]
+Rev:	02
+
+Slot:	ff:04.1
+Class:	Host bridge [0600]
+Vendor:	Intel Corporation [8086]
+Device:	Xeon 5600 Series Integrated Memory Controller Channel 0 Address [2da1]
+SVendor:	Intel Corporation [8086]
+SDevice:	Device [8086]
+Rev:	02
+
+Slot:	ff:04.2
+Class:	Host bridge [0600]
+Vendor:	Intel Corporation [8086]
+Device:	Xeon 5600 Series Integrated Memory Controller Channel 0 Rank [2da2]
+SVendor:	Intel Corporation [8086]
+SDevice:	Device [8086]
+Rev:	02
+
+Slot:	ff:04.3
+Class:	Host bridge [0600]
+Vendor:	Intel Corporation [8086]
+Device:	Xeon 5600 Series Integrated Memory Controller Channel 0 Thermal Control [2da3]
+SVendor:	Intel Corporation [8086]
+SDevice:	Device [8086]
+Rev:	02
+
+Slot:	ff:05.0
+Class:	Host bridge [0600]
+Vendor:	Intel Corporation [8086]
+Device:	Xeon 5600 Series Integrated Memory Controller Channel 1 Control [2da8]
+SVendor:	Intel Corporation [8086]
+SDevice:	Device [8086]
+Rev:	02
+
+Slot:	ff:05.1
+Class:	Host bridge [0600]
+Vendor:	Intel Corporation [8086]
+Device:	Xeon 5600 Series Integrated Memory Controller Channel 1 Address [2da9]
+SVendor:	Intel Corporation [8086]
+SDevice:	Device [8086]
+Rev:	02
+
+Slot:	ff:05.2
+Class:	Host bridge [0600]
+Vendor:	Intel Corporation [8086]
+Device:	Xeon 5600 Series Integrated Memory Controller Channel 1 Rank [2daa]
+SVendor:	Intel Corporation [8086]
+SDevice:	Device [8086]
+Rev:	02
+
+Slot:	ff:05.3
+Class:	Host bridge [0600]
+Vendor:	Intel Corporation [8086]
+Device:	Xeon 5600 Series Integrated Memory Controller Channel 1 Thermal Control [2dab]
+SVendor:	Intel Corporation [8086]
+SDevice:	Device [8086]
+Rev:	02
+
+Slot:	ff:06.0
+Class:	Host bridge [0600]
+Vendor:	Intel Corporation [8086]
+Device:	Xeon 5600 Series Integrated Memory Controller Channel 2 Control [2db0]
+SVendor:	Intel Corporation [8086]
+SDevice:	Device [8086]
+Rev:	02
+
+Slot:	ff:06.1
+Class:	Host bridge [0600]
+Vendor:	Intel Corporation [8086]
+Device:	Xeon 5600 Series Integrated Memory Controller Channel 2 Address [2db1]
+SVendor:	Intel Corporation [8086]
+SDevice:	Device [8086]
+Rev:	02
+
+Slot:	ff:06.2
+Class:	Host bridge [0600]
+Vendor:	Intel Corporation [8086]
+Device:	Xeon 5600 Series Integrated Memory Controller Channel 2 Rank [2db2]
+SVendor:	Intel Corporation [8086]
+SDevice:	Device [8086]
+Rev:	02
+
+Slot:	ff:06.3
+Class:	Host bridge [0600]
+Vendor:	Intel Corporation [8086]
+Device:	Xeon 5600 Series Integrated Memory Controller Channel 2 Thermal Control [2db3]
+SVendor:	Intel Corporation [8086]
+SDevice:	Device [8086]
+Rev:	02
+

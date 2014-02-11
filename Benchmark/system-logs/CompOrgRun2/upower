@@ -1,0 +1,20 @@
+Device: /org/freedesktop/UPower/devices/ups_hiddev0
+  native-path:          /sys/devices/pci0000:00/0000:00:1a.1/usb4/4-1/4-1:1.0/usb/hiddev0
+  power supply:         yes
+  updated:              Wed Dec 31 19:00:00 1969 (1392137134 seconds ago)
+  has history:          yes
+  has statistics:       yes
+  ups
+    present:             no
+    state:               empty
+    percentage:          0%
+
+Daemon:
+  daemon-version:  0.9.17
+  can-suspend:     no
+  can-hibernate    no
+  on-battery:      no
+  on-low-battery:  no
+  lid-is-closed:   no
+  lid-is-present:  no
+  is-docked:       no
