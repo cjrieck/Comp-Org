@@ -5,20 +5,47 @@ endl:        .asciiz    "\n"
     .globl main
 main:
     li     $t1, 1
+    li     $t5, 1
 loop:
-    beq    $t1, 11, done
-    li     $v0, 1
-    lw     $a0, intArray($t0)
-    syscall
-
+    beq    $t1, 11, setlooptwo # after 2nd full iteration finish
+    # li     $v0, 1
+    # lw     $a0, intArray($t0) # get array element
+    # syscall
+    lw $t6, intArray($t0)
+    slt $t3, $t6, $zero
+    bne $t3, 1, skip
+    # print endl
     li     $v0, 4
-    la     $a0, endl
+    la     $t6, endl
     syscall
-    
-    add    $t0, $t0, 4
-    add    $t1, $t1, 1
+skip:
+    add    $t0, $t0, 4 # increase array offset by 4 to iterate through
+    add    $t1, $t1, 1 # add current index
 
     j      loop
+
+setlooptwo:
+    li $t0, 0
+    syscall
+    beq $t0, 0, looptwo
+
+loopTwo:
+    beq    $t5, 11, done
+    #li     $v0, 1
+    #lw     $a0, intArray($t0)
+    #syscall
+    lw $t6, intArray($t0)
+    slt    $t3, $zero, $t6
+    bne    $t3, 1, skipPrint
+    
+    li $v0, 4
+    la $a0, endl
+    syscall
+
+skipPrint:
+    add $t6, $t6, 4
+    add $t5, $t5, 1
+    j loopTwo
 
 done:
     li     $v0, 10
