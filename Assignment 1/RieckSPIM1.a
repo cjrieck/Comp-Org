@@ -5,7 +5,7 @@ array_err:	.asciiz		"Array exceeds maximum size. Will not append"
 	.text
 	.globl main
 
-main:
+
 	# ask user to input numbers
 	la		$a1,	myArray #load pointer into a1
 	la		$a0,	prompt  #load prompt into a0
@@ -23,10 +23,11 @@ gather_numbers:
 	syscall
 
 	# check if array is at limit here
-	
+
 	bltz	$v0,	end_append # if enter negative then stop populating list
 	sw		$v0,	myArray($a1)
 	add		$a1,	$a1, 4 # go to next index in array
+	syscall
 
 	beqz	$t0,	set_min #initialize min with first number entered
 
@@ -36,11 +37,11 @@ check_max:
 	bgt		$v0,	$t1,	set_max
 
 set_max:
-	li 		$t1,	$v0
+	addi	$t1,	$v0,	0
 	j		gather_numbers
 
 set_min:
-	li		$t0,	$v0
+	addi	$t0,	$v0,	0
 	j		check_max
 
 end_append:
