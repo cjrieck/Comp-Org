@@ -1,7 +1,7 @@
 	.data
 myArray:	.space		80 # allocates 20 integer spaces in the array
 prompt:		.asciiz		"Please enter up to 20 positive integers and a negative to end input"
-
+array_err:	.asciiz		"Array exceeds maximum size. Will not append"
 	.text
 	.globl main
 
@@ -22,21 +22,25 @@ gather_numbers:
 	li		$v0,	5 # read integer into $v0
 	syscall
 
+	# check if array is at limit here
+	
 	bltz	$v0,	end_append # if enter negative then stop populating list
+	sw		$v0,	myArray($a1)
+	add		$a1,	$a1, 4 # go to next index in array
 
-	beqz	$t0,	set_min
+	beqz	$t0,	set_min #initialize min with first number entered
 
 	blt 	$v0,	$t0,	set_min
+
+check_max:
 	bgt		$v0,	$t1,	set_max
-
-
-set_min:
-	li		$t0,	$v0
 
 set_max:
 	li 		$t1,	$v0
+	j		gather_numbers
 
-	sw		$v0,	myArray($a1)
-	add		$a1,	$a1, 4 # go to next index in array
+set_min:
+	li		$t0,	$v0
+	j		check_max
 
 end_append:
