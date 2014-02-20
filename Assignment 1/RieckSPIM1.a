@@ -1,15 +1,21 @@
 	.data
 myArray:	.space		80 # allocates 20 integer spaces in the array
 prompt:		.asciiz		"Please enter up to 20 positive integers and a negative to end input"
+endl:		.asciiz		"\n"
 array_err:	.asciiz		"Array exceeds maximum size. Will not append"
 	.text
 	.globl main
 
-
+main:
 	# ask user to input numbers
 	la		$a1,	myArray #load pointer into a1
 	la		$a0,	prompt  #load prompt into a0
+
 	li		$v0,	4		#print out prompt
+	syscall
+
+	la 		$a0,	endl
+	li 		$v0,	4
 	syscall
 
 	# initialization of the min and the max
@@ -45,3 +51,6 @@ set_min:
 	j		check_max
 
 end_append:
+
+	li 		$v0,	10
+	syscall
