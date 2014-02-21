@@ -1,5 +1,6 @@
+# xpim -font 7x14	
 	.data
-myArray:	.space		80 # allocates 20 integer spaces in the array
+myArray:	.word		0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 # allocates 20 integer spaces in the array
 prompt:		.asciiz		"Please enter up to 20 positive integers and a negative to end input"
 endl:		.asciiz		"\n"
 array_err:	.asciiz		"Array exceeds maximum size. Will not append"
@@ -21,36 +22,54 @@ main:
 	# initialization of the min and the max
 	# t0 = min
 	# t1 = max
+    # $t2 = array offset
 	li		$t0,	0
 	li		$t1,	0
+    li      $t2,    0
 
 gather_numbers:
-	li		$v0,	5 # read integer into $v0
+	li		$v0,	5                  # read integer into $v0
 	syscall
 
-	# check if array is at limit here
+    move $t4, $v0                      # $t4 holds the value that the user inputted
 
-	bltz	$v0,	end_append # if enter negative then stop populating list
-	sw		$v0,	myArray($a1)
-	add		$a1,	$a1, 4 # go to next index in array
-	syscall
+	bgt     $t2,    80,     end_append # if we've filled out list
 
-	beqz	$t0,	set_min #initialize min with first number entered
+	bltz	$t4,	end_append         # if enter negative then stop populating list
+	sw		$t4,	myArray($t2)
 
-	blt 	$v0,	$t0,	set_min
+	add 	$t2,	$t2, 4             # go to next index in array
+
+	beqz	$t0,	set_min            # initialize min with first number entered
+
+	blt 	$t4,	$t0,	set_min
 
 check_max:
-	bgt		$v0,	$t1,	set_max
+	bgt		$t4,	$t1,	set_max
 
 set_max:
-	addi	$t1,	$v0,	0
+	add 	$t1,	$t4,	0
 	j		gather_numbers
 
 set_min:
-	addi	$t0,	$v0,	0
+	add 	$t0,	$t4,	0
 	j		check_max
 
 end_append:
+
+    li $v0, 1
+    addi $a0, $t0, 0
+    # la $a0, $t0
+    syscall
+
+    la      $a0,    endl
+    li      $v0, 4
+    syscall
+
+    li $v0, 1
+    addi $a0, $t1, 0
+    # la $a0, $t1
+    syscall
 
 	li 		$v0,	10
 	syscall
