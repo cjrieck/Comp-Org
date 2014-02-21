@@ -8,7 +8,7 @@ int main()
 
 	vector<int> myVec;
 	vector<int>::iterator myVecIter;
-
+	
 	myVec.push_back(2);
 	myVec.push_back(14);
 	myVec.push_back(1);
