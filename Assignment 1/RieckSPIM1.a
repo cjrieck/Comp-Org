@@ -28,19 +28,19 @@ main:
     li      $t2,    0
 
 gather_numbers:
-	li		$v0,	5 # read integer into $v0
-	move    $t4,	$v0
+	li		$v0,	5                  # read integer into $v0
 	syscall
 
+    move $t4, $v0                      # $t4 holds the value that the user inputted
 
-	# check if array is at limit here
+	bgt     $t2,    80,     end_append # if we've filled out list
 
-	bltz	$t4,	end_append # if enter negative then stop populating list
+	bltz	$t4,	end_append         # if enter negative then stop populating list
 	sw		$t4,	myArray($t2)
 
-	add		$t2,	$t2, 4 # go to next index in array
+	add 	$t2,	$t2, 4             # go to next index in array
 
-	beqz	$t0,	set_min #initialize min with first number entered
+	beqz	$t0,	set_min            # initialize min with first number entered
 
 	blt 	$t4,	$t0,	set_min
 
@@ -48,22 +48,26 @@ check_max:
 	bgt		$t4,	$t1,	set_max
 
 set_max:
-	add		$t1,	$t4,	0
+	add 	$t1,	$t4,	0
 	j		gather_numbers
 
 set_min:
-	add		$t0,	$t4,	0
+	add 	$t0,	$t4,	0
 	j		check_max
 
 end_append:
 
     li $v0, 1
-    add $a0, $t0, 0
+    addi $a0, $t0, 0
     # la $a0, $t0
     syscall
 
+    la      $a0,    endl
+    li      $v0, 4
+    syscall
+
     li $v0, 1
-    add $a0, $t1, 0
+    addi $a0, $t1, 0
     # la $a0, $t1
     syscall
 
