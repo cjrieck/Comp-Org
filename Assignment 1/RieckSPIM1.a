@@ -1,3 +1,4 @@
+# xpim -font 7x14	
 	.data
 myArray:	.word		0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 # allocates 20 integer spaces in the array
 prompt:		.asciiz		"Please enter up to 20 positive integers and a negative to end input"
@@ -28,28 +29,30 @@ main:
 
 gather_numbers:
 	li		$v0,	5 # read integer into $v0
+	move    $t4,	$v0
 	syscall
+
 
 	# check if array is at limit here
 
-	bltz	$v0,	end_append # if enter negative then stop populating list
-	sw		$v0,	myArray($t2)
+	bltz	$t4,	end_append # if enter negative then stop populating list
+	sw		$t4,	myArray($t2)
+
 	add		$t2,	$t2, 4 # go to next index in array
-	syscall
 
 	beqz	$t0,	set_min #initialize min with first number entered
 
-	blt 	$v0,	$t0,	set_min
+	blt 	$t4,	$t0,	set_min
 
 check_max:
-	bgt		$v0,	$t1,	set_max
+	bgt		$t4,	$t1,	set_max
 
 set_max:
-	addi	$t1,	$v0,	0
+	add		$t1,	$t4,	0
 	j		gather_numbers
 
 set_min:
-	addi	$t0,	$v0,	0
+	add		$t0,	$t4,	0
 	j		check_max
 
 end_append:
