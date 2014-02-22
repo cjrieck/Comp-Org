@@ -1,9 +1,12 @@
 # xpim -font 7x14	
 	.data
-myArray:	.byte		80 # allocates 20 integer spaces in the array
+myArray:	.byte		76 # allocates 20 integer spaces in the array
 prompt:		.asciiz		"Please enter up to 20 positive integers and a negative to end input"
 endl:		.asciiz		"\n"
 array_err:	.asciiz		"Out of 1-15 range. Terminating program"
+min: 		.asciiz 	"MIN: "
+max: 		.asciiz 	"MAX: "
+mean: 		.asciiz		"MEAN: "
 	.text
 	.globl main
 
@@ -37,11 +40,12 @@ gather_numbers:
 
     move 	$t4, $v0                   # $t4 holds the value that the user inputted
 
-    blt 	$t4, 	1, 		array_error # if we enter a number less than 1		
+    beq 	$t4, 	0, 		array_error # if enter a number less than 1		
     bgt 	$t4, 	15, 	array_error # if enter a number above 15
-	bgt     $t3,    20,     end_append # if we've filled our list
+	bgt     $t3,    20,     end_append  # if we've filled our list
 
 	bltz	$t4,	end_append         # if enter negative then stop populating list
+	
 	sw		$t4,	myArray($t2)
 	add 	$t3, 	$t3, 	1
 	add 	$t5, 	$t5, 	$t4
@@ -78,15 +82,42 @@ array_error:
 
 end_append:
 
-
 	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	la      $a0,    endl
+    li      $v0, 4
+    syscall
+
 	# print out min and max
 	# ----------------------
+	la      $a0,    min
+    li      $v0, 4
+    syscall
+
     li $v0, 1
     addi $a0, $t0, 0
     syscall
 
     la      $a0,    endl
+    li      $v0, 4
+    syscall
+
+    la      $a0,    max
     li      $v0, 4
     syscall
 
@@ -101,6 +132,10 @@ end_append:
     li      $v0, 4
     syscall
     
+    la      $a0,    mean
+    li      $v0, 4
+    syscall
+
     li $v0, 1
     div  $t5, $t3
     mflo $a0
