@@ -1,6 +1,6 @@
 # xpim -font 7x14	
 	.data
-myArray:	.byte		76 # allocates 20 integer spaces in the array
+myArray:	.byte		80 # allocates 20 integer spaces in the array
 prompt:		.asciiz		"Please enter up to 20 positive integers and a negative to end input"
 endl:		.asciiz		"\n"
 array_err:	.asciiz		"Out of 1-15 range. Terminating program"
@@ -35,6 +35,9 @@ main:
     li 		$t5, 	0
 
 gather_numbers:
+	
+	bgt     $t3,    20,     set_graph_counter  # if we've filled our list
+
 	li		$v0,	5                  # read integer into $v0
 	syscall
 
@@ -42,12 +45,12 @@ gather_numbers:
 
     beq 	$t4, 	0, 		array_error # if enter a number less than 1		
     bgt 	$t4, 	15, 	array_error # if enter a number above 15
-	bgt     $t3,    20,     end_append  # if we've filled our list
 
-	bltz	$t4,	end_append         # if enter negative then stop populating list
+	bltz	$t4,	set_graph_counter         # if enter negative then stop populating list
 	
 	sw		$t4,	myArray($t2)
 	add 	$t3, 	$t3, 	1
+
 	add 	$t5, 	$t5, 	$t4
 
 	add 	$t2,	$t2, 	4          # go to next index in array
@@ -68,36 +71,66 @@ set_min:
 	add 	$t0,	$t4,	0
 	j		check_max
 
-array_error:
+
+set_graph_counter:
+	li 		$t6, 	1 # keep counter for bar graph range
+
+end_append:
+
+	li 		$t2, 	0 # reset array index counter to 0
+	li 		$t7, 	0 # keep track of number of ocurrences
+
+	# print out number in range
+	li $v0, 1
+    addi $a0, $t6, 0
+    syscall
+
+set_graph:
+
+	bgt 	$t6, 15, finish
+
+gen_graph:
+
+	lw 		$t4, 	myArray($t2)
+
+    beq 	$t4, 	$t6, 	add_bar # if current item in array equals number
+    								# we're checking go to add_bar label
+    add 	$t2, 	$t2, 	4 		# loop through list
+    j 		set_graph
+
+add_bar:
+	
+	# print out 0 for bar
+	li $v0, 1
+    li $a0, 0
+    syscall
+	
+
+    add $t2, $t2, 4 # loop through list
+
+    li $s0, 4
+    div $t2, $s0
+    mflo $s0
+    beq $s1, $t3, increment_number
+
+    j 		set_graph
+
+increment_number:
+	
+	add $t6, $t6, 1
+
 	la      $a0,    endl
     li      $v0, 4
     syscall
 
-    la      $a0,    array_err
-    li      $v0, 4
+	j 	end_append
+
+
+finish:
+
+	li $v0, 1
+    addi $a0, $t3, 0
     syscall
-
-	li 		$v0,	10
-	syscall
-
-end_append:
-
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	la      $a0,    endl
     li      $v0, 4
@@ -141,6 +174,18 @@ end_append:
     mflo $a0
     syscall
     # -----------------------
+
+	li 		$v0,	10
+	syscall
+
+array_error:
+	la      $a0,    endl
+    li      $v0, 4
+    syscall
+
+    la      $a0,    array_err
+    li      $v0, 4
+    syscall
 
 	li 		$v0,	10
 	syscall
