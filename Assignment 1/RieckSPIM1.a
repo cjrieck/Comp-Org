@@ -2,9 +2,12 @@
 	.data
 myArray:	.byte		80 # allocates 20 integer spaces in the array
 prompt:		.asciiz		"Please enter up to 20 positive integers and a negative to end input"
+var_div: 	.asciiz 	"VARIANCE: "
+graph_div: 	.asciiz 	"BAR GRAPH"
 endl:		.asciiz		"\n"
 endl2:		.asciiz		"\n\n"
 space: 		.asciiz 	": "
+complete: 	.asciiz 	"Program complete"
 array_err:	.asciiz		"Out of 1-15 range. Terminating program"
 min: 		.asciiz 	"MIN: "
 max: 		.asciiz 	"MAX: "
@@ -75,7 +78,6 @@ three_ms:
     syscall
 
 	# print out min and max
-	# ----------------------
 	la      $a0,    min
     li      $v0, 	4
     syscall
@@ -95,23 +97,21 @@ three_ms:
     li $v0, 1
     addi $a0, $t1, 0
     syscall
-    # ----------------------
 
     # print mean
-    # ----------------------
 	la      $a0,    endl
-    li      $v0, 4
+    li      $v0, 	4
     syscall
     
     la      $a0,    mean
-    li      $v0, 4
+    li      $v0, 	4
     syscall
 
-    li $v0, 1
-    div  $t5, $t3
-    mflo $a0
+    # calculate and then print mean
+    li 		$v0, 	1
+    div  	$t5, 	$t3 			# divide sum of numbers by length of array
+    mflo 	$a0
     syscall
-    # -----------------------
 
     la      $a0,    endl2
     li      $v0, 	4
@@ -120,15 +120,65 @@ three_ms:
 # ---------------------------------------------------------
 # ---------------------------------------------------------
 # ---------------------------------------------------------
+# Start Standard Deviation
+	li      $t2,    0 				# array offset
+	li 		$t6, 	1 				# current index in the array
+	li 		$s0, 	0 				# result of summation
+	li 		$s3, 	1 				# CONSTANT 1 (used for 1/(n-1))
+
+	div  	$t5, 	$t3 			# calculate x bar (mean)
+	mflo 	$t0						#store mean in $t0
+
+sum:
+	bgt 	$t6, 	$t3, 	variance
+
+	lw 		$t4, 	myArray($t2)	# load current element
+
+	sub 	$t1, 	$t4, 	$t0 	# subtract list element by mean
+	add 	$s0, 	$s0, 	$t1 	# add terms of summation
+
+	add 	$t6, 	$t6, 	1 		# increment index by 1
+	add 	$t2, 	$t2, 	4 		# increment offset by 4
+	j 		sum
+
+variance:
+	sub 	$s1, 	$t3, 	1 		# get n - 1
+	div 	$s3, 	$s1 			# do 1/(n-1)
+	mflo 	$s1 					# store answer in $s1
+
+	mult 	$s1, 	$s0 			# multiply 1/(n-1) with summation
+	mflo 	$s1 					# store answer in $s1
+
+	# print out variance
+	la      $a0,    var_div
+    li      $v0, 	4
+    syscall
+
+    li      $v0, 	4
+    add     $a0,    $s1, 	0
+    syscall
+
+    la      $a0,    endl2
+    li      $v0, 	4
+    syscall
+
+# ---------------------------------------------------------
+# ---------------------------------------------------------
+# ---------------------------------------------------------
+# Start Bar Graph
 
 set_graph_counter:
+	la      $a0,    graph_div
+    li      $v0, 	4
+    syscall
+
 	li 		$t6, 	1 				# keep counter for bar graph range
 	li 		$s0, 	4 				# used as constant for finding end index of array
 
 graph_loop:
 
 	bgt 	$t6, 	15, 	finish 	# if at end of our range
-	
+
 	li 		$t2, 	0 				# reset array index counter to 0
 	li 		$t7, 	0 				# keep track of number of ocurrences
 
@@ -137,6 +187,7 @@ graph_loop:
 	add 	$a0, 	$t6, 	0
     syscall
 
+    # print a ': ' after number in range
     la 		$a0, 	space
     li 		$v0, 	4
     syscall
@@ -149,9 +200,11 @@ set_graph:
     								# we're checking go to add_bar label
     add 	$t2, 	$t2, 	4 		# loop through list
 
-    div 	$t2, 	$s0
-    mflo 	$s1
-    beq 	$s1, 	$t3, 	increment_number
+    div 	$t2, 	$s0				# divide the array offset by 4 to get current index number
+    mflo 	$s1						# move quotient to $s1
+    beq 	$s1, 	$t3, 	increment_number # if the array length and quotient are 
+    										 # equal then we are at the end of the list and
+    										 # need to start again
 
     j 		set_graph
 
@@ -165,7 +218,7 @@ add_bar:
 
     add 	$t2, 	$t2, 	4 		# loop through list
 
-    # check to see if at end of the list
+    # check to see if at end of the list (same as above)
     div 	$t2, 	$s0
     mflo 	$s1
     beq 	$s1, 	$t3, 	increment_number
@@ -174,8 +227,9 @@ add_bar:
 
 increment_number:
 	
-	addi 	$t6, 	$t6, 	1
+	addi 	$t6, 	$t6, 	1 		# increment range number by 1
 
+	# new line for new bar
 	la      $a0,    endl
     li      $v0, 	4
     syscall
@@ -184,7 +238,11 @@ increment_number:
 
 finish:
 
-	la      $a0,    endl2
+	la      $a0,    endl2 			# 2 new line characters
+    li      $v0, 	4
+    syscall
+
+	la      $a0,    complete 		# ending message
     li      $v0, 	4
     syscall
 
