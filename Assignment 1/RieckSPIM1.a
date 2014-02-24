@@ -14,50 +14,44 @@ mean: 		.asciiz		"MEAN: "
 
 main:
 	# ask user to input numbers
-	la		$a1,	myArray #load pointer into a1
-	la		$a0,	prompt  #load prompt into a0
+	la		$a1,	myArray 			# load pointer into a1
+	la		$a0,	prompt  			# load prompt into a0
 
-	li		$v0,	4		#print out prompt
+	li		$v0,	4					# print out prompt
 	syscall
 
 	la 		$a0,	endl
 	li 		$v0,	4
 	syscall
 
-	# initialization of the min and the max
-	# t0 = min
-	# t1 = max
-    # $t2 = array offset
-    # $t3 = array length
-    # $t5 = sum
-	li		$t0,	0
-	li		$t1,	0
-    li      $t2,    0
-    li 		$t3, 	0
-    li 		$t5, 	0
+	li		$t0,	0 					# MIN
+	li		$t1,	0					# MAX
+    li      $t2,    0					# ARRAY OFFSET
+    li 		$t3, 	0					# ARRAY LENGTH
+    li 		$t5, 	0					# SUM
 
 gather_numbers:
 	
-	bgt     $t3,    20,     three_ms  # if we've filled our list
+	bgt     $t3,    20,     three_ms   	# if we've filled our list
 
-	li		$v0,	5                  # read integer into $v0
+	li		$v0,	5                  	# read integer into $v0
 	syscall
 
-    move 	$t4, $v0                   # $t4 holds the value that the user inputted
+    move 	$t4, $v0                   	# $t4 holds the value that the user inputted
 
     beq 	$t4, 	0, 		array_error # if enter a number less than 1		
     bgt 	$t4, 	15, 	array_error # if enter a number above 15
 
-	bltz	$t4,	three_ms        # if enter negative then stop populating list
+	bltz	$t4,	three_ms        	# if enter negative then stop populating list
 	
 	sw		$t4,	myArray($t2)
 	add 	$t3, 	$t3, 	1
 
 	add 	$t5, 	$t5, 	$t4
 
-	add 	$t2,	$t2, 	4          # go to next index in array
+	add 	$t2,	$t2, 	4          	# go to next index in array
 
-	beqz	$t0,	set_min            # initialize min with first number entered
+	beqz	$t0,	set_min            	# initialize min with first number entered
 
 	blt 	$t4,	$t0,	set_min
 
@@ -75,10 +69,6 @@ set_min:
 
 
 three_ms:
-
-	#li 		$v0, 	1
-    #addi 	$a0, 	$t3, 	0
-    #syscall
 
 	la      $a0,    endl
     li      $v0, 	4
@@ -132,34 +122,37 @@ three_ms:
 # ---------------------------------------------------------
 
 set_graph_counter:
-	li 		$t6, 	1 # keep counter for bar graph range
-	li 		$s0, 	4 # used as constant for finding end index of array
+	li 		$t6, 	1 				# keep counter for bar graph range
+	li 		$s0, 	4 				# used as constant for finding end index of array
 
 graph_loop:
 
-	li 		$t2, 	0 # reset array index counter to 0
-	li 		$t7, 	0 # keep track of number of ocurrences
+	bgt 	$t6, 	15, 	finish 	# if at end of our range
+	
+	li 		$t2, 	0 				# reset array index counter to 0
+	li 		$t7, 	0 				# keep track of number of ocurrences
 
 	# print out number in range
-	addi 	$a0, 	$t6, 	0
 	li 		$v0, 	1
+	add 	$a0, 	$t6, 	0
     syscall
 
     la 		$a0, 	space
-    li 		$v0, 	1
+    li 		$v0, 	4
     syscall
 
 set_graph:
 
-	bgt 	$t6, 15, finish 		# if at end of our range
-
-gen_graph:
-
-	lw 		$t4, 	myArray($t2)	# store current element
+	lw 		$t4, 	myArray($t2)	# load current element
 
     beq 	$t4, 	$t6, 	add_bar # if current item in array equals number
     								# we're checking go to add_bar label
     add 	$t2, 	$t2, 	4 		# loop through list
+
+    div 	$t2, 	$s0
+    mflo 	$s1
+    beq 	$s1, 	$t3, 	increment_number
+
     j 		set_graph
 
 add_bar:
@@ -170,7 +163,7 @@ add_bar:
     syscall
 	
 
-    add 	$t2, 	$t2, 	4 # loop through list
+    add 	$t2, 	$t2, 	4 		# loop through list
 
     # check to see if at end of the list
     div 	$t2, 	$s0
