@@ -4,6 +4,7 @@ myArray:	.byte		80 # allocates 20 integer spaces in the array
 prompt:		.asciiz		"Please enter up to 20 positive integers and a negative to end input"
 endl:		.asciiz		"\n"
 endl2:		.asciiz		"\n\n"
+space: 		.asciiz 	": "
 array_err:	.asciiz		"Out of 1-15 range. Terminating program"
 min: 		.asciiz 	"MIN: "
 max: 		.asciiz 	"MAX: "
@@ -37,7 +38,7 @@ main:
 
 gather_numbers:
 	
-	bgt     $t3,    20,     finish  # if we've filled our list
+	bgt     $t3,    20,     three_ms  # if we've filled our list
 
 	li		$v0,	5                  # read integer into $v0
 	syscall
@@ -47,7 +48,7 @@ gather_numbers:
     beq 	$t4, 	0, 		array_error # if enter a number less than 1		
     bgt 	$t4, 	15, 	array_error # if enter a number above 15
 
-	bltz	$t4,	finish        # if enter negative then stop populating list
+	bltz	$t4,	three_ms        # if enter negative then stop populating list
 	
 	sw		$t4,	myArray($t2)
 	add 	$t3, 	$t3, 	1
@@ -65,15 +66,15 @@ check_max:
 	j		gather_numbers
 
 set_max:
-	add 	$t1,	$t4,	0
+	move 	$t1,	$t4
 	j		gather_numbers
 
 set_min:
-	add 	$t0,	$t4,	0
+	move 	$t0,	$t4
 	j		check_max
 
 
-finish:
+three_ms:
 
 	#li 		$v0, 	1
     #addi 	$a0, 	$t3, 	0
@@ -144,6 +145,10 @@ graph_loop:
 	li 		$v0, 	1
     syscall
 
+    la 		$a0, 	space
+    li 		$v0, 	1
+    syscall
+
 set_graph:
 
 	bgt 	$t6, 15, finish 		# if at end of our range
@@ -183,6 +188,15 @@ increment_number:
     syscall
 
 	j 	graph_loop
+
+finish:
+
+	la      $a0,    endl2
+    li      $v0, 	4
+    syscall
+
+    li 		$v0,	10
+	syscall
 
 
 array_error:
