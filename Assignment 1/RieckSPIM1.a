@@ -88,11 +88,11 @@ graph_loop:
 
 set_graph:
 
-	bgt 	$t6, 15, finish
+	bgt 	$t6, 15, finish 		# if at end of our range
 
 gen_graph:
 
-	sw 		$t4, 	myArray($t2)
+	sw 		$t4, 	myArray($t2)	# store current element
 
     beq 	$t4, 	$t6, 	add_bar # if current item in array equals number
     								# we're checking go to add_bar label
