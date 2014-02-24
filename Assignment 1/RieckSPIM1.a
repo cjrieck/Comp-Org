@@ -3,6 +3,7 @@
 myArray:	.byte		80 # allocates 20 integer spaces in the array
 prompt:		.asciiz		"Please enter up to 20 positive integers and a negative to end input"
 endl:		.asciiz		"\n"
+endl2:		.asciiz		"\n\n"
 array_err:	.asciiz		"Out of 1-15 range. Terminating program"
 min: 		.asciiz 	"MIN: "
 max: 		.asciiz 	"MAX: "
@@ -36,7 +37,7 @@ main:
 
 gather_numbers:
 	
-	bgt     $t3,    20,     set_graph_counter  # if we've filled our list
+	bgt     $t3,    20,     finish  # if we've filled our list
 
 	li		$v0,	5                  # read integer into $v0
 	syscall
@@ -46,7 +47,7 @@ gather_numbers:
     beq 	$t4, 	0, 		array_error # if enter a number less than 1		
     bgt 	$t4, 	15, 	array_error # if enter a number above 15
 
-	bltz	$t4,	set_graph_counter         # if enter negative then stop populating list
+	bltz	$t4,	finish        # if enter negative then stop populating list
 	
 	sw		$t4,	myArray($t2)
 	add 	$t3, 	$t3, 	1
@@ -72,66 +73,11 @@ set_min:
 	j		check_max
 
 
-set_graph_counter:
-	li 		$t6, 	1 # keep counter for bar graph range
-	li 		$s0, 	4
-
-graph_loop:
-
-	li 		$t2, 	0 # reset array index counter to 0
-	li 		$t7, 	0 # keep track of number of ocurrences
-
-	# print out number in range
-	li 		$v0, 	1
-    addi 	$a0, 	$t6, 	0
-    syscall
-
-set_graph:
-
-	bgt 	$t6, 15, finish 		# if at end of our range
-
-gen_graph:
-
-	sw 		$t4, 	myArray($t2)	# store current element
-
-    beq 	$t4, 	$t6, 	add_bar # if current item in array equals number
-    								# we're checking go to add_bar label
-    add 	$t2, 	$t2, 	4 		# loop through list
-    j 		set_graph
-
-add_bar:
-	
-	# print out 0 for bar
-	li 		$v0, 	1
-    li 		$a0, 	0
-    syscall
-	
-
-    add 	$t2, 	$t2, 	4 # loop through list
-
-    # check to see if at end of the list
-    div 	$t2, 	$s0
-    mflo 	$s1
-    beq 	$s1, 	$t3, 	increment_number
-
-    j 		set_graph
-
-increment_number:
-	
-	add 	$t6, 	$t6, 	1
-
-	la      $a0,    endl
-    li      $v0, 	4
-    syscall
-
-	j 	graph_loop
-
-
 finish:
 
-	li 		$v0, 	1
-    addi 	$a0, 	$t3, 	0
-    syscall
+	#li 		$v0, 	1
+    #addi 	$a0, 	$t3, 	0
+    #syscall
 
 	la      $a0,    endl
     li      $v0, 	4
@@ -176,8 +122,68 @@ finish:
     syscall
     # -----------------------
 
-	li 		$v0,	10
-	syscall
+    la      $a0,    endl2
+    li      $v0, 	4
+    syscall
+
+# ---------------------------------------------------------
+# ---------------------------------------------------------
+# ---------------------------------------------------------
+
+set_graph_counter:
+	li 		$t6, 	1 # keep counter for bar graph range
+	li 		$s0, 	4 # used as constant for finding end index of array
+
+graph_loop:
+
+	li 		$t2, 	0 # reset array index counter to 0
+	li 		$t7, 	0 # keep track of number of ocurrences
+
+	# print out number in range
+	addi 	$a0, 	$t6, 	0
+	li 		$v0, 	1
+    syscall
+
+set_graph:
+
+	bgt 	$t6, 15, finish 		# if at end of our range
+
+gen_graph:
+
+	lw 		$t4, 	myArray($t2)	# store current element
+
+    beq 	$t4, 	$t6, 	add_bar # if current item in array equals number
+    								# we're checking go to add_bar label
+    add 	$t2, 	$t2, 	4 		# loop through list
+    j 		set_graph
+
+add_bar:
+	
+	# print out 0 for bar
+	li 		$v0, 	1
+    li 		$a0, 	0
+    syscall
+	
+
+    add 	$t2, 	$t2, 	4 # loop through list
+
+    # check to see if at end of the list
+    div 	$t2, 	$s0
+    mflo 	$s1
+    beq 	$s1, 	$t3, 	increment_number
+
+    j 		set_graph
+
+increment_number:
+	
+	addi 	$t6, 	$t6, 	1
+
+	la      $a0,    endl
+    li      $v0, 	4
+    syscall
+
+	j 	graph_loop
+
 
 array_error:
 	la      $a0,    endl
