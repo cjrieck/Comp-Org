@@ -241,7 +241,7 @@ graph_loop:
 	add     $a0,    $t6,    0
     syscall
 
-    blt     $t6,    9,      double_space # if number in range > 9
+    blt     $t6,    10,      double_space # if number in range > 9
     # print a ': ' after number in range
     la      $a0,    space
     li      $v0,    4
