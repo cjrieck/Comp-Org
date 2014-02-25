@@ -1,4 +1,21 @@
-# xpim -font 7x14	
+#-----------------------------------------------------------+
+# Author: Clayton Rieck 								   	|
+#-----------------------------------------------------------+
+# DESCRIPTION:												|
+# This program finds the MIN, MAX, MEAN and VARIANCE 		|
+# of given an array of up to 20 integers. It also displays 	|
+# a bar graph of frequencies of numbers in the array. 	 	|
+#-----------------------------------------------------------+
+# INPUT: 													|
+# The user will input up to 20 integers and will end 		|
+# input once a negative value is entered. The integers 		|
+# may not be 0 and greater than 15 (Range = [1,15])  		|
+#-----------------------------------------------------------+
+# OUTPUT: 													|
+# The program will output the MIN, MAX, MEAN, and VARIANCE 	|
+# of the array of integers and will also output a bar graph |
+# of the frequencies of numbers in the array 				|
+#-----------------------------------------------------------
 	.data
 myArray:	.word		0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 # allocates 20 integer spaces in the array
 prompt:		.asciiz		"Please enter up to 20 positive integers and a negative to end input"
@@ -70,7 +87,7 @@ set_min:
 	move 	$t0,	$t4
 	j		check_max
 
-
+# 
 three_ms:
 
 	la      $a0,    endl
@@ -137,6 +154,7 @@ sum:
 	lw 		$t4, 	myArray($t2)	# load current element
 
 	sub 	$t1, 	$t4, 	$t0 	# subtract list element by mean
+	mul 	$t1, 	$t1, 	$t1 	# square difference
 	add 	$s0, 	$s0, 	$t1 	# add terms of summation
 
 	add 	$t6, 	$t6, 	1 		# increment index by 1
@@ -148,16 +166,15 @@ variance:
 	div 	$s3, 	$s1 			# do 1/(n-1)
 	mflo 	$s1 					# store answer in $s1
 
-	mult 	$s1, 	$s0 			# multiply 1/(n-1) with summation
-	mflo 	$s1 					# store answer in $s1
+	mul 	$s1, 	$s1, 	$s0 	# multiply 1/(n-1) with summation
 
 	# print out variance
 	la      $a0,    var_div
     li      $v0, 	4
     syscall
 
-    li      $v0, 	4
-    move    $a0,    $s1
+    move    $a0,    $s1				# move vairance to $a0 for printing
+    li      $v0, 	1
     syscall
 
     la      $a0,    endl2
