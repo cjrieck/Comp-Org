@@ -169,40 +169,40 @@ three_ms:
 #-------------------------------------------------------
 sum:
 
-	bgt 	$t6, 	$t3, variance   # if current index is greater than length of list
+	bgt     $t6,    $t3, variance   # if current index is greater than length of list
 
-	lw 		$t4, 	myArray($t2)	# load current element
+	lw      $t4,    myArray($t2)    # load current element
 
-	sub 	$t1, 	$t4, 	$t0 	# subtract list element by mean
-	mul 	$t1, 	$t1, 	$t1 	# square difference
-	add 	$s0, 	$s0, 	$t1 	# add terms of summation
+	sub     $t1,    $t4,    $t0     # subtract list element by mean
+	mul     $t1,    $t1,    $t1     # square difference
+	add     $s0,    $s0,    $t1     # add terms of summation
 
-	add 	$t6, 	$t6, 	1 		# increment index by 1
-	add 	$t2, 	$t2, 	4 		# increment offset by 4
-	j 		sum
+	add     $t6,    $t6,    1       # increment index by 1
+	add     $t2,    $t2,    4       # increment offset by 4
+	j       sum
 
 #-----------------------------------------------------
 # Takes the result of the summation (from above) and  \
 # multiplies that by 1/(n-1) giving us s^2 (VARIANCE)  \
 #-------------------------------------------------------
 variance:
-	sub 	$s1, 	$t3, 	1 		# get n - 1
-	div 	$s3, 	$s1 			# do 1/(n-1)
-	mflo 	$s1 					# store answer in $s1
+	sub     $s1,    $t3,    1       # get n - 1
+	div     $s3,    $s1             # do 1/(n-1)
+	mflo    $s1                     # store answer in $s1
 
-	mul 	$s1, 	$s1, 	$s0 	# multiply 1/(n-1) with summation
+	mul     $s1,    $s1,    $s0     # multiply 1/(n-1) with summation
 
 	# print out variance
 	la      $a0,    var_div
-    li      $v0, 	4
+    li      $v0,    4
     syscall
 
-    move    $a0,    $s1				# move vairance to $a0 for printing
-    li      $v0, 	1
+    move    $a0,    $s1             # move vairance to $a0 for printing
+    li      $v0,    1
     syscall
 
     la      $a0,    endl2
-    li      $v0, 	4
+    li      $v0,    4
     syscall
 
 # ---------------------------------------------------------
@@ -214,15 +214,15 @@ variance:
 #--------------------------------------------------------
 set_graph_counter:
 	la      $a0,    graph_div
-    li      $v0, 	4
+    li      $v0,    4
     syscall
 
     la      $a0,    endl
-    li      $v0, 	4
+    li      $v0,    4
     syscall
 
-	li 		$t6, 	1 				# keep counter for bar graph range
-	li 		$s0, 	4 				# used as constant for finding end index of array
+	li      $t6,    1               # keep counter for bar graph range
+	li      $s0,    4               # used as constant for finding end index of array
 
 #-----------------------------------------------------
 # Does 1 iteration through the array for each number  \
@@ -230,19 +230,19 @@ set_graph_counter:
 #-------------------------------------------------------
 graph_loop:
 
-	bgt 	$t6, 	15, 	finish 	# if at end of our range
+	bgt     $t6,    15,     finish  # if at end of our range
 
-	li 		$t2, 	0 				# reset array index counter to 0
-	li 		$t7, 	0 				# keep track of number of ocurrences
+	li      $t2,    0               # reset array index counter to 0
+	li      $t7,    0               # keep track of number of ocurrences
 
 	# print out number in range
-	li 		$v0, 	1
-	add 	$a0, 	$t6, 	0
+	li      $v0,    1
+	add     $a0,    $t6,    0
     syscall
 
     # print a ': ' after number in range
-    la 		$a0, 	space
-    li 		$v0, 	4
+    la      $a0,    space
+    li      $v0,    4
     syscall
 
 #-----------------------------------------------------
@@ -252,18 +252,18 @@ graph_loop:
 #--------------------------------------------------------
 set_graph:
 
-	lw 		$t4, 	myArray($t2)	# load current element
+	lw      $t4,    myArray($t2)    # load current element
 
-    beq 	$t4, 	$t6, 	add_bar # if current item in array equals number
-    								# we're checking go to add_bar label
-    add 	$t2, 	$t2, 	4 		# loop through list
+    beq     $t4,    $t6,    add_bar # if current item in array equals number
+                                    # we're checking go to add_bar label
+    add     $t2,    $t2,    4       # loop through list
 
-    div 	$t2, 	$s0				# divide the array offset by 4 to get current index number
-    mflo 	$s1						# move quotient to $s1
-    beq 	$s1, 	$t3, 	increment_number # if the array length and quotient are 
-    										 # equal then we are at the end of the list and
-    										 # need to start again
-    j 		set_graph
+    div     $t2,    $s0             # divide the array offset by 4 to get current index number
+    mflo    $s1						# move quotient to $s1
+    beq     $s1,    $t3,    increment_number # if the array length and quotient are 
+                                             # equal then we are at the end of the list and
+                                             # need to start again
+    j       set_graph
 
 #-----------------------------------------------------
 # Outputs a 0 next to a number denoting that it was   \
@@ -272,48 +272,48 @@ set_graph:
 add_bar:
 	
 	# print out 0 for bar
-	li 		$v0, 	1
-    li 		$a0, 	0
+	li      $v0,    1
+    li      $a0,    0
     syscall
 	
 
-    add 	$t2, 	$t2, 	4 		# loop through list
+    add     $t2,    $t2,    4       # loop through list
 
     # check to see if at end of the list (same as above)
-    div 	$t2, 	$s0
-    mflo 	$s1
-    beq 	$s1, 	$t3, 	increment_number
+    div     $t2,    $s0
+    mflo    $s1
+    beq     $s1,    $t3,    increment_number
 
-    j 		set_graph
+    j       set_graph
 
 #-----------------------------------------------------
 # Increments the range number by 1 					  \
 #------------------------------------------------------
 increment_number:
 	
-	addi 	$t6, 	$t6, 	1 		# increment range number by 1
+	addi    $t6,    $t6,    1        # increment range number by 1
 
 	# new line for new bar
 	la      $a0,    endl
-    li      $v0, 	4
+    li      $v0,    4
     syscall
 
-	j 	graph_loop
+	j       graph_loop
 
 #-----------------------------------------------------
 # Outputs a program completed message 				  \
 #------------------------------------------------------
 finish:
 
-	la      $a0,    endl2 			# 2 new line characters
-    li      $v0, 	4
+	la      $a0,    endl2           # 2 new line characters
+    li      $v0,    4
     syscall
 
-	la      $a0,    complete 		# ending message
-    li      $v0, 	4
+	la      $a0,    complete        # ending message
+    li      $v0,    4
     syscall
 
-    li 		$v0,	10
+    li      $v0,    10
 	syscall
 
 #-----------------------------------------------------
@@ -322,12 +322,12 @@ finish:
 #-------------------------------------------------------
 array_error:
 	la      $a0,    endl
-    li      $v0, 4
+    li      $v0,    4
     syscall
 
     la      $a0,    array_err
-    li      $v0, 4
+    li      $v0,    4
     syscall
 
-	li 		$v0,	10
+	li      $v0,    10
 	syscall
