@@ -53,7 +53,7 @@ main:
 #-----------------------------------------------------
 # Starts the input prompt and stores numbers in array \
 # while also computing/finding the MIN, MAX, SUM and   \
-# ARRAY LENGTH  										\
+# ARRAY LENGTH                                          \
 #--------------------------------------------------------
 gather_numbers:
 	
@@ -88,7 +88,7 @@ check_max:
 	j       gather_numbers
 
 #-----------------------------------------------------
-# Sets current MAX to inputted number 				  \
+# Sets current MAX to inputted number                 \
 #------------------------------------------------------
 set_max:
 	move 	$t1,	$t4
@@ -103,7 +103,7 @@ set_min:
 
 #-----------------------------------------------------
 # Prints out the MAX, MIN, and MEAN of the inputted   \
-# integers in the array    							   \
+# integers in the array                                \
 #-------------------------------------------------------
 three_ms:
 
@@ -165,7 +165,7 @@ three_ms:
 
 #-----------------------------------------------------
 # Loops through array and subtracts each element by   \
-# the MEAN and then sqaures the result    			   \
+# the MEAN and then sqaures the result                 \
 #-------------------------------------------------------
 sum:
 
@@ -226,7 +226,7 @@ set_graph_counter:
 
 #-----------------------------------------------------
 # Does 1 iteration through the array for each number  \
-# the 1-15 range our integers are within 			   \
+# the 1-15 range our integers are within               \
 #-------------------------------------------------------
 graph_loop:
 
@@ -247,8 +247,8 @@ graph_loop:
 
 #-----------------------------------------------------
 # Conducts checks on if a number was encountered in   \
-# the array and if on the last index of the array. 	   \
-# Also jumps to beginning of loop 					    \
+# the array and if on the last index of the array.     \
+# Also jumps to beginning of loop                       \
 #--------------------------------------------------------
 set_graph:
 
@@ -267,7 +267,7 @@ set_graph:
 
 #-----------------------------------------------------
 # Outputs a 0 next to a number denoting that it was   \
-# found												   \
+# found                                                \
 #-------------------------------------------------------
 add_bar:
 	
@@ -287,7 +287,7 @@ add_bar:
     j       set_graph
 
 #-----------------------------------------------------
-# Increments the range number by 1 					  \
+# Increments the range number by 1                    \
 #------------------------------------------------------
 increment_number:
 	
@@ -301,7 +301,7 @@ increment_number:
 	j       graph_loop
 
 #-----------------------------------------------------
-# Outputs a program completed message 				  \
+# Outputs a program completed message                 \
 #------------------------------------------------------
 finish:
 
@@ -318,7 +318,7 @@ finish:
 
 #-----------------------------------------------------
 # Displays an error when user enters number outside   \
-# of 1-15 range 									   \
+# of 1-15 range                                        \
 #-------------------------------------------------------
 array_error:
 	la      $a0,    endl
