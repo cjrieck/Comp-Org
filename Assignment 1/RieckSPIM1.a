@@ -1,54 +1,54 @@
 #-----------------------------------------------------------+
-# Author: Clayton Rieck 								   	|
+# Author: Clayton Rieck                                     |
 #-----------------------------------------------------------+
-# DESCRIPTION:												|
-# This program finds the MIN, MAX, MEAN and VARIANCE 		|
-# of given an array of up to 20 integers. It also displays 	|
-# a bar graph of frequencies of numbers in the array. 	 	|
+# DESCRIPTION:                                              |
+# This program finds the MIN, MAX, MEAN and VARIANCE        |
+# of given an array of up to 20 integers. It also displays  |
+# a bar graph of frequencies of numbers in the array.       |
 #-----------------------------------------------------------+
-# INPUT: 													|
-# The user will input up to 20 integers and will end 		|
-# input once a negative value is entered. The integers 		|
-# may not be 0 and greater than 15 (Range = [1,15])  		|
+# INPUT:                                                    |
+# The user will input up to 20 integers and will end        |
+# input once a negative value is entered. The integers      |
+# may not be 0 and greater than 15 (Range = [1,15])         |
 #-----------------------------------------------------------+
-# OUTPUT: 													|
-# The program will output the MIN, MAX, MEAN, and VARIANCE 	|
+# OUTPUT:                                                   |
+# The program will output the MIN, MAX, MEAN, and VARIANCE  |
 # of the array of integers and will also output a bar graph |
-# of the frequencies of numbers in the array 				|
+# of the frequencies of numbers in the array                |
 #-----------------------------------------------------------+
 	.data
-myArray:	.word		0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 # allocates 20 integer spaces in the array
-prompt:		.asciiz		"Please enter up to 20 positive integers and a negative to end input"
-var_div: 	.asciiz 	"VARIANCE: "
-graph_div: 	.asciiz 	"BAR GRAPH"
-endl:		.asciiz		"\n"
-endl2:		.asciiz		"\n\n"
-space: 		.asciiz 	": "
-complete: 	.asciiz 	"Program complete"
-array_err:	.asciiz		"Out of 1-15 range. Terminating program"
-min: 		.asciiz 	"MIN: "
-max: 		.asciiz 	"MAX: "
-mean: 		.asciiz		"MEAN: "
+myArray:    .word       0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 # allocates 20 integer spaces in the array
+prompt:     .asciiz     "Please enter up to 20 positive integers and a negative to end input"
+var_div:    .asciiz     "VARIANCE: "
+graph_div:  .asciiz     "BAR GRAPH"
+endl:       .asciiz     "\n"
+endl2:      .asciiz     "\n\n"
+space:      .asciiz     ": "
+complete:   .asciiz     "Program complete"
+array_err:  .asciiz     "Out of 1-15 range. Terminating program"
+min:        .asciiz     "MIN: "
+max:        .asciiz     "MAX: "
+mean:       .asciiz     "MEAN: "
 	.text
 	.globl main
 
 main:
 	# ask user to input numbers
-	la		$a1,	myArray 			# load pointer into a1
-	la		$a0,	prompt  			# load prompt into a0
+	la      $a1,	myArray 			# load pointer into a1
+	la      $a0,	prompt  			# load prompt into a0
 
-	li		$v0,	4					# print out prompt
+	li      $v0,	4                   # print out prompt
 	syscall
 
-	la 		$a0,	endl
-	li 		$v0,	4
+	la      $a0,	endl
+	li      $v0,	4
 	syscall
 
-	li		$t0,	0 					# MIN
-	li		$t1,	0					# MAX
-    li      $t2,    0					# ARRAY OFFSET
-    li 		$t3, 	0					# ARRAY LENGTH
-    li 		$t5, 	0					# SUM
+	li      $t0,	0                   # MIN
+	li      $t1,	0                   # MAX
+    li      $t2,    0                   # ARRAY OFFSET
+    li      $t3,    0                   # ARRAY LENGTH
+    li      $t5,    0                   # SUM
 
 #-----------------------------------------------------
 # Starts the input prompt and stores numbers in array \
@@ -59,33 +59,33 @@ gather_numbers:
 	
 	bgt     $t3,    20,     three_ms   	# if we've filled our list
 
-	li		$v0,	5                  	# read integer into $v0
+	li      $v0,    5                   # read integer into $v0
 	syscall
 
-    move 	$t4, 	$v0                  # $t4 holds the value that the user inputted
+    move    $t4,    $v0                 # $t4 holds the value that the user inputted
 
-    beq 	$t4, 	0, 		array_error # if enter a number less than 1		
-    bgt 	$t4, 	15, 	array_error # if enter a number above 15
+    beq     $t4,    0,      array_error # if enter a number less than 1		
+    bgt     $t4,    15,     array_error # if enter a number above 15
 
-	bltz	$t4,	three_ms        	# if enter negative then stop populating list
+	bltz    $t4,    three_ms            # if enter negative then stop populating list
 	
-	sw		$t4,	myArray($t2) 		# store current element in $t4
-	add 	$t3, 	$t3, 	1 			# add 1 to array length
+	sw      $t4,    myArray($t2)        # store current element in $t4
+	add     $t3,    $t3,    1           # add 1 to array length
 
-	add 	$t5, 	$t5, 	$t4 		# add input number to sum
+	add     $t5,    $t5,    $t4         # add input number to sum
 
-	add 	$t2,	$t2, 	4          	# go to next index in array
+	add     $t2,    $t2,    4           # go to next index in array
 
-	beqz	$t0,	set_min            	# initialize min with first number entered
+	beqz    $t0,    set_min             # initialize min with first number entered
 
-	blt 	$t4,	$t0,	set_min 	# if input less than MIN, set new min
+	blt     $t4,    $t0,    set_min     # if input less than MIN, set new min
 
 #-----------------------------------------------------
 # Checks to see if input is bigger than current MAX   \
 #------------------------------------------------------
 check_max:
-	bgt		$t4,	$t1,	set_max
-	j		gather_numbers
+	bgt     $t4,    $t1,     set_max
+	j       gather_numbers
 
 #-----------------------------------------------------
 # Sets current MAX to inputted number 				  \
@@ -116,21 +116,21 @@ three_ms:
     li      $v0, 	4
     syscall
 
-    li 		$v0, 	1
-    addi 	$a0, 	$t0, 	0
+    li      $v0, 	1
+    addi    $a0,    $t0,    0
     syscall
 
     la      $a0,    endl
-    li      $v0, 4
+    li      $v0,    4
     syscall
 
     # print out MAX
     la      $a0,    max
-    li      $v0, 4
+    li      $v0,    4
     syscall
 
-    li $v0, 1
-    addi $a0, $t1, 0
+    li      $v0,    1
+    addi    $a0,    $t1,     0
     syscall
 
     # print out MEAN
@@ -143,25 +143,25 @@ three_ms:
     syscall
 
     # calculates and then prints mean
-    li 		$v0, 	1
-    div  	$t5, 	$t3 			# divide sum of numbers by length of array
-    mflo 	$a0
+    li      $v0,    1
+    div     $t5,    $t3 			# divide sum of numbers by length of array
+    mflo    $a0
     syscall
 
     la      $a0,    endl2
-    li      $v0, 	4
+    li      $v0,    4
     syscall
 
 # ---------------------------------------------------------
 # Start Standard Deviation
 
 	li      $t2,    0 				# array offset
-	li 		$t6, 	1 				# current index in the array
-	li 		$s0, 	0 				# result of summation
-	li 		$s3, 	1 				# CONSTANT 1 (used for 1/(n-1))
+	li      $t6,    1               # current index in the array
+	li      $s0,    0               # result of summation
+	li      $s3,    1               # CONSTANT 1 (used for 1/(n-1))
 
-	div  	$t5, 	$t3 			# calculate x bar (mean)
-	mflo 	$t0						# store mean in $t0
+	div     $t5,    $t3             # calculate x bar (mean)
+	mflo    $t0                     # store mean in $t0
 
 #-----------------------------------------------------
 # Loops through array and subtracts each element by   \
