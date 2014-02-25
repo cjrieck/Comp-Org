@@ -1,6 +1,6 @@
 # xpim -font 7x14	
 	.data
-myArray:	.byte		80 # allocates 20 integer spaces in the array
+myArray:	.word		0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 # allocates 20 integer spaces in the array
 prompt:		.asciiz		"Please enter up to 20 positive integers and a negative to end input"
 var_div: 	.asciiz 	"VARIANCE: "
 graph_div: 	.asciiz 	"BAR GRAPH"
@@ -121,16 +121,18 @@ three_ms:
 # ---------------------------------------------------------
 # ---------------------------------------------------------
 # Start Standard Deviation
+
 	li      $t2,    0 				# array offset
 	li 		$t6, 	1 				# current index in the array
 	li 		$s0, 	0 				# result of summation
 	li 		$s3, 	1 				# CONSTANT 1 (used for 1/(n-1))
 
 	div  	$t5, 	$t3 			# calculate x bar (mean)
-	mflo 	$t0						#store mean in $t0
+	mflo 	$t0						# store mean in $t0
 
 sum:
-	bgt 	$t6, 	$t3, 	variance
+
+	bgt 	$t6, 	$t3, variance   # if current index is greater than length of list
 
 	lw 		$t4, 	myArray($t2)	# load current element
 
@@ -155,7 +157,7 @@ variance:
     syscall
 
     li      $v0, 	4
-    add     $a0,    $s1, 	0
+    move    $a0,    $s1
     syscall
 
     la      $a0,    endl2
@@ -169,6 +171,10 @@ variance:
 
 set_graph_counter:
 	la      $a0,    graph_div
+    li      $v0, 	4
+    syscall
+
+    la      $a0,    endl
     li      $v0, 	4
     syscall
 
