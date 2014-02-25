@@ -24,6 +24,7 @@ graph_div:  .asciiz     "BAR GRAPH"
 endl:       .asciiz     "\n"
 endl2:      .asciiz     "\n\n"
 space:      .asciiz     ": "
+space2:     .asciiz     ":  "
 complete:   .asciiz     "Program complete"
 array_err:  .asciiz     "Out of 1-15 range. Terminating program"
 min:        .asciiz     "MIN: "
@@ -240,8 +241,20 @@ graph_loop:
 	add     $a0,    $t6,    0
     syscall
 
+    blt     $t6,    9,      double_space # if number in range > 9
     # print a ': ' after number in range
     la      $a0,    space
+    li      $v0,    4
+    syscall
+    j       set_graph
+
+#-----------------------------------------------------
+# Formats bar graph output to do 2 spaces so that     \
+# the bars line up for the single digits and double    \
+# digits                                                \
+#--------------------------------------------------------
+double_space:
+    la      $a0,    space2
     li      $v0,    4
     syscall
 
