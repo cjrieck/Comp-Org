@@ -15,7 +15,7 @@
 # The program will output the MIN, MAX, MEAN, and VARIANCE 	|
 # of the array of integers and will also output a bar graph |
 # of the frequencies of numbers in the array 				|
-#-----------------------------------------------------------
+#-----------------------------------------------------------+
 	.data
 myArray:	.word		0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 # allocates 20 integer spaces in the array
 prompt:		.asciiz		"Please enter up to 20 positive integers and a negative to end input"
@@ -50,6 +50,11 @@ main:
     li 		$t3, 	0					# ARRAY LENGTH
     li 		$t5, 	0					# SUM
 
+#-----------------------------------------------------
+# Starts the input prompt and stores numbers in array \
+# while also computing/finding the MIN, MAX, SUM and   \
+# ARRAY LENGTH  										\
+#--------------------------------------------------------
 gather_numbers:
 	
 	bgt     $t3,    20,     three_ms   	# if we've filled our list
@@ -57,44 +62,56 @@ gather_numbers:
 	li		$v0,	5                  	# read integer into $v0
 	syscall
 
-    move 	$t4, $v0                   	# $t4 holds the value that the user inputted
+    move 	$t4, 	$v0                  # $t4 holds the value that the user inputted
 
     beq 	$t4, 	0, 		array_error # if enter a number less than 1		
     bgt 	$t4, 	15, 	array_error # if enter a number above 15
 
 	bltz	$t4,	three_ms        	# if enter negative then stop populating list
 	
-	sw		$t4,	myArray($t2)
-	add 	$t3, 	$t3, 	1
+	sw		$t4,	myArray($t2) 		# store current element in $t4
+	add 	$t3, 	$t3, 	1 			# add 1 to array length
 
-	add 	$t5, 	$t5, 	$t4
+	add 	$t5, 	$t5, 	$t4 		# add input number to sum
 
 	add 	$t2,	$t2, 	4          	# go to next index in array
 
 	beqz	$t0,	set_min            	# initialize min with first number entered
 
-	blt 	$t4,	$t0,	set_min
+	blt 	$t4,	$t0,	set_min 	# if input less than MIN, set new min
 
+#-----------------------------------------------------
+# Checks to see if input is bigger than current MAX   \
+#------------------------------------------------------
 check_max:
 	bgt		$t4,	$t1,	set_max
 	j		gather_numbers
 
+#-----------------------------------------------------
+# Sets current MAX to inputted number 				  \
+#------------------------------------------------------
 set_max:
 	move 	$t1,	$t4
 	j		gather_numbers
 
+#-----------------------------------------------------
+# Checks to see if input is smaller than current MIN  \
+#------------------------------------------------------
 set_min:
 	move 	$t0,	$t4
 	j		check_max
 
-# 
+#-----------------------------------------------------
+# Prints out the MAX, MIN, and MEAN of the inputted   \
+# integers in the array    							   \
+#-------------------------------------------------------
 three_ms:
 
 	la      $a0,    endl
     li      $v0, 	4
     syscall
 
-	# print out min and max
+	# print out MIN
 	la      $a0,    min
     li      $v0, 	4
     syscall
@@ -107,6 +124,7 @@ three_ms:
     li      $v0, 4
     syscall
 
+    # print out MAX
     la      $a0,    max
     li      $v0, 4
     syscall
@@ -115,7 +133,7 @@ three_ms:
     addi $a0, $t1, 0
     syscall
 
-    # print mean
+    # print out MEAN
 	la      $a0,    endl
     li      $v0, 	4
     syscall
@@ -124,7 +142,7 @@ three_ms:
     li      $v0, 	4
     syscall
 
-    # calculate and then print mean
+    # calculates and then prints mean
     li 		$v0, 	1
     div  	$t5, 	$t3 			# divide sum of numbers by length of array
     mflo 	$a0
@@ -134,8 +152,6 @@ three_ms:
     li      $v0, 	4
     syscall
 
-# ---------------------------------------------------------
-# ---------------------------------------------------------
 # ---------------------------------------------------------
 # Start Standard Deviation
 
@@ -147,6 +163,10 @@ three_ms:
 	div  	$t5, 	$t3 			# calculate x bar (mean)
 	mflo 	$t0						# store mean in $t0
 
+#-----------------------------------------------------
+# Loops through array and subtracts each element by   \
+# the MEAN and then sqaures the result    			   \
+#-------------------------------------------------------
 sum:
 
 	bgt 	$t6, 	$t3, variance   # if current index is greater than length of list
@@ -161,6 +181,10 @@ sum:
 	add 	$t2, 	$t2, 	4 		# increment offset by 4
 	j 		sum
 
+#-----------------------------------------------------
+# Takes the result of the summation (from above) and  \
+# multiplies that by 1/(n-1) giving us s^2 (VARIANCE)  \
+#-------------------------------------------------------
 variance:
 	sub 	$s1, 	$t3, 	1 		# get n - 1
 	div 	$s3, 	$s1 			# do 1/(n-1)
@@ -182,10 +206,12 @@ variance:
     syscall
 
 # ---------------------------------------------------------
-# ---------------------------------------------------------
-# ---------------------------------------------------------
 # Start Bar Graph
 
+#-----------------------------------------------------
+# Initializes counters for the bar graph (range number \
+# and offset constant for finding end index of the array\
+#--------------------------------------------------------
 set_graph_counter:
 	la      $a0,    graph_div
     li      $v0, 	4
@@ -198,6 +224,10 @@ set_graph_counter:
 	li 		$t6, 	1 				# keep counter for bar graph range
 	li 		$s0, 	4 				# used as constant for finding end index of array
 
+#-----------------------------------------------------
+# Does 1 iteration through the array for each number  \
+# the 1-15 range our integers are within 			   \
+#-------------------------------------------------------
 graph_loop:
 
 	bgt 	$t6, 	15, 	finish 	# if at end of our range
@@ -215,6 +245,11 @@ graph_loop:
     li 		$v0, 	4
     syscall
 
+#-----------------------------------------------------
+# Conducts checks on if a number was encountered in   \
+# the array and if on the last index of the array. 	   \
+# Also jumps to beginning of loop 					    \
+#--------------------------------------------------------
 set_graph:
 
 	lw 		$t4, 	myArray($t2)	# load current element
@@ -228,9 +263,12 @@ set_graph:
     beq 	$s1, 	$t3, 	increment_number # if the array length and quotient are 
     										 # equal then we are at the end of the list and
     										 # need to start again
-
     j 		set_graph
 
+#-----------------------------------------------------
+# Outputs a 0 next to a number denoting that it was   \
+# found												   \
+#-------------------------------------------------------
 add_bar:
 	
 	# print out 0 for bar
@@ -248,6 +286,9 @@ add_bar:
 
     j 		set_graph
 
+#-----------------------------------------------------
+# Increments the range number by 1 					  \
+#------------------------------------------------------
 increment_number:
 	
 	addi 	$t6, 	$t6, 	1 		# increment range number by 1
@@ -259,6 +300,9 @@ increment_number:
 
 	j 	graph_loop
 
+#-----------------------------------------------------
+# Outputs a program completed message 				  \
+#------------------------------------------------------
 finish:
 
 	la      $a0,    endl2 			# 2 new line characters
@@ -272,7 +316,10 @@ finish:
     li 		$v0,	10
 	syscall
 
-
+#-----------------------------------------------------
+# Displays an error when user enters number outside   \
+# of 1-15 range 									   \
+#-------------------------------------------------------
 array_error:
 	la      $a0,    endl
     li      $v0, 4
