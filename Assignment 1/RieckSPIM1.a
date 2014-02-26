@@ -17,7 +17,7 @@
 # of the frequencies of numbers in the array                |
 #-----------------------------------------------------------+
 	.data
-myArray:    .word       0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 # allocates 20 integer spaces in the array
+myArray:    .word       0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 prompt:     .asciiz     "Please enter up to 20 positive integers and a negative to end input"
 var_div:    .asciiz     "VARIANCE: "
 graph_div:  .asciiz     "BAR GRAPH"
