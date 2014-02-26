@@ -188,10 +188,8 @@ sum:
 #-------------------------------------------------------
 variance:
 	sub     $s1,    $t3,    1       # get n - 1
-	div     $s3,    $s1             # do 1/(n-1)
+	div     $s0,    $s1             # do sum/(n-1)
 	mflo    $s1                     # store answer in $s1
-
-	mul     $s1,    $s1,    $s0     # multiply 1/(n-1) with summation
 
 	# print out variance
 	la      $a0,    var_div
