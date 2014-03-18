@@ -1,0 +1,48 @@
+SPIM/MIPS
+
+Floating Point:
+
+SINGLE PRECISION 		DOUBLE PRECISION
+	 add.s 					 add.d
+	 sub.s 					 sub.d
+	 mul.s 					 mul.d
+	 			  etc.
+
+ON GREEN CARD IN BOOK
+
+Comparisons:
+
+c.X.s 		c.X.d
+
+where
+X = eq, neq, lt, le, gt, ge
+
+Data Movement:
+
+mov.s 		mov.d
+l.s 		l.d
+
+Data Conversion:
+
+cvt.d.s 	fd, fs => (fs to fd)
+(convert single to double)
+
+-----------------------------------------
+Procedures in MIPS:
+ ___________________
+|                   |
+|                   | => adder function
+|___________________|
+ ___________________
+|                   |                     => ACTIVATION STACK
+|                   |
+|                   |
+|                   | => main
+|                   |
+|                   |
+|___________________|
+
+jal => 'jump and link'
+	- remember current instruction in $ra register
+
+$v0 and $v1 are return values
