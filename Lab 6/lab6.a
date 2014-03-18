@@ -102,9 +102,7 @@ average:
 	syscall
 
 	div.d 	$f8, 	$f8, 	$f6
-
-	#cvt.d.s $f3, 	$f2 # convert $f2 to double
-
+	
 	mov.d 	$f12, 	$f8
 	li 		$v0, 	3
 	syscall
