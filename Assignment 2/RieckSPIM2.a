@@ -1,22 +1,32 @@
     .data
+done_prompt:   .asciiz    "\nThank you for choosing Cowberland Farms! Have a great day!"
 endl:          .asciiz    "\n"    
     .text
     .globl main
 
 main:
+
+transaction_start:
     # jump to paymentAndType procedure
 	jal    getPaymentAndType
 
     # s0 = payment type
     # s1 = gas type
     
-    jal getGasAmount
+    # jump to getGasAmount procedure
+    jal    getGasAmount
 
     # f0 = gallons of gas user wants
 
-
+    j      transaction_start
 
 done:
+
+    la    $a0,    done_prompt
+
+    li    $v0,    4
+    syscall
+
     li    $v0,    10
     syscall
 
@@ -30,6 +40,10 @@ gas_prompt:    .asciiz    "Please choose gas type:\nType        Code    Price\nR
     .text
 
 getPaymentAndType:
+    
+    # ascii values for 'Q' and 'q' respectively
+    li    $t0,    81
+    li    $t0,    113
 
 	# display payment prompt
     la    $a0,    pay_prompt
@@ -40,6 +54,10 @@ getPaymentAndType:
     # read in a character
     li    $v0,    12
     syscall
+
+    # check if input is 'Q' or 'q'
+    beq    $s0,    $t0,    done
+    beq    $s0,    $t1,    done
 
     # move character read in into $t1
     move  $s0,    $v0
