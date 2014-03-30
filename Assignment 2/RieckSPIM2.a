@@ -1,0 +1,46 @@
+    .data
+pay_prompt:    .asciiz    "Please enter a payment type\n's': SmahtPay\n'c': Credit\n'q': Complete Transaction\n> "
+gas_prompt:    .asciiz    "Please choose gas type:\nType        Code    Price\nRegular      R      3.619\nPlus         P      3.719\nSuper        S      3.839\n> "
+endl:          .asciiz    "\n"    
+    .text
+    .globl main
+
+main:
+
+	# display payment prompt
+    la    $a0,    pay_prompt
+
+    li    $v0,    4
+    syscall
+
+    # read in a character
+    li    $v0,    12
+    syscall
+
+    # move character read in into $t1
+    move  $t0,    $v0
+
+    la    $a0,    endl
+
+    li    $v0,    4
+    syscall
+
+    # display payment prompt
+    la    $a0,    gas_prompt
+
+    li    $v0,    4
+    syscall
+
+    # read in a character
+    li    $v0,    12
+    syscall
+
+    move  $t1,    $v0
+
+    # t0 = payment type
+    # t1 = gas type
+
+
+done:
+    li    $v0,    10
+    syscall
