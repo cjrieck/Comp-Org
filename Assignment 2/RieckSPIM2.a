@@ -10,14 +10,6 @@ transaction_start:
     # jump to paymentAndType procedure
 	jal    getPaymentAndType
 
-    # s0 = payment type
-    # s1 = gas type
-    
-    # jump to getGasAmount procedure
-    jal    getGasAmount
-
-    # f0 = gallons of gas user wants
-
     j      transaction_start
 
 done:
@@ -44,7 +36,15 @@ getPaymentAndType:
     
     # ascii values for 'Q' and 'q' respectively
     li    $t0,    81
-    li    $t0,    113
+    li    $t1,    113
+
+    # ascii values for 'S' and 's' respectively
+    li    $t2,    83
+    li    $t3,    115
+
+    # ascii values for 'C' and 'c' respectively
+    li    $t4,    67
+    li    $t5,    99
 
 	# display payment prompt
     la    $a0,    pay_prompt
@@ -80,15 +80,49 @@ getPaymentAndType:
 
     move  $s1,    $v0
 
+    # s0 = payment type
+    # s1 = gas type
+
+    # store price of gas type
+    # 'S' already stored in $t2
+    li    $t6,    82    # ascii value for 'P'
+    li    $t7,    80    # ascii value for 'R'
+
+    beq   $s1,    $t6,    regular    # get price for regular gas
+    beq   $s1,    $t7,    plus       # get price for plus gas
+    beq   $s1,    $t2,    super      # get price for super gas
+
+    # set the price depending on the gas the user chose
+regular:
+    li    $f1,    3.619
+    j     amount
+
+plus:
+    li    $f1,    3.719
+    j     amount
+
+super:
+    li    $f1,    3.839
+    j     amount
+
+amount:
+    # ask for the amount of gas they want
     la    $a0,    gas_amount_prompt
 
     li    $v0,    4
     syscall
 
+    # read in float for gallons
     li    $v0,    6
     syscall
 
+    # f0 = gallons of gas user wants
+
     
+
+    # jump to getGasAmount procedure
+    jal    getGasAmount
+
 
     j    $ra
 
