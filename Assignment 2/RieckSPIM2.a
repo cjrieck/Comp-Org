@@ -61,7 +61,7 @@ getPaymentAndType:
 
     # move character read in into $t1
     move  $s0,    $v0
-    
+
     # check if input is 'Q' or 'q'
     beq    $s0,    $t0,    done
     beq    $s0,    $t1,    done
@@ -150,30 +150,73 @@ getGasAmount:
     # --------- start truncating decimal points ---------
     # multiply by 100.0
     li.s  $f5,    100.0
-    mul.s $f23,   $f22,    $f5
+    mul.s $f22,   $f22,    $f5
 
-    
-    # add 0.5
-    li.s  $f5,    0.5
-    add.s $f23,   $f23,    $f5
-
-    cvt.w.s $f24,  $f23 # convert single precision to int
-
-    mov.s $f12,   $f24
+    #-------------------
+    mov.s $f12,   $f22
     li    $v0,    2
     syscall
+    mov.s $f22,   $f12
+
+    la    $a0,    endl
+    li    $v0,    4
+    syscall
+    #-------------------
+
+    # add 0.5
+    li.s  $f5,    0.5
+    add.s $f22,   $f22,    $f5
+
+    #-------------------
+    mov.s $f12,   $f22
+    li    $v0,    2
+    syscall
+    mov.s $f22,   $f12
+
+    la    $a0,    endl
+    li    $v0,    4
+    syscall
+    #-------------------
+
+    cvt.w.s $f22,  $f22 # convert single precision to int
+    #-------------------
+    mov.s $f12,   $f22
+    li    $v0,    2
+    syscall
+    mov.s $f22,   $f12
+
+    la    $a0,    endl
+    li    $v0,    4
+    syscall
+    #-------------------
+
+    
+    #mov.s $f12,   $f24
+    #li    $v0,    2
+    #syscall
 
     la    $a0,    endl
     li    $v0,    4
     syscall
 
-    cvt.s.w $f23,  $f12 # convert int to single precision
+    cvt.s.w $f22,  $f22 # convert int to single precision
+
+    #-------------------
+    mov.s $f12,   $f22
+    li    $v0,    2
+    syscall
+    mov.s $f22,   $f12
+
+    la    $a0,    endl
+    li    $v0,    4
+    syscall
+    #-------------------
 
     # divide by 100.0
-    li.s  $f5,    100.0
-    div.s $f23,   $f23,    $f5
+    li.s  $f5,    100.00
+    div.s $f22,   $f22,    $f5
 
-    mov.s $f12,   $f23
+    mov.s $f12,   $f22
     li    $v0,    2
     syscall
 
