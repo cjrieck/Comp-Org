@@ -59,12 +59,12 @@ getPaymentAndType:
     li    $v0,    12
     syscall
 
+    # move character read in into $t1
+    move  $s0,    $v0
+    
     # check if input is 'Q' or 'q'
     beq    $s0,    $t0,    done
     beq    $s0,    $t1,    done
-
-    # move character read in into $t1
-    move  $s0,    $v0
 
     la    $a0,    endl
 
@@ -147,17 +147,27 @@ getGasAmount:
 
     # f22 = price NOT ROUNDED
 
+    # --------- start truncating decimal points ---------
     # multiply by 100.0
     li.s  $f5,    100.0
     mul.s $f23,   $f22,    $f5
 
+    
     # add 0.5
     li.s  $f5,    0.5
     add.s $f23,   $f23,    $f5
 
-    cvt.w.s $f23,  $f23 # convert single precision to int
+    cvt.w.s $f24,  $f23 # convert single precision to int
 
-    cvt.s.w $f23,  $f23 # convert int to single precision
+    mov.s $f12,   $f24
+    li    $v0,    2
+    syscall
+
+    la    $a0,    endl
+    li    $v0,    4
+    syscall
+
+    cvt.s.w $f23,  $f12 # convert int to single precision
 
     # divide by 100.0
     li.s  $f5,    100.0
@@ -165,6 +175,10 @@ getGasAmount:
 
     mov.s $f12,   $f23
     li    $v0,    2
+    syscall
+
+    la    $a0,    endl
+    li    $v0,    4
     syscall
 
     j     $ra
