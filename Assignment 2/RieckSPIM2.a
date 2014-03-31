@@ -132,10 +132,39 @@ amount:
     .text
 
 getGasAmount:
-    mov.s $f12,   $f21
+    #mov.s $f12,   $f21
+    #li    $v0,    2
+    #syscall
+
+    #f20 = gallons
+    #f21 = price
+
+    mul.s $f22,   $f21,    $f20
+
+    #mov.s $f12,   $f22
+    #li    $v0,    2
+    #syscall
+
+    # f22 = price NOT ROUNDED
+
+    # multiply by 100.0
+    li.s  $f5,    100.0
+    mul.s $f23,   $f22,    $f5
+
+    # add 0.5
+    li.s  $f5,    0.5
+    add.s $f23,   $f23,    $f5
+
+    cvt.w.s $f23,  $f23 # convert single precision to int
+
+    cvt.s.w $f23,  $f23 # convert int to single precision
+
+    # divide by 100.0
+    li.s  $f5,    100.0
+    div.s $f23,   $f23,    $f5
+
+    mov.s $f12,   $f23
     li    $v0,    2
     syscall
-
-    
 
     j     $ra
