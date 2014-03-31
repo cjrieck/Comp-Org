@@ -1,4 +1,5 @@
     .data
+integer:       .word      0
 done_prompt:   .asciiz    "\nThank you for choosing Cowberland Farms! Have a great day!"
 endl:          .asciiz    "\n"    
     .text
@@ -190,10 +191,15 @@ getGasAmount:
     syscall
     #-------------------
 
+    s.s   $f22,    integer
     
-    #mov.s $f12,   $f24
-    #li    $v0,    2
-    #syscall
+    lw    $t0,     integer
+    
+    # $t0 = integer value of price
+
+    move  $a0,   $t0
+    li    $v0,    1
+    syscall
 
     la    $a0,    endl
     li    $v0,    4
@@ -213,7 +219,7 @@ getGasAmount:
     #-------------------
 
     # divide by 100.0
-    li.s  $f5,    100.00
+    li.s  $f5,    100.0
     div.s $f22,   $f22,    $f5
 
     mov.s $f12,   $f22
