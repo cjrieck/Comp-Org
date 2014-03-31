@@ -111,14 +111,15 @@ super:
 
 amount:
 
-    # check if using SmahtPay
-    bne   $s0,    $t2,    no_discount
-    bne   $s0,    $t3,    no_discount
+    # check if not using SmahtPay
+    beq   $s0,    $t4,    no_discount
+    beq   $s0,    $t5,    no_discount
 
-    li.s  $f0,    0.1
+    li.s  $f24,    0.1
 
     # give 10 cent discount per gallon if using SmahtPay
-    sub.s $f21,   $f21,    $f0
+    sub.s $f21,   $f21,    $f24
+
 no_discount:
     # ask for the amount of gas they want
     la    $a0,    gas_amount_prompt
@@ -143,22 +144,24 @@ no_discount:
     .text
 
 getGasAmount:
-    #mov.s $f12,   $f21
-    #li    $v0,    2
-    #syscall
 
     #f20 = gallons
     #f21 = price
+
+    mov.s $f12,   $f21
+    li    $v0,    2
+    syscall
+    mov.s $f21,   $f12
+
+    la    $a0,    endl
+    li    $v0,    4
+    syscall
 
     # ascii values for 'S' and 's' respectively
     li    $t2,    83
     li    $t3,    115
 
     mul.s $f22,   $f21,    $f20
-
-    #mov.s $f12,   $f22
-    #li    $v0,    2
-    #syscall
 
     # f22 = price NOT ROUNDED
 
@@ -167,43 +170,11 @@ getGasAmount:
     li.s  $f5,    100.0
     mul.s $f22,   $f22,    $f5
 
-    #-------------------
-    mov.s $f12,   $f22
-    li    $v0,    2
-    syscall
-    mov.s $f22,   $f12
-
-    la    $a0,    endl
-    li    $v0,    4
-    syscall
-    #-------------------
-
     # add 0.5
     li.s  $f5,    0.5
     add.s $f22,   $f22,    $f5
 
-    #-------------------
-    mov.s $f12,   $f22
-    li    $v0,    2
-    syscall
-    mov.s $f22,   $f12
-
-    la    $a0,    endl
-    li    $v0,    4
-    syscall
-    #-------------------
-
     cvt.w.s $f22,  $f22 # convert single precision to int
-    #-------------------
-    mov.s $f12,   $f22
-    li    $v0,    2
-    syscall
-    mov.s $f22,   $f12
-
-    la    $a0,    endl
-    li    $v0,    4
-    syscall
-    #-------------------
 
     s.s   $f22,    integer
     
