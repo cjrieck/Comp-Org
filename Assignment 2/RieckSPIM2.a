@@ -35,8 +35,9 @@ done:
 # getPaymentAndType procedure
 # -------------------------------------------- #
     .data
-pay_prompt:    .asciiz    "Please enter a payment type\n's': SmahtPay\n'c': Credit\n'q': Complete Transaction\n> "
-gas_prompt:    .asciiz    "Please choose gas type:\nType        Code    Price\nRegular      R      3.619\nPlus         P      3.719\nSuper        S      3.839\n> "
+pay_prompt:           .asciiz    "Please enter a payment type\n's': SmahtPay\n'c': Credit\n'q': Complete Transaction\n> "
+gas_prompt:           .asciiz    "Please choose gas type:\nType        Code    Price\nRegular      R      3.619\nPlus         P      3.719\nSuper        S      3.839\n> "
+gas_amount_prompt:    .asciiz    "\nPlease enter how many gallons of gas you'd like:\n> "    
     .text
 
 getPaymentAndType:
@@ -79,16 +80,6 @@ getPaymentAndType:
 
     move  $s1,    $v0
 
-    j    $ra
-
-# -------------------------------------------- #
-# getGasAmount procedure
-# -------------------------------------------- #
-    .data
-gas_amount_prompt:    .asciiz    "\nPlease enter how many gallons of gas you'd like:\n> "
-    .text
-
-getGasAmount:
     la    $a0,    gas_amount_prompt
 
     li    $v0,    4
@@ -96,5 +87,19 @@ getGasAmount:
 
     li    $v0,    6
     syscall
+
+    
+
+    j    $ra
+
+# -------------------------------------------- #
+# getGasAmount procedure
+# -------------------------------------------- #
+    .data
+
+    .text
+
+getGasAmount:
+    
 
     j     $ra
