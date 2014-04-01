@@ -140,18 +140,13 @@ no_discount:
 # getGasAmount procedure
 # -------------------------------------------- #
     .data
-
+dot:         .asciiz        "."
     .text
 
 getGasAmount:
 
     #f20 = gallons
     #f21 = price
-
-    mov.s $f12,   $f21
-    li    $v0,    2
-    syscall
-    mov.s $f21,   $f12
 
     la    $a0,    endl
     li    $v0,    4
@@ -179,24 +174,33 @@ getGasAmount:
     s.s   $f22,    integer
     
     lw    $t0,     integer
+
+    li    $t1,    100
+    div   $t0,    $t1
+
+    mflo  $t1
+    mfhi  $t2
+
+    # $t0 = left hand side of decimal
+    # $t1 = right hand side of decimal
     
     # $t0 = integer value of price
 
-    move  $a0,   $t0
+    move  $a0,   $t1
     li    $v0,    1
     syscall
 
+    la    $a0,    dot
+    li    $v0,    4
+    syscall
+
+    move  $a0,   $t2
+    li    $v0,    1
+    syscall
 
     la    $a0,    endl
     li    $v0,    4
     syscall
 
-    mov.s $f12,   $f22
-    li    $v0,    2
-    syscall
-
-    la    $a0,    endl
-    li    $v0,    4
-    syscall
 
     j     $ra
