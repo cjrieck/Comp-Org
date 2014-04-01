@@ -11,7 +11,6 @@ transaction_start:
     # jump to paymentAndType procedure
 	jal    getPaymentAndType
 
-
     mov.s $f12,    $f0 # amount of gallons user wants
     mov.s $f13,    $f1 # price per gallon
 
@@ -29,7 +28,6 @@ done:
 
     li    $v0,    10
     syscall
-
 
 # -------------------------------------------- #
 # getPaymentAndType procedure
