@@ -11,6 +11,10 @@ transaction_start:
     # jump to paymentAndType procedure
 	jal    getPaymentAndType
 
+
+    mov.s $f12,    $f0 # amount of gallons user wants
+    mov.s $f13,    $f1 # price per gallon
+
 	# jump to getGasAmount procedure
     jal    getGasAmount
 
@@ -131,7 +135,8 @@ no_discount:
     li    $v0,    6
     syscall
 
-    mov.s $f20,   $f0
+    # mov.s $f20,   $f0
+    mov.s   $f1,    $f21
     # f20 = gallons of gas user wants
 
     j    $ra
@@ -147,6 +152,9 @@ getGasAmount:
 
     #f20 = gallons
     #f21 = price
+
+    mov.s    $f20,    $f0
+    mov.s    $f21,    $f1
 
     la    $a0,    endl
     li    $v0,    4
@@ -194,6 +202,16 @@ getGasAmount:
     li    $v0,    4
     syscall
 
+    # checks if price is 0.0
+    # if it is then add another 0 to right hand side
+    # else, print remainder
+    bne   $t2,    $zero,     not_zero
+
+    li    $a0,    0
+    li    $v0,    1
+    syscall
+
+not_zero:
     move  $a0,   $t2
     li    $v0,    1
     syscall
@@ -201,6 +219,5 @@ getGasAmount:
     la    $a0,    endl
     li    $v0,    4
     syscall
-
 
     j     $ra
