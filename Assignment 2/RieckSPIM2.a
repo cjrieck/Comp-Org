@@ -227,8 +227,10 @@ getGasAmount:
 # printReceipt procedure
 # -------------------------------------------- #
         .data
+padding1:       .asciiz        " "
 padding2:       .asciiz        "  "
-padding4:       .asciiz        "    "  
+padding4:       .asciiz        "    "
+padding8:       .asciiz        "        "
 title:          .asciiz        "Cowberland Farms"
 gasAndPayType:  .asciiz        "Payment Type        Gas Type"
 gallons:        .asciiz        "Gallon(s)"
@@ -238,7 +240,7 @@ total:          .asciiz        "Total"
 
 printReceipt:
 
-    la    $a0,    padding4
+    la    $a0,    padding8
     li    $v0,    4
     syscall
 
@@ -254,6 +256,10 @@ printReceipt:
     li    $v0,    4
     syscall
 
+    la    $a0,    padding2
+    li    $v0,    4
+    syscall
+
     la    $a0,    gasAndPayType
     li    $v0,    4
     syscall
@@ -266,20 +272,20 @@ printReceipt:
     li    $v0,    4
     syscall
 
+    la    $a0,    padding2
+    li    $v0,    4
+    syscall
+
     # print out payment type
     move  $a0,    $s0
     li    $v0,    11
     syscall
 
-    la    $a0,    padding4
+    la    $a0,    padding8
     li    $v0,    4
     syscall
 
-    la    $a0,    padding4
-    li    $v0,    4
-    syscall
-
-    la    $a0,    padding4
+    la    $a0,    padding8
     li    $v0,    4
     syscall
 
@@ -300,15 +306,23 @@ printReceipt:
     li    $v0,    4
     syscall
 
+    la    $a0,    padding2
+    li    $v0,    4
+    syscall
+
     la    $a0,    gallons
     li    $v0,    4
     syscall
 
-    la    $a0,    padding4
+    la    $a0,    padding8
     li    $v0,    4
     syscall
 
-    la    $a0,    padding4
+    la    $a0,    padding2
+    li    $v0,    4
+    syscall
+
+    la    $a0,    padding1
     li    $v0,    4
     syscall
 
@@ -320,7 +334,7 @@ printReceipt:
     li    $v0,    4
     syscall
 
-    la    $a0,    padding2
+    la    $a0,    padding1
     li    $v0,    4
     syscall
 
@@ -331,11 +345,15 @@ printReceipt:
     li    $v0,    2
     syscall
 
-    la    $a0,    padding4
+    la    $a0,    padding8
     li    $v0,    4
     syscall
 
-    la    $a0,    padding4
+    la    $a0,    padding2
+    li    $v0,    4
+    syscall
+
+    la    $a0,    padding1
     li    $v0,    4
     syscall
 
@@ -351,11 +369,15 @@ printReceipt:
     li    $v0,    4
     syscall
 
-    la    $a0,    padding4
+    la    $a0,    padding8
     li    $v0,    4
     syscall
 
     la    $a0,    padding4
+    li    $v0,    4
+    syscall
+
+    la    $a0,    padding2
     li    $v0,    4
     syscall
 
@@ -365,7 +387,19 @@ printReceipt:
 
     la    $a0,    endl
     li    $v0,    4
+    syscall
+
+    la    $a0,    padding8
+    li    $v0,    4
     syscall    
+
+    la    $a0,    padding4
+    li    $v0,    4
+    syscall 
+
+    la    $a0,    padding2
+    li    $v0,    4
+    syscall 
 
     move  $a0,   $s4
     li    $v0,    1
