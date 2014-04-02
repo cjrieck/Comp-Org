@@ -219,3 +219,27 @@ not_zero:
     syscall
 
     j     $ra
+
+
+# -------------------------------------------- #
+# printReceipt procedure
+# -------------------------------------------- #
+        .data
+padding2:       .asciiz        "  "
+padding4:       .asciiz        "    "  
+title:          .asciiz        "Cowberland Farms"
+gasAndPayType:  .asciiz        "Payment Type        Gas Type"
+gallons:        .asciiz        "Gallon(s)"
+costPerGallon:  .asciiz        "$/Gallons"
+total:          .asciiz        "Total"        
+        .text
+printReceipt:
+
+
+
+
+
+
+
+
+
