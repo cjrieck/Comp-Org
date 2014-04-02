@@ -17,6 +17,8 @@ transaction_start:
 	# jump to getGasAmount procedure
     jal    getGasAmount
 
+    jal    printReceipt
+
     j      transaction_start
 
 done:
@@ -62,7 +64,7 @@ getPaymentAndType:
     li    $v0,    12
     syscall
 
-    # move character read in into $t1
+    # move character read in into $s0
     move  $s0,    $v0
 
     # check if input is 'Q' or 'q'
@@ -192,31 +194,31 @@ getGasAmount:
     
     # $t0 = integer value of price
 
-    move  $a0,   $s4
-    li    $v0,    1
-    syscall
+ #   move  $a0,   $s4
+ #   li    $v0,    1
+ #   syscall
 
-    la    $a0,    dot
-    li    $v0,    4
-    syscall
+ #   la    $a0,    dot
+ #   li    $v0,    4
+ #   syscall
 
     # checks if price is 0.0
     # if it is then add another 0 to right hand side
     # else, print remainder
-    bne   $s5,    $zero,     not_zero
+ #   bne   $s5,    $zero,     not_zero
 
-    li    $a0,    0
-    li    $v0,    1
-    syscall
+ #   li    $a0,    0
+ #   li    $v0,    1
+ #   syscall
 
-not_zero:
-    move  $a0,   $s5
-    li    $v0,    1
-    syscall
+#not_zero:
+ #   move  $a0,   $s5
+ #   li    $v0,    1
+ #   syscall
 
-    la    $a0,    endl
-    li    $v0,    4
-    syscall
+ #   la    $a0,    endl
+ #   li    $v0,    4
+ #   syscall
 
     j     $ra
 
@@ -264,10 +266,135 @@ printReceipt:
     li    $v0,    4
     syscall
 
+    # print out payment type
+    move  $a0,    $s0
+    li    $v0,    11
+    syscall
 
+    la    $a0,    padding4
+    li    $v0,    4
+    syscall
 
+    la    $a0,    padding4
+    li    $v0,    4
+    syscall
 
+    la    $a0,    padding4
+    li    $v0,    4
+    syscall
 
+    la    $a0,    padding4
+    li    $v0,    4
+    syscall
 
+    # print out gas type
+    move  $a0,    $s1
+    li    $v0,    11
+    syscall
 
+    la    $a0,    endl
+    li    $v0,    4
+    syscall
 
+    la    $a0,    endl
+    li    $v0,    4
+    syscall
+
+    la    $a0,    gallons
+    li    $v0,    4
+    syscall
+
+    la    $a0,    padding4
+    li    $v0,    4
+    syscall
+
+    la    $a0,    padding4
+    li    $v0,    4
+    syscall
+
+    la    $a0,    costPerGallon
+    li    $v0,    4
+    syscall
+
+    la    $a0,    endl
+    li    $v0,    4
+    syscall
+
+    la    $a0,    padding2
+    li    $v0,    4
+    syscall
+
+    #mov.s    $f10,    $f0
+    #mov.s    $f11,    $f1
+
+    #mov.s $f12,    $f0
+    li    $v0,    2
+    syscall
+
+    la    $a0,    padding4
+    li    $v0,    4
+    syscall
+
+    la    $a0,    padding4
+    li    $v0,    4
+    syscall
+
+    mov.s $f12,    $f13
+    li    $v0,    2
+    syscall  
+
+    la    $a0,    endl
+    li    $v0,    4
+    syscall
+
+    la    $a0,    endl
+    li    $v0,    4
+    syscall
+
+    la    $a0,    padding4
+    li    $v0,    4
+    syscall
+
+    la    $a0,    padding4
+    li    $v0,    4
+    syscall
+
+    la    $a0,    total
+    li    $v0,    4
+    syscall
+
+    la    $a0,    endl
+    li    $v0,    4
+    syscall    
+
+    move  $a0,   $s4
+    li    $v0,    1
+    syscall
+
+    la    $a0,    dot
+    li    $v0,    4
+    syscall
+
+    # checks if price is 0.0
+    # if it is then add another 0 to right hand side
+    # else, print remainder
+    bne   $s5,    $zero,     not_zero
+
+    li    $a0,    0
+    li    $v0,    1
+    syscall
+
+not_zero:
+    move  $a0,   $s5
+    li    $v0,    1
+    syscall
+
+    la    $a0,    endl
+    li    $v0,    4
+    syscall
+
+    la    $a0,    endl
+    li    $v0,    4
+    syscall 
+
+    j    $ra        
