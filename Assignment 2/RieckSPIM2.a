@@ -1,5 +1,14 @@
+#-----------------------------------------------------------+
+# Author: Clayton Rieck                                     |
+#-----------------------------------------------------------+
+# DESCRIPTION:                                              |
+#-----------------------------------------------------------+
+# INPUT:                                                    |
+#-----------------------------------------------------------+
+# OUTPUT:                                                   |
+#-----------------------------------------------------------+
     .data
-integer:       .word      0
+integer:       .word      0 # used to store converted total cost
 done_prompt:   .asciiz    "\nThank you for choosing Cowberland Farms! Have a great day!"
 endl:          .asciiz    "\n"    
     .text
@@ -8,13 +17,13 @@ endl:          .asciiz    "\n"
 main:
 
 transaction_start:
-    # jump to paymentAndType procedure
+
 	jal    getPaymentAndType
 
+    # arguments peing passed to getGasAmount procedure
     mov.s $f12,    $f0 # amount of gallons user wants
     mov.s $f13,    $f1 # price per gallon
 
-	# jump to getGasAmount procedure
     jal    getGasAmount
 
     jal    printReceipt
@@ -31,9 +40,19 @@ done:
     li    $v0,    10
     syscall
 
-# -------------------------------------------- #
-# getPaymentAndType procedure
-# -------------------------------------------- #
+# ___________________________________________
+#                                            \
+# NAME:      getPaymentAndType                \
+# ARGUMENTS: None                             |
+# RETURN:    1) Number of gallons user wants  |
+#            2) Price per gallon              |
+# PURPOSE:   Takes in how many gallons a user |
+#            wants to fill and payment type   |
+#            and determines the price based   |
+#            on payment type. It also applies |
+#            a discount of 10 cents to        |
+#            SmahtPay users                   |
+# ____________________________________________|
     .data
 pay_prompt:           .asciiz    "Please enter a payment type\n's': SmahtPay\n'c': Credit\n'q': Complete Transaction\n> "
 gas_prompt:           .asciiz    "Please choose gas type:\nType        Code    Price\nRegular      R      3.619\nPlus         P      3.719\nSuper        S      3.839\n> "
@@ -141,9 +160,20 @@ no_discount:
 
     j    $ra
 
-# -------------------------------------------- #
-# getGasAmount procedure
-# -------------------------------------------- #
+# ___________________________________________
+#                                            \
+# NAME:      getGasAmount                     \
+# ARGUMENTS: 1) Number of gallons user wants  |
+#            2) Price per gallon              |
+# RETURN:    None                             |
+# PURPOSE:   Takes in how many gallons a user |
+#            wants to fill and the price from |
+#            the getPaymentAndType procedure. |
+#            The total price is calculated    |
+#            and then rounded to the nearest  |
+#            while also truncating extra      |
+#            decimal spots.                   |
+# ____________________________________________|
     .data
 dot:         .asciiz        "."
     .text
@@ -191,41 +221,20 @@ getGasAmount:
 
     # $s4 = left hand side of decimal
     # $s5 = right hand side of decimal
-    
-    # $t0 = integer value of price
-
- #   move  $a0,   $s4
- #   li    $v0,    1
- #   syscall
-
- #   la    $a0,    dot
- #   li    $v0,    4
- #   syscall
-
-    # checks if price is 0.0
-    # if it is then add another 0 to right hand side
-    # else, print remainder
- #   bne   $s5,    $zero,     not_zero
-
- #   li    $a0,    0
- #   li    $v0,    1
- #   syscall
-
-#not_zero:
- #   move  $a0,   $s5
- #   li    $v0,    1
- #   syscall
-
- #   la    $a0,    endl
- #   li    $v0,    4
- #   syscall
 
     j     $ra
 
 
-# -------------------------------------------- #
-# printReceipt procedure
-# -------------------------------------------- #
+# ___________________________________________
+#                                            \
+# NAME:      printReceipt                     \
+# ARGUMENTS: None                             |
+# RETURN:    None                             |
+# PURPOSE:   Outputs the resulting receipt    |
+#            onto the screen using the info   |
+#            inputted and calculated in the   |
+#            previous 2 procedures.           |
+# ____________________________________________|
         .data
 padding1:       .asciiz        " "
 padding2:       .asciiz        "  "
@@ -338,10 +347,8 @@ printReceipt:
     li    $v0,    4
     syscall
 
-    #mov.s    $f10,    $f0
-    #mov.s    $f11,    $f1
-
-    #mov.s $f12,    $f0
+    # just print a float because the number
+    # of gallons are already in $f12
     li    $v0,    2
     syscall
 
@@ -357,6 +364,8 @@ printReceipt:
     li    $v0,    4
     syscall
 
+    # moves price/gallon to $f12 to be
+    # printed out
     mov.s $f12,    $f13
     li    $v0,    2
     syscall  
