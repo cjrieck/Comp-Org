@@ -184,15 +184,15 @@ getGasAmount:
     li    $t1,    100
     div   $t0,    $t1
 
-    mflo  $t1
-    mfhi  $t2
+    mflo  $s4
+    mfhi  $s5
 
-    # $t0 = left hand side of decimal
-    # $t1 = right hand side of decimal
+    # $s4 = left hand side of decimal
+    # $s5 = right hand side of decimal
     
     # $t0 = integer value of price
 
-    move  $a0,   $t1
+    move  $a0,   $s4
     li    $v0,    1
     syscall
 
@@ -203,14 +203,14 @@ getGasAmount:
     # checks if price is 0.0
     # if it is then add another 0 to right hand side
     # else, print remainder
-    bne   $t2,    $zero,     not_zero
+    bne   $s5,    $zero,     not_zero
 
     li    $a0,    0
     li    $v0,    1
     syscall
 
 not_zero:
-    move  $a0,   $t2
+    move  $a0,   $s5
     li    $v0,    1
     syscall
 
@@ -233,8 +233,36 @@ gallons:        .asciiz        "Gallon(s)"
 costPerGallon:  .asciiz        "$/Gallons"
 total:          .asciiz        "Total"        
         .text
+
 printReceipt:
 
+    la    $a0,    padding4
+    li    $v0,    4
+    syscall
+
+    la    $a0,    title
+    li    $v0,    4
+    syscall
+
+    la    $a0,    endl
+    li    $v0,    4
+    syscall
+
+    la    $a0,    endl
+    li    $v0,    4
+    syscall
+
+    la    $a0,    gasAndPayType
+    li    $v0,    4
+    syscall
+
+    la    $a0,    endl
+    li    $v0,    4
+    syscall
+
+    la    $a0,    padding4
+    li    $v0,    4
+    syscall
 
 
 
