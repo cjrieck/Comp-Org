@@ -2,10 +2,25 @@
 # Author: Clayton Rieck                                     |
 #-----------------------------------------------------------+
 # DESCRIPTION:                                              |
+# This program finds the total cost of using a gas pump at  |
+# Cowberland Farms and rounds the result to the nearest     |
+# penny.                                                    |
 #-----------------------------------------------------------+
 # INPUT:                                                    |
+# The user will input their payment type (S for SmahtPay,   |
+# C for Credit or Q for Quitting). Then they'll enter a type|
+# of gas they want to fill their car with (R for regular,   |
+# P for Premium, or S for Super). Lastly, they'll enter the |
+# number of gallons they'd like to fill as a single         |
+# precision floating point number.                          |
 #-----------------------------------------------------------+
 # OUTPUT:                                                   |
+# The program will output a receipt including the payment   |
+# type chosen, the type of gas chosen, the number of gallons|
+# they wanted to fill as a single precision floating point  |
+# number, the price per gallon as a single precision float, |
+# and the total cost rounded to the nearest penny and       |
+# truncated to only 2 decimal places.                       |
 #-----------------------------------------------------------+
     .data
 integer:       .word      0 # used to store converted total cost
@@ -30,6 +45,7 @@ transaction_start:
 
     j      transaction_start
 
+# terminates the program
 done:
 
     la    $a0,    done_prompt
@@ -428,6 +444,19 @@ printReceipt:
     syscall
 
 not_zero:
+
+    # check if remainder is less than or 
+    # equal to 10
+    li    $t1,   10
+    bgt   $s5,   $t1,    no_zero_before
+
+    # puts an extra 0 before remainder
+    # if remainder less than 10
+    li    $a0,    0
+    li    $v0,    1
+    syscall
+
+no_zero_before:
     move  $a0,   $s5
     li    $v0,    1
     syscall
