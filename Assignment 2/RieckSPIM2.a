@@ -31,6 +31,10 @@ endl:          .asciiz    "\n"
 
 main:
 
+#-----------------------------------------------------
+# Begins while loop that continues until 'Q' or 'q'   \
+# is typed                                             \
+#--------------------------------------------------------
 transaction_start:
 
 	jal    getPaymentAndType
@@ -45,7 +49,6 @@ transaction_start:
 
     j      transaction_start
 
-# terminates the program
 done:
 
     la    $a0,    done_prompt
@@ -136,18 +139,33 @@ getPaymentAndType:
     beq   $s1,    $t2,    super      # get price for super gas
 
     # set the price depending on the gas the user chose
+
+#-----------------------------------------------------
+# If Regular, set price to 3.619                       \
+#--------------------------------------------------------
 regular:
     li.s  $f21,   3.619
     j     amount
 
+#-----------------------------------------------------
+# If Plus, set price to 3.719                          \
+#--------------------------------------------------------
 plus:
     li.s  $f21,   3.719
     j     amount
 
+#-----------------------------------------------------
+# If Super, set price to 3.839                         \
+#--------------------------------------------------------
 super:
     li.s  $f21,   3.839
     j     amount
 
+#-----------------------------------------------------
+# Checks if the user is using SmahtPay and if they are \
+# then the program reduces the price per gallon by 10   \
+# cents                                                  \
+#---------------------------------------------------------
 amount:
 
     # check if not using SmahtPay
@@ -159,6 +177,9 @@ amount:
     # give 10 cent discount per gallon if using SmahtPay
     sub.s $f21,   $f21,    $f24
 
+#-----------------------------------------------------
+# Takes in the amount of gallons they want to fill    \
+#-------------------------------------------------------
 no_discount:
     # ask for the amount of gas they want
     la    $a0,    gas_amount_prompt
@@ -170,9 +191,11 @@ no_discount:
     li    $v0,    6
     syscall
 
-    # mov.s $f20,   $f0
     mov.s   $f1,    $f21
-    # f20 = gallons of gas user wants
+
+    # f0 = gallons of gas user wants
+    # f1 = price per gallon
+    # $f0 and $f1 get passed back as a return values
 
     j    $ra
 
@@ -196,11 +219,11 @@ dot:         .asciiz        "."
 
 getGasAmount:
 
-    #f20 = gallons
-    #f21 = price
-
     mov.s    $f20,    $f0
     mov.s    $f21,    $f1
+
+    #f20 = gallons
+    #f21 = price
 
     la    $a0,    endl
     li    $v0,    4
@@ -210,36 +233,43 @@ getGasAmount:
     li    $t2,    83
     li    $t3,    115
 
+    # multiply gallons and price to get total
     mul.s $f22,   $f21,    $f20
 
-    # f22 = price NOT ROUNDED
+    # f22 = price (NOT ROUNDED)
 
     # --------- start truncating decimal points ---------
-    # multiply by 100.0
+
+    # multiply by 100.0 to set up for integer
+    # representation of price
     li.s  $f5,    100.0
     mul.s $f22,   $f22,    $f5
 
-    # add 0.5
+    # add 0.5 for rounding to nearest penny
     li.s  $f5,    0.5
     add.s $f22,   $f22,    $f5
 
     cvt.w.s $f22,  $f22 # convert single precision to int
 
+    # store float in a word
     s.s   $f22,    integer
     
+    # load that new integer back into an int register
     lw    $t0,     integer
 
+    # divide the integer by 100 and get
+    # left hand side of total price in LO 
+    # and right hand side in HI
     li    $t1,    100
     div   $t0,    $t1
 
-    mflo  $s4
-    mfhi  $s5
+    mflo  $s4 # move LO to s4
+    mfhi  $s5 # move HI to s5
 
     # $s4 = left hand side of decimal
     # $s5 = right hand side of decimal
 
     j     $ra
-
 
 # ___________________________________________
 #                                            \
@@ -443,6 +473,9 @@ printReceipt:
     li    $v0,    1
     syscall
 
+#-----------------------------------------------------
+# Acts as a branch when the remainder is not 0        \
+#-------------------------------------------------------
 not_zero:
 
     # check if remainder is less than or 
@@ -456,7 +489,11 @@ not_zero:
     li    $v0,    1
     syscall
 
+#-----------------------------------------------------
+# Acts as a branch when the remainder is less than 10 \
+#-------------------------------------------------------
 no_zero_before:
+
     move  $a0,   $s5
     li    $v0,    1
     syscall
