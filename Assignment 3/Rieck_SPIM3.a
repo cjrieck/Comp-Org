@@ -64,7 +64,7 @@ start_fib:
 smart_fib:
     
     # adjust stack pointer
-    add   $sp,    $sp,    -16
+    add   $sp,    $sp,    -20
 
     # move arguments to temp registers
     # for later use
@@ -72,15 +72,33 @@ smart_fib:
     move  $t1,    $a1
     move  $t2,    $a2
     move  $t3,    $a3
+
+    # p1+p2
+    add   $t4,    $t2,    $t1
     
     # compute the sum (sum = sum + second_arg)
     add   $t3,    $t3,    $t2
+
+    sw    $t0,    0($sp)  # store fib term
+    sw    $t2,    4($sp)  # store p2
+    sw    $t4,    8($sp)  # store p1 + p2
+    sw    $t3,    12($sp) # store summation
+    sw    $ra,    16($sp) # store return address
 
     bne   $t0,    1,      recurse
     
     move  $v0,    $t2 # return current term (1)
     move  $v1,    $t3 # return current sum (0+1)
-    add   $sp,    $sp,    16
+    add   $sp,    $sp,    20
+    j     $ra
 
 recurse:
-    sub   
+    # n = n - 1
+    add   $t0,    $t0,    -1 
+    
+
+
+
+
+
+
