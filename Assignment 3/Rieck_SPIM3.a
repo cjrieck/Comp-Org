@@ -1,5 +1,7 @@
         .data
 prompt:        .asciiz        "Enter a number between 0 and 44: "
+test:          .asciiz        "TEST"
+endl:          .asciiz        "\n"
         .text
         .globl main
 
@@ -60,11 +62,12 @@ start_fib:
 
 # --------------------------
         .data
+hi_prompt:       .asciiz        "nth number: "
         .text
 smart_fib:
     
     # adjust stack pointer
-    add   $sp,    $sp,    -20
+    addi  $sp,    $sp,    -20
 
     # move arguments to temp registers
     # for later use
@@ -72,18 +75,11 @@ smart_fib:
     move  $t1,    $a1
     move  $t2,    $a2
     move  $t3,    $a3
-
-    # p1+p2
-    add   $t4,    $t2,    $t1
     
+    #print out current fib term number (p2) => will give fib numbers in order
+
     # compute the sum (sum = sum + second_arg)
     add   $t3,    $t3,    $t2
-
-    sw    $t0,    0($sp)  # store fib term
-    sw    $t2,    4($sp)  # store p2
-    sw    $t4,    8($sp)  # store p1 + p2
-    sw    $t3,    12($sp) # store summation
-    sw    $ra,    16($sp) # store return address
 
     bne   $t0,    1,      recurse
     
@@ -94,11 +90,48 @@ smart_fib:
 
 recurse:
     # n = n - 1
-    add   $t0,    $t0,    -1 
+    addi  $t0,    $t0,    -1 
+
+    # p1+p2
+    add   $t4,    $t2,    $t1
     
+    # store local variables in frame
+    sw    $t0,    0($sp)  # store fib term
+    sw    $t2,    4($sp)  # store p2
+    sw    $t4,    8($sp)  # store p1 + p2
+    sw    $t3,    12($sp) # store summation
+    sw    $ra,    16($sp) # store return address
 
+    # smart_fib(n-1, p2, p2+p1, summation)
+    move  $a0,    $t0
+    move  $a1,    $t2
+    move  $a2,    $t4
+    move  $a3,    $t3
 
+    jal   smart_fib
 
+    # move down the stack
+    #lw    $t5,    4($sp)
 
+    # print p2 (highest fib number)
+    lw    $a0,    hi_prompt    
+    li    $v0,    4
+    syscall
 
+    lw    $a0,    4($sp)    
+    li    $v0,    1
+    syscall
 
+    lw    $a0,    endl    
+    li    $v0,    4
+    syscall
+
+    lw    $v0,    4($sp)  # return p2
+    lw    $v1,    12($sp) # return summation
+
+    lw    $ra,    16($sp) # load return value
+
+    addi  $sp,    $sp,     20
+
+    j     $ra
+    
