@@ -12,14 +12,14 @@ def fast_fib(n, p1, p2, summation):
 def fib(n, summation):
 
 	if n == 0:
-		return 0, summation
+		print 0, summation
 
 	else:
-		return fast_fib(n, 0, 1, 0)
+		print fast_fib(n, 0, 1, 0)
 
 def main():
 
-	print fib(5, 0)
+	fib(10, 0)
 
 if __name__ == '__main__':
 	main()

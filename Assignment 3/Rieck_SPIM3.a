@@ -5,21 +5,30 @@ prompt:        .asciiz        "Enter a number between 0 and 44: "
 
 main:
     
+    # print the prompt
+    lw   $a0,    prompt
+    li   $v0,    4
+    syscall
+
     # read in int
     li   $v0,    5
     syscall
 
+    # moves inputted value to $t0
     move $t0,    $v0
 
-
+    
 
 done:
     li   $v0,    10
     syscall
 
-
+# --------------------------
         .data
         .text
 fib:
     
-    
+# --------------------------
+        .data
+        .text
+smart_fib:
