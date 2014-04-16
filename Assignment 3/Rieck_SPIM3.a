@@ -1,0 +1,25 @@
+        .data
+prompt:        .asciiz        "Enter a number between 0 and 44: "
+        .text
+        .globl main
+
+main:
+    
+    # read in int
+    li   $v0,    5
+    syscall
+
+    move $t0,    $v0
+
+
+
+done:
+    li   $v0,    10
+    syscall
+
+
+        .data
+        .text
+fib:
+    
+    
