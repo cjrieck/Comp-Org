@@ -63,11 +63,27 @@ start_fib:
 
     jal   smart_fib
 
+    move  $t0,    $v0 # move fib term num to t0
+    move  $t1,    $v1 # move summation to t1
+
+    move  $a0,    $t0
+    li    $v1,    1
+    syscall
+
+    la    $a0,    endl    
+    li    $v0,    4
+    syscall
+    
+    move  $a0,    $t1
+    li    $v1,    1
+    syscall
+
     j     done
 
 # --------------------------
         .data
 hi_prompt:       .asciiz        "nth number: "
+sum:             .asciiz        "summation: "
         .text
 smart_fib:
     
@@ -125,6 +141,19 @@ recurse:
     syscall
 
     lw    $a0,    4($sp)    
+    li    $v0,    1
+    syscall
+
+    la    $a0,    endl    
+    li    $v0,    4
+    syscall
+
+    # print current summation
+    la    $a0,    sum    
+    li    $v0,    4
+    syscall
+
+    lw    $a0,    12($sp)    
     li    $v0,    1
     syscall
 
