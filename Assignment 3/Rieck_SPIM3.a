@@ -33,25 +33,37 @@ done:
 
 # --------------------------
         .data
+zero:          .asciiz        "Summation: "
         .text
 fib:
     # adjust stack pointer
     addi  $sp,    $sp,    -20
 
+    # t0 = fib term
+    # t1 = summation
     move  $t0,    $a0
     move  $t1,    $a1
 
-    # t0 = fib term
-    # t1 = summation
-
+    # if user entered 0
     bne   $t0,    $zero,    start_fib
 
-    # move fib term and sum to return registers
-    move  $v0,    $t0
-    move  $v1,    $t1
+    la    $a0,    zero    
+    li    $v0,    4
+    syscall
+    
+    # print 0
+    li    $a0,    0    
+    li    $v0,    1
+    syscall
+
+    la    $a0,    endl    
+    li    $v0,    4
+    syscall
+
     j     $ra
 
 start_fib:
+
     # a0 = fib term
     # a1 = first fib term
     # a2 = second fib term
@@ -67,9 +79,9 @@ start_fib:
 
 # --------------------------
         .data
-hi_prompt:       .asciiz        "nth number: "
-sum:             .asciiz        "summation: "
-sequence:        .asciiz        "sequence: \n"
+hi_prompt:       .asciiz        "N'th Fibonacci Number: "
+sum:             .asciiz        "Summation:             "
+sequence:        .asciiz        "Sequence: \n"
         .text
 smart_fib:
     
@@ -83,8 +95,6 @@ smart_fib:
     move  $t2,    $a2
     move  $t3,    $a3
     
-    #print out current fib term number (p2) => will give fib numbers in order
-
     # compute the sum (sum = sum + second_arg)
     add   $t3,    $t3,    $t2
 
@@ -122,18 +132,23 @@ recurse:
     jal   smart_fib
 
     # move down the stack
-    #lw    $t5,    4($sp)
 
-    lw   $t1,    0($sp) # highest fib number (p2)
-    #lw  $s2,    24($sp) # sum
+    lw   $t1,    0($sp) # fib term (n)
 
+    # if n doesn't equal 1
+    # just print out next fib number in
+    # the sequence
     bne   $t1,   1,    move_down
 
-    # print p2 (highest fib number)
-    la    $a0,    hi_prompt    
+    la    $a0,    endl    
     li    $v0,    4
     syscall
 
+    la    $a0,    hi_prompt    
+    li    $v0,    4
+    syscall
+    
+    # print p2 (fib number at n'th position)
     lw    $a0,    4($sp)    
     li    $v0,    1
     syscall
@@ -142,11 +157,11 @@ recurse:
     li    $v0,    4
     syscall
 
-    # print current summation
     la    $a0,    sum    
     li    $v0,    4
     syscall
 
+    # print current summation
     lw    $a0,    12($sp)    
     li    $v0,    1
     syscall
@@ -159,12 +174,15 @@ recurse:
     li    $v0,    4
     syscall
     
+    # print sequence prompt
     la    $a0,    sequence    
     li    $v0,    4
     syscall
 
 move_down:
 
+    # load current fib number into a0
+    # to be printed
     lw    $a0,    4($sp)    
     li    $v0,    1
     syscall
@@ -173,8 +191,11 @@ move_down:
     li    $v0,    4
     syscall
 
-    lw    $ra,    16($sp) # load return value
+    # load back the return address for 
+    # the last call
+    lw    $ra,    16($sp)
 
+    # adjust the stack pointer
     addi  $sp,    $sp,     28
 
     j     $ra

@@ -19,7 +19,7 @@ def fib(n, summation):
 
 def main():
 
-	fib(10, 0)
+	fib(500, 0)
 
 if __name__ == '__main__':
 	main()
