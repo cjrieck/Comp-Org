@@ -2,25 +2,16 @@
 # Author: Clayton Rieck                                     |
 #-----------------------------------------------------------+
 # DESCRIPTION:                                              |
-# This program finds the total cost of using a gas pump at  |
-# Cowberland Farms and rounds the result to the nearest     |
-# penny.                                                    |
+# This program finds the n'th Fibonacci number where        |
+# 0 <= n <= 44
 #-----------------------------------------------------------+
 # INPUT:                                                    |
-# The user will input their payment type (S for SmahtPay,   |
-# C for Credit or Q for Quitting). Then they'll enter a type|
-# of gas they want to fill their car with (R for regular,   |
-# P for Premium, or S for Super). Lastly, they'll enter the |
-# number of gallons they'd like to fill as a single         |
-# precision floating point number.                          |
+# The user will input an integer between 0 and 44 inclusive.|
 #-----------------------------------------------------------+
 # OUTPUT:                                                   |
-# The program will output a receipt including the payment   |
-# type chosen, the type of gas chosen, the number of gallons|
-# they wanted to fill as a single precision floating point  |
-# number, the price per gallon as a single precision float, |
-# and the total cost rounded to the nearest penny and       |
-# truncated to only 2 decimal places.                       |
+# The program will output the n'th number in the Fibonacci  |
+# sequence and the sum of all th terms leading up to that   |
+# number. It was also display the sequence in reverse order.|
 #-----------------------------------------------------------+        
         .data
 prompt:        .asciiz        "Enter a number between 0 and 44: "
@@ -29,8 +20,6 @@ endl:          .asciiz        "\n"
         .text
         .globl main
 
-# $a0-3 = arguments
-# v0-1  = return values
 main:
     
     # print the prompt
@@ -122,10 +111,10 @@ smart_fib:
     # compute the sum (sum = sum + second_arg)
     add   $t3,    $t3,    $t2
 
-    bne   $t0,    0,      recurse
+    bne   $t0,    0,      recurse  # if nth term equals 0
     
-    move  $v0,    $t2 # return current term (1)
-    move  $v1,    $t3 # return current sum (0+1)
+    move  $v0,    $t2              # return current term (1)
+    move  $v1,    $t3              # return current sum (0+1)
     add   $sp,    $sp,    28
     j     $ra
 
@@ -135,11 +124,11 @@ recurse:
     add   $t4,    $t2,    $t1
     
     # store local variables in frame
-    sw    $t0,    0($sp)  # store fib term
-    sw    $t2,    4($sp)  # store p2
-    sw    $t4,    8($sp)  # store p1 + p2
-    sw    $t3,    12($sp) # store summation
-    sw    $ra,    16($sp) # store return address
+    sw    $t0,    0($sp)           # store fib term
+    sw    $t2,    4($sp)           # store p2
+    sw    $t4,    8($sp)           # store p1 + p2
+    sw    $t3,    12($sp)          # store summation
+    sw    $ra,    16($sp)          # store return address
 
     sw    $t2,    20($sp)
     sw    $t3,    24($sp)
@@ -147,7 +136,7 @@ recurse:
     # n = n - 1
     addi  $t0,    $t0,    -1
 
-    # smart_fib(n-1, p2, p2+p1, summation)
+    # smart_fib(n-1, p2, p2+p1, summation) (python equivalent)
     move  $a0,    $t0
     move  $a1,    $t2
     move  $a2,    $t4
@@ -157,7 +146,7 @@ recurse:
 
     # move down the stack
 
-    lw   $t1,    0($sp) # fib term (n)
+    lw   $t1,    0($sp)               # fib term (n)
 
     # if n doesn't equal 1
     # just print out next fib number in
