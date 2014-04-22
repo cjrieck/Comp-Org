@@ -1,3 +1,27 @@
+#-----------------------------------------------------------+
+# Author: Clayton Rieck                                     |
+#-----------------------------------------------------------+
+# DESCRIPTION:                                              |
+# This program finds the total cost of using a gas pump at  |
+# Cowberland Farms and rounds the result to the nearest     |
+# penny.                                                    |
+#-----------------------------------------------------------+
+# INPUT:                                                    |
+# The user will input their payment type (S for SmahtPay,   |
+# C for Credit or Q for Quitting). Then they'll enter a type|
+# of gas they want to fill their car with (R for regular,   |
+# P for Premium, or S for Super). Lastly, they'll enter the |
+# number of gallons they'd like to fill as a single         |
+# precision floating point number.                          |
+#-----------------------------------------------------------+
+# OUTPUT:                                                   |
+# The program will output a receipt including the payment   |
+# type chosen, the type of gas chosen, the number of gallons|
+# they wanted to fill as a single precision floating point  |
+# number, the price per gallon as a single precision float, |
+# and the total cost rounded to the nearest penny and       |
+# truncated to only 2 decimal places.                       |
+#-----------------------------------------------------------+        
         .data
 prompt:        .asciiz        "Enter a number between 0 and 44: "
 test:          .asciiz        "TEST"
