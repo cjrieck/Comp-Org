@@ -44,10 +44,15 @@ done:
     li   $v0,    10
     syscall
 
-# --------------------------
+# -------------------------------
         .data
 zero:          .asciiz        "Summation: "
         .text
+
+# -------------------------------\
+# Function that ultimately calls  \
+# calls the recursive function     \
+#-----------------------------------
 fib:
     # adjust stack pointer
     addi  $sp,    $sp,    -20
@@ -75,6 +80,10 @@ fib:
 
     j     $ra
 
+# -------------------------------\
+# Branch that jumps and links     \
+# to the recursive function        \
+#-----------------------------------
 start_fib:
 
     # a0 = fib term
@@ -90,12 +99,20 @@ start_fib:
 
     j     done
 
-# --------------------------
+# -------------------------------
         .data
 hi_prompt:       .asciiz        "N'th Fibonacci Number: "
 sum:             .asciiz        "Summation:             "
 sequence:        .asciiz        "Sequence: \n"
         .text
+
+# -------------------------------\
+# Recursive function definition   \
+# ARGS: n    => term in sequence   \
+#       p1   => previous' previous  \
+#       p2   => previous number      \
+#       sum  => summation (intial 0)  \
+#--------------------------------------
 smart_fib:
     
     # adjust stack pointer
@@ -118,6 +135,11 @@ smart_fib:
     add   $sp,    $sp,    28
     j     $ra
 
+# -------------------------------\
+# Branch that continues the       \ 
+# recursive function when the      \
+# input is not 0                    \
+#------------------------------------
 recurse: 
 
     # p1+p2
@@ -192,6 +214,11 @@ recurse:
     li    $v0,    4
     syscall
 
+# -------------------------------\
+# Handles the printing of the     \
+# sequence as we move down the call\
+# stack                             \
+#------------------------------------
 move_down:
 
     # load current fib number into a0
