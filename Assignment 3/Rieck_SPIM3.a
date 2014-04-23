@@ -3,7 +3,7 @@
 #-----------------------------------------------------------+
 # DESCRIPTION:                                              |
 # This program finds the n'th Fibonacci number where        |
-# 0 <= n <= 44
+# 0 <= n <= 44                                              |
 #-----------------------------------------------------------+
 # INPUT:                                                    |
 # The user will input an integer between 0 and 44 inclusive.|
